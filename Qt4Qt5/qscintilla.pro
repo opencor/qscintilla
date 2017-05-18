@@ -47,10 +47,10 @@ greaterThan(QT_MAJOR_VERSION, 4) {
 # Scintilla namespace rather than pollute the global namespace.
 #DEFINES += SCI_NAMESPACE
 
-target.path = $$PWD/../../lib
+target.path = $$INSTALL_DIR/lib
 INSTALLS += target
 
-header.path = $$PWD/../../include
+header.path = $$INSTALL_DIR/include
 header.files = Qsci
 INSTALLS += header
 
