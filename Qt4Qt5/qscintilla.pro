@@ -256,7 +256,7 @@ SOURCES = \
 	../lexers/LexBash.cpp \
 	../lexers/LexBasic.cpp \
 	../lexers/LexBatch.cpp \
-	../lexers/LexBibTex.cpp \
+	../lexers/LexBibTeX.cpp \
 	../lexers/LexBullant.cpp \
 	../lexers/LexCaml.cpp \
 	../lexers/LexCLW.cpp \
@@ -290,7 +290,7 @@ SOURCES = \
 	../lexers/LexJSON.cpp \
 	../lexers/LexKix.cpp \
 	../lexers/LexKVIrc.cpp \
-	../lexers/LexLaTex.cpp \
+	../lexers/LexLaTeX.cpp \
 	../lexers/LexLisp.cpp \
 	../lexers/LexLout.cpp \
 	../lexers/LexLua.cpp \
