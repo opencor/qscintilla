@@ -47,32 +47,32 @@ greaterThan(QT_MAJOR_VERSION, 4) {
 # Scintilla namespace rather than pollute the global namespace.
 #DEFINES += SCI_NAMESPACE
 
-target.path = $$[QT_INSTALL_LIBS]
+target.path = $$PWD/../../lib
 INSTALLS += target
 
-header.path = $$[QT_INSTALL_HEADERS]
+header.path = $$PWD/../../include
 header.files = Qsci
 INSTALLS += header
 
-trans.path = $$[QT_INSTALL_TRANSLATIONS]
-trans.files = qscintilla_*.qm
-INSTALLS += trans
+#trans.path = $$[QT_INSTALL_TRANSLATIONS]
+#trans.files = qscintilla_*.qm
+#INSTALLS += trans
 
-qsci.path = $$[QT_INSTALL_DATA]
-qsci.files = ../qsci
-INSTALLS += qsci
+#qsci.path = $$[QT_INSTALL_DATA]
+#qsci.files = ../qsci
+#INSTALLS += qsci
 
-greaterThan(QT_MAJOR_VERSION, 4) {
-    features.path = $$[QT_HOST_DATA]/mkspecs/features
-} else {
-    features.path = $$[QT_INSTALL_DATA]/mkspecs/features
-}
-CONFIG(staticlib) {
-    features.files = $$PWD/features_staticlib/qscintilla2.prf
-} else {
-    features.files = $$PWD/features/qscintilla2.prf
-}
-INSTALLS += features
+#greaterThan(QT_MAJOR_VERSION, 4) {
+#    features.path = $$[QT_HOST_DATA]/mkspecs/features
+#} else {
+#    features.path = $$[QT_INSTALL_DATA]/mkspecs/features
+#}
+#CONFIG(staticlib) {
+#    features.files = $$PWD/features_staticlib/qscintilla2.prf
+#} else {
+#    features.files = $$PWD/features/qscintilla2.prf
+#}
+#INSTALLS += features
 
 HEADERS = \
 	./Qsci/qsciglobal.h \
