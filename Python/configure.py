@@ -1,4 +1,4 @@
-# Copyright (c) 2016, Riverbank Computing Limited
+# Copyright (c) 2017, Riverbank Computing Limited
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -23,7 +23,7 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-# This is v2.0 of this boilerplate.
+# This is v2.1 of this boilerplate.
 
 
 from distutils import sysconfig
@@ -60,7 +60,7 @@ class ModuleConfiguration(object):
 
     # The version of the module as a string.  Set it to None if you don't
     # provide version information.
-    version = '2.10'
+    version = '2.10.1'
 
     # Set if a configuration script is provided that handles versions of PyQt4
     # prior to v4.10 (i.e. versions where the pyqtconfig.py module is
@@ -329,9 +329,11 @@ class ModuleConfiguration(object):
         if lib_dir is None:
             lib_dir = target_configuration.qt_lib_dir
 
+        debug = '_debug' if target_configuration.debug else ''
+
         return os.path.join(lib_dir,
-                'libqscintilla2_qt%s.%s.dylib' % (
-                        target_configuration.qt_version_str[0],
+                'libqscintilla2_qt%s%s.%s.dylib' % (
+                        target_configuration.qt_version_str[0], debug,
                         QSCI_API_MAJOR))
 
 
@@ -701,27 +703,13 @@ class _TargetConfiguration:
         self.py_sip_dir = os.path.join(py_config.data_dir, 'sip')
         self.sip_inc_dir = py_config.venv_inc_dir
 
-        # The default qmake spec.
-        if self.py_platform == 'win32':
-            if self.py_version >= 0x030500:
-                self.qmake_spec = 'win32-msvc2015'
-            elif self.py_version >= 0x030300:
-                self.qmake_spec = 'win32-msvc2010'
-            elif self.py_version >= 0x020600:
-                self.qmake_spec = 'win32-msvc2008'
-            elif self.py_version >= 0x020400:
-                self.qmake_spec = 'win32-msvc.net'
-            else:
-                self.qmake_spec = 'win32-msvc'
-        else:
-            # Use the Qt default.  (We may update it for MacOS/X later.)
-            self.qmake_spec = ''
-
         # Remaining values.
         self.debug = False
         self.pyqt_sip_flags = None
         self.pyqt_version_str = ''
         self.qmake = self._find_exe('qmake')
+        self.qmake_spec = ''
+        self.qt_version = 0
         self.qt_version_str = ''
         self.sip = self._find_exe('sip5', 'sip')
         self.sip_version = None
@@ -824,23 +812,19 @@ class _TargetConfiguration:
             flags.append('-t')
             flags.append(self._get_platform_tag())
 
-            qt_version = version_from_string(self.qt_version_str)
-            if qt_version is None:
-                error("Unable to determine the version of Qt.")
-
             if self.pyqt_package == 'PyQt5':
-                if qt_version < 0x050000:
+                if self.qt_version < 0x050000:
                     error("PyQt5 requires Qt v5.0 or later.")
 
-                if qt_version > 0x060000:
-                    qt_version = 0x060000
+                if self.qt_version > 0x060000:
+                    self.qt_version = 0x060000
             else:
-                if qt_version > 0x050000:
-                    qt_version = 0x050000
+                if self.qt_version > 0x050000:
+                    self.qt_version = 0x050000
 
-            major = (qt_version >> 16) & 0xff
-            minor = (qt_version >> 8) & 0xff
-            patch = qt_version & 0xff
+            major = (self.qt_version >> 16) & 0xff
+            minor = (self.qt_version >> 8) & 0xff
+            patch = self.qt_version & 0xff
 
             flags.append('-t')
             flags.append('Qt_%d_%d_%d' % (major, minor, patch))
@@ -938,8 +922,30 @@ class _TargetConfiguration:
         # Query qmake.
         qt_config = _TargetQtConfiguration(self.qmake)
 
-        # The binary MacOS/X Qt installer defaults to XCode.  If this is what
-        # we might have then use macx-clang (Qt v5) or macx-g++ (Qt v4).
+        self.qt_version_str = getattr(qt_config, 'QT_VERSION', '')
+        self.qt_version = version_from_string(self.qt_version_str)
+        if self.qt_version is None:
+            error("Unable to determine the version of Qt.")
+
+        # On Windows for Qt versions prior to v5.9.0 we need to be explicit
+        # about the qmake spec.
+        if self.qt_version < 0x050900 and self.py_platform == 'win32':
+            if self.py_version >= 0x030500:
+                self.qmake_spec = 'win32-msvc2015'
+            elif self.py_version >= 0x030300:
+                self.qmake_spec = 'win32-msvc2010'
+            elif self.py_version >= 0x020600:
+                self.qmake_spec = 'win32-msvc2008'
+            elif self.py_version >= 0x020400:
+                self.qmake_spec = 'win32-msvc.net'
+            else:
+                self.qmake_spec = 'win32-msvc'
+        else:
+            # Otherwise use the default.
+            self.qmake_spec = ''
+
+        # The binary MacOS/X Qt installer used to default to XCode.  If so then
+        # use macx-clang (Qt v5) or macx-g++ (Qt v4).
         if sys.platform == 'darwin':
             try:
                 # Qt v5.
@@ -953,7 +959,6 @@ class _TargetConfiguration:
                 # Qt v4.
                 self.qmake_spec = 'macx-g++'
 
-        self.qt_version_str = getattr(qt_config, 'QT_VERSION', '')
         self.api_dir = os.path.join(qt_config.QT_INSTALL_DATA, 'qsci')
         self.qt_inc_dir = qt_config.QT_INSTALL_HEADERS
         self.qt_lib_dir = qt_config.QT_INSTALL_LIBS
@@ -1100,7 +1105,7 @@ def _create_optparser(target_config, pkg_config):
 
     p.add_option('--spec', dest='qmakespec', default=None, action='store',
             metavar="SPEC",
-            help="pass -spec SPEC to qmake [default: %s]" % "don't pass -spec" if target_config.qmake_spec == '' else target_config.qmake_spec)
+            help="pass -spec SPEC to qmake")
 
     if _has_stubs(pkg_config):
         p.add_option('--stubsdir', dest='stubsdir', type='string',

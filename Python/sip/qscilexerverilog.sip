@@ -78,6 +78,8 @@ public:
     QString description(int style) const;
     const char *wordCharacters() const;
 
+    int braceStyle() const;
+
     void refreshProperties();
 
     void setFoldAtElse(bool fold);

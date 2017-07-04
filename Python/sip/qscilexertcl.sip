@@ -62,6 +62,8 @@ public:
     const char *keywords(int set) const;
     QString description(int style) const;
 
+    int braceStyle() const;
+
     void refreshProperties();
     void setFoldComments(bool fold);
     bool foldComments() const;

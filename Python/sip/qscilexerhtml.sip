@@ -151,6 +151,9 @@ public:
     QString description(int style) const;
     const char *wordCharacters() const;
 
+    const char *autoCompletionFillups() const /Encoding="None"/;
+    bool caseSensitive() const;
+
     void refreshProperties();
     bool caseSensitiveTags() const;
     void setDjangoTemplates(bool enable);

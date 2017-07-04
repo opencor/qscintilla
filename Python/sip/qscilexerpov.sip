@@ -58,6 +58,8 @@ public:
     QString description(int style) const;
     const char *wordCharacters() const;
 
+    int braceStyle() const;
+
     void refreshProperties();
     bool foldComments() const;
     bool foldCompact() const;

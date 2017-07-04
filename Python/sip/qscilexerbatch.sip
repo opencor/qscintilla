@@ -49,6 +49,8 @@ public:
     QString description(int style) const;
     const char *wordCharacters() const;
 
+    bool caseSensitive() const;
+
 private:
     QsciLexerBatch(const QsciLexerBatch &);
 };

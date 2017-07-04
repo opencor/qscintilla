@@ -1,3 +1,7 @@
+v2.10.1 3rd July 2017
+  - Changed the default font on macOS to Menlo 12pt.
+  - Added previously internal lexer methods to the Python bindings.
+
 v2.10 20th February 2017
   - Based on Scintilla v3.7.2.
   - Added the QsciLexerJSON class.

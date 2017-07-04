@@ -63,6 +63,8 @@ public:
     QString description(int style) const;
     const char *wordCharacters() const;
 
+    const char *blockEnd(int *style = 0) const /Encoding="None"/;
+
     void refreshProperties();
     bool foldComments() const;
     bool foldCompact() const;

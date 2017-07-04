@@ -47,6 +47,8 @@ public:
     QFont defaultFont(int style) const;
     QString description(int style) const;
 
+    int braceStyle() const;
+
 private:
     QsciLexerSpice(const QsciLexerSpice &);
 };

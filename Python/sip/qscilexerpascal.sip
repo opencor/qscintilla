@@ -54,6 +54,12 @@ public:
     const char *keywords(int set) const;
     QString description(int style) const;
 
+    QStringList autoCompletionWordSeparators() const;
+    const char *blockEnd(int *style = 0) const /Encoding="None"/;
+    const char *blockStart(int *style = 0) const /Encoding="None"/;
+    const char *blockStartKeyword(int *style = 0) const /Encoding="None"/;
+    int braceStyle() const;
+
     void refreshProperties();
     bool foldComments() const;
     bool foldCompact() const;

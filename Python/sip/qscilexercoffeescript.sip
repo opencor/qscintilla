@@ -65,6 +65,12 @@ public:
     QString description(int style) const;
     const char *wordCharacters() const;
 
+    QStringList autoCompletionWordSeparators() const;
+    const char *blockEnd(int *style = 0) const /Encoding="None"/;
+    const char *blockStart(int *style = 0) const /Encoding="None"/;
+    const char *blockStartKeyword(int *style = 0) const /Encoding="None"/;
+    int braceStyle() const;
+
     void refreshProperties();
     bool dollarsAllowed() const;
     void setDollarsAllowed(bool allowed);

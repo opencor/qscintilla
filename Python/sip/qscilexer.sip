@@ -38,7 +38,7 @@ public:
     virtual const char *blockEnd(int *style = 0) const /Encoding="None"/;
     virtual int blockLookback() const;
     virtual const char *blockStart(int *style = 0) const /Encoding="None"/;
-    virtual const char *blockStartKeyword(int *style = 0) const /Ecoding="None"/;
+    virtual const char *blockStartKeyword(int *style = 0) const /Encoding="None"/;
     virtual int braceStyle() const;
     virtual bool caseSensitive() const;
     virtual QColor color(int style) const;

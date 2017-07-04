@@ -23,8 +23,22 @@
 !win32:VERSION = 13.0.0
 
 TEMPLATE = lib
-TARGET = qscintilla2_qt$${QT_MAJOR_VERSION}
 CONFIG += qt warn_off thread exceptions hide_symbols
+
+CONFIG(debug, debug|release) {
+    mac: {
+        TARGET = qscintilla2_qt$${QT_MAJOR_VERSION}_debug
+    } else {
+        win32: {
+            TARGET = qscintilla2_qt$${QT_MAJOR_VERSION}d
+        } else {
+            TARGET = qscintilla2_qt$${QT_MAJOR_VERSION}
+        }
+    }
+} else {
+    TARGET = qscintilla2_qt$${QT_MAJOR_VERSION}
+}
+
 INCLUDEPATH += . ../include ../lexlib ../src
 
 !CONFIG(staticlib) {
@@ -43,36 +57,56 @@ greaterThan(QT_MAJOR_VERSION, 4) {
     CONFIG -= android_install
 }
 
+# For old versions of GCC.
+unix:!macx {
+    CONFIG += c++11
+}
+
 # Comment this in if you want the internal Scintilla classes to be placed in a
 # Scintilla namespace rather than pollute the global namespace.
 #DEFINES += SCI_NAMESPACE
 
+target.path = $$[QT_INSTALL_LIBS]
+#---GRY--- BEGIN
 target.path = $$INSTALL_DIR/lib
+#---GRY--- END
 INSTALLS += target
 
+header.path = $$[QT_INSTALL_HEADERS]
+#---GRY--- BEGIN
 header.path = $$INSTALL_DIR/include
+#---GRY--- END
 header.files = Qsci
 INSTALLS += header
 
-#trans.path = $$[QT_INSTALL_TRANSLATIONS]
-#trans.files = qscintilla_*.qm
-#INSTALLS += trans
+trans.path = $$[QT_INSTALL_TRANSLATIONS]
+trans.files = qscintilla_*.qm
+INSTALLS += trans
+#---GRY--- BEGIN
+INSTALLS -= trans
+#---GRY--- END
 
-#qsci.path = $$[QT_INSTALL_DATA]
-#qsci.files = ../qsci
-#INSTALLS += qsci
+qsci.path = $$[QT_INSTALL_DATA]
+qsci.files = ../qsci
+INSTALLS += qsci
+#---GRY--- BEGIN
+INSTALLS -= qsci
+#---GRY--- END
 
-#greaterThan(QT_MAJOR_VERSION, 4) {
-#    features.path = $$[QT_HOST_DATA]/mkspecs/features
-#} else {
-#    features.path = $$[QT_INSTALL_DATA]/mkspecs/features
-#}
-#CONFIG(staticlib) {
-#    features.files = $$PWD/features_staticlib/qscintilla2.prf
-#} else {
-#    features.files = $$PWD/features/qscintilla2.prf
-#}
-#INSTALLS += features
+greaterThan(QT_MAJOR_VERSION, 4) {
+    features.path = $$[QT_HOST_DATA]/mkspecs/features
+} else {
+    features.path = $$[QT_INSTALL_DATA]/mkspecs/features
+}
+CONFIG(staticlib) {
+    features.files = $$PWD/features_staticlib/qscintilla2.prf
+} else {
+    features.files = $$PWD/features/qscintilla2.prf
+}
+INSTALLS += features
+#---GRY--- BEGIN
+INSTALLS -= features
+#---GRY--- END
 
 HEADERS = \
 	./Qsci/qsciglobal.h \

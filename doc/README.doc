@@ -93,13 +93,22 @@ To build and install QScintilla, run:
 
 <pre>
     cd Qt4Qt5
-    qmake qscintilla.pro
+    qmake
     make
     make install
 </pre>
 
 If you have multiple versions of Qt installed then make sure you use the
 correct version of <tt>qmake</tt>.
+
+The underlying Scintilla code may support additional compile-time options.
+These can be configured by passing appropriate arguments to <tt>qmake</tt>.
+For example, if you have an old C++ compiler that does not have a working
+<tt>std::regex</tt> then invoke <tt>qmake</tt> as follows:
+
+<pre>
+    qmake DEFINES+=NO_CXX11_REGEX=1
+</pre>
 
 
 <h3>Installation on Windows</h3>
@@ -141,7 +150,7 @@ To build the example, run:
 
 <pre>
     cd example-Qt4Qt5
-    qmake application.pro
+    qmake
     make
 </pre>
 
@@ -189,7 +198,7 @@ then run (as root or administrator):
 
 <pre>
     cd designer-Qt4Qt5
-    qmake designer.pro
+    qmake
     make
     make install
 </pre>

@@ -62,6 +62,8 @@ public:
     const char *keywords(int set) const;
     QString description(int style) const;
 
+    int braceStyle() const;
+
     void refreshProperties();
     bool backslashEscapes() const;
     void setDottedWords(bool enable);

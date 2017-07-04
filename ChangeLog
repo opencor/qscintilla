@@ -1,4 +1,68 @@
+2017-07-03  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS:
+	Released as v2.10.1.
+	[20e0e2d419ba] [2.10.1] <2.10-maint>
+
+	* rb-product:
+	Updated the PyQt5 dependency to v5.9.
+	[83200ee6b295] <2.10-maint>
+
+2017-05-24  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* lib/README.doc:
+	Updated the docs regarding use of build options supported by
+	Scintilla.
+	[fe6e73057d9e] <2.10-maint>
+
+2017-05-15  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* Python/sip/qscilexer.sip, Python/sip/qscilexeravs.sip,
+	Python/sip/qscilexerbash.sip, Python/sip/qscilexerbatch.sip,
+	Python/sip/qscilexercoffeescript.sip, Python/sip/qscilexercpp.sip,
+	Python/sip/qscilexercss.sip, Python/sip/qscilexerd.sip,
+	Python/sip/qscilexerfortran77.sip, Python/sip/qscilexerhtml.sip,
+	Python/sip/qscilexerlua.sip, Python/sip/qscilexerpascal.sip,
+	Python/sip/qscilexerperl.sip, Python/sip/qscilexerpostscript.sip,
+	Python/sip/qscilexerpov.sip, Python/sip/qscilexerpython.sip,
+	Python/sip/qscilexerruby.sip, Python/sip/qscilexerspice.sip,
+	Python/sip/qscilexersql.sip, Python/sip/qscilexertcl.sip,
+	Python/sip/qscilexerverilog.sip, Python/sip/qscilexervhdl.sip:
+	Added the lexer-specific re-implementations of previously internal
+	methods to the Python bindings.
+	[e8402392cedc] <2.10-maint>
+
+2017-03-22  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* qt/qscintilla.pro:
+	Enabled explicit C++11 support for Linux for old versions of GCC.
+	[e0e0b344ccf1] <2.10-maint>
+
+2017-03-16  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* qt/qscilexer.cpp:
+	Changed the default macOS font to Menlo 12pt as it has bold etc.
+	[39d69e37d352] <2.10-maint>
+
+	* qt/qscilexer.cpp:
+	Changed the default font on macOS to Monaco 12pt.
+	[9030535e2457] <2.10-maint>
+
+	* Python/configure.py:
+	Fixed the rpath change of the Python bindings on macOS.
+	[dd45e695812a] <2.10-maint>
+
+2017-02-22  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* qt/qscintilla.pro:
+	Fixed the .pro file so that debug builds match the features file.
+	[1aedd0c6eeda] <2.10-maint>
+
 2017-02-20  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* .hgtags:
+	Added tag 2.10 for changeset 6c07847b2835
+	[2442f8d2df34]
 
 	* NEWS:
 	Released as v2.10.
