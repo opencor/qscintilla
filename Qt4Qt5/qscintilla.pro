@@ -67,31 +67,31 @@ unix:!macx {
 #DEFINES += SCI_NAMESPACE
 
 target.path = $$[QT_INSTALL_LIBS]
-#---GRY--- BEGIN
+#---OPENCOR--- BEGIN
 target.path = $$INSTALL_DIR/lib
-#---GRY--- END
+#---OPENCOR--- END
 INSTALLS += target
 
 header.path = $$[QT_INSTALL_HEADERS]
-#---GRY--- BEGIN
+#---OPENCOR--- BEGIN
 header.path = $$INSTALL_DIR/include
-#---GRY--- END
+#---OPENCOR--- END
 header.files = Qsci
 INSTALLS += header
 
 trans.path = $$[QT_INSTALL_TRANSLATIONS]
 trans.files = qscintilla_*.qm
 INSTALLS += trans
-#---GRY--- BEGIN
+#---OPENCOR--- BEGIN
 INSTALLS -= trans
-#---GRY--- END
+#---OPENCOR--- END
 
 qsci.path = $$[QT_INSTALL_DATA]
 qsci.files = ../qsci
 INSTALLS += qsci
-#---GRY--- BEGIN
+#---OPENCOR--- BEGIN
 INSTALLS -= qsci
-#---GRY--- END
+#---OPENCOR--- END
 
 greaterThan(QT_MAJOR_VERSION, 4) {
     features.path = $$[QT_HOST_DATA]/mkspecs/features
@@ -104,9 +104,9 @@ CONFIG(staticlib) {
     features.files = $$PWD/features/qscintilla2.prf
 }
 INSTALLS += features
-#---GRY--- BEGIN
+#---OPENCOR--- BEGIN
 INSTALLS -= features
-#---GRY--- END
+#---OPENCOR--- END
 
 HEADERS = \
 	./Qsci/qsciglobal.h \
