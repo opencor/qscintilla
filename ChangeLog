@@ -1,4 +1,42 @@
+2017-11-23  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS:
+	Released as v2.10.2.
+	[bdfb9584af36] [2.10.2] <2.10-maint>
+
+	* qt/qscintilla.pro:
+	Bumed the .so minor version.
+	[4bb28057d3c2] <2.10-maint>
+
+2017-11-13  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS, Python/sip/qsciscintilla.sip, qt/qsciscintilla.cpp,
+	qt/qsciscintilla.h:
+	Added setScrollWidth() , scrollWidth, setScrollWidthTracking() and
+	scrollWidthTracking() to QsciScintilla.
+	[c6e64e99cb12] <2.10-maint>
+
+2017-11-01  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* qt/qsciscintilla.cpp:
+	Fixed the handling of UTF8 call tips.
+	[7aa9b863f330] <2.10-maint>
+
+2017-07-04  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* qt/qscintilla.pro:
+	Fixed case sensitivity of a couple of file names.
+	[e9d9b80fd61b] <2.10-maint>
+
+	* .hgignore:
+	Ignore the new-style build directory.
+	[6c20c6b41705] <2.10-maint>
+
 2017-07-03  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* .hgtags:
+	Added tag 2.10.1 for changeset 20e0e2d419ba
+	[d6eba6c9e5ce] <2.10-maint>
 
 	* NEWS:
 	Released as v2.10.1.

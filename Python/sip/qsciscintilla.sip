@@ -324,6 +324,11 @@ public:
     void resetHotspotBackgroundColor();
     void resetHotspotForegroundColor();
 
+    int scrollWidth() const;
+    void setScrollWidth(int pixelWidth);
+    bool scrollWidthTracking() const;
+    void setScrollWidthTracking(bool enabled);
+
     void setFoldMarginColors(const QColor &fore, const QColor &back);
 
     void setAnnotationDisplay(AnnotationDisplay display);

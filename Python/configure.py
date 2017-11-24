@@ -23,7 +23,7 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-# This is v2.1 of this boilerplate.
+# This is v2.2 of this boilerplate.
 
 
 from distutils import sysconfig
@@ -60,7 +60,7 @@ class ModuleConfiguration(object):
 
     # The version of the module as a string.  Set it to None if you don't
     # provide version information.
-    version = '2.10.1'
+    version = '2.10.2'
 
     # Set if a configuration script is provided that handles versions of PyQt4
     # prior to v4.10 (i.e. versions where the pyqtconfig.py module is
@@ -1415,7 +1415,7 @@ def _generate_pro(target_config, opts, module_config):
         pro.write('QT += %s\n' % qt)
 
     pro.write('CONFIG += %s\n' % ('debug' if target_config.debug else 'release'))
-    pro.write('CONFIG += %s\n' % ('staticlib' if opts.static else 'plugin'))
+    pro.write('CONFIG += %s\n' % ('staticlib' if opts.static else 'plugin plugin_bundle'))
 
     config = qmake_config.get('CONFIG')
     if config:
@@ -1443,19 +1443,38 @@ greaterThan(QT_MAJOR_VERSION, 4) {
 
     mname = module_config.name
 
+    pro.write('TARGET = %s\n' % mname)
+
     if not opts.static:
         pro.write('''
 win32 {
     PY_MODULE = %s.pyd
-    target.files = %s.pyd
+    PY_MODULE_SRC = $(DESTDIR_TARGET)
+
     LIBS += -L%s
 } else {
     PY_MODULE = %s.so
-    target.files = %s.so
+
+    macx {
+        PY_MODULE_SRC = $(TARGET).plugin/Contents/MacOS/$(TARGET)
+
+        QMAKE_LFLAGS += "-undefined dynamic_lookup"
+
+        equals(QT_MAJOR_VERSION, 5) {
+            equals(QT_MINOR_VERSION, 5) {
+                QMAKE_RPATHDIR += $$[QT_INSTALL_LIBS]
+            }
+        }
+    } else {
+        PY_MODULE_SRC = $(TARGET)
+    }
 }
 
+QMAKE_POST_LINK = $(COPY_FILE) $$PY_MODULE_SRC $$PY_MODULE
+
 target.CONFIG = no_check_exist
-''' % (mname, mname, quote(target_config.py_pylib_dir), mname, mname))
+target.files = $$PY_MODULE
+''' % (mname, quote(target_config.py_pylib_dir), mname))
 
     pro.write('''
 target.path = %s
@@ -1518,34 +1537,16 @@ INSTALLS += sip
         pro.write('LIBS += %s\n' % libs)
 
     if not opts.static:
-        pro.write('''
-win32 {
-    QMAKE_POST_LINK = $(COPY_FILE) $(DESTDIR_TARGET) $$PY_MODULE
-} else {
-    QMAKE_POST_LINK = $(COPY_FILE) $(TARGET) $$PY_MODULE
-}
-
-macx {
-    QMAKE_LFLAGS += "-undefined dynamic_lookup"
-    greaterThan(QT_MAJOR_VERSION, 4) {
-        QMAKE_LFLAGS += "-install_name $$absolute_path($$PY_MODULE, $$target.path)"
-        greaterThan(QT_MINOR_VERSION, 4) {
-            QMAKE_RPATHDIR += $$[QT_INSTALL_LIBS]
-        }
-    }
-''')
-
         dylib = module_config.get_mac_wrapped_library_file(target_config)
 
         if dylib:
             pro.write('''
+macx {
     QMAKE_POST_LINK = $$QMAKE_POST_LINK$$escape_expand(\\\\n\\\\t)$$quote(install_name_tool -change %s %s $$PY_MODULE)
+}
 ''' % (os.path.basename(dylib), dylib))
 
-        pro.write('}\n')
-
     pro.write('\n')
-    pro.write('TARGET = %s\n' % mname)
     pro.write('HEADERS = sipAPI%s.h\n' % mname)
 
     pro.write('SOURCES =')
