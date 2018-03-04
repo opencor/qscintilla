@@ -1,4 +1,0 @@
-// Scintilla source code edit control
-/** @file LexMMIXAL.cxx
- ** Lexer for MMIX Assembler Language.
- ** Written by Christoph H

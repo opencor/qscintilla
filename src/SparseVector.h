@@ -134,7 +134,7 @@ public:
 				ClearValue(partition);
 				starts->RemovePartition(partition);
 				values->Delete(partition);
-				// Its the previous partition now that gets smaller
+				// Its the previous partition now that gets smaller 
 				partition--;
 			}
 		}

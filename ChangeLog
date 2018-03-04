@@ -1,4 +1,74 @@
+2018-02-27  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS:
+	Released as v2.10.3.
+	[bc769d6fcf53] [2.10.3] <2.10-maint>
+
+	* rb-product:
+	Updated the PyQt5 wheel dependency.
+	[7cef6e297ddf] <2.10-maint>
+
+	* NEWS:
+	Updated the NEWS file.
+	[1e073e29eca4] <2.10-maint>
+
+2018-02-10  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* qsci/api/python/Python-3.7.api:
+	Added the API file for Python v3.70b1.
+	[6d0032674462] <2.10-maint>
+
+2018-02-07  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* qt/qsciscintilla.cpp:
+	Fix the hotspot active background colour.
+	[45cfd8c68394] <2.10-maint>
+
+	* qt/SciAccessibility.cpp, qt/SciAccessibility.h:
+	Completed the accessibility support.
+	[2af3a5b045fa] <2.10-maint>
+
+2018-02-06  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* qt/SciAccessibility.cpp, qt/SciAccessibility.h:
+	Implemented all of the accessible interface except for attributes().
+	[434539a243dc] <2.10-maint>
+
+	* qt/SciAccessibility.cpp:
+	Implemented more of the accessible interface.
+	[e8f3df5442cc] <2.10-maint>
+
+	* qt/SciAccessibility.cpp, qt/SciAccessibility.h, qt/ScintillaQt.cpp:
+	Implemented more of the accessible interface.
+	[fb26d9fdba27] <2.10-maint>
+
+2018-02-05  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* qt/SciAccessibility.cpp, qt/SciAccessibility.h, qt/ScintillaQt.cpp,
+	qt/qsciscintillabase.cpp:
+	More accessibility progress.
+	[ea2432348b49] <2.10-maint>
+
+	* qt/SciAccessibility.cpp, qt/SciAccessibility.h, qt/ScintillaQt.cpp:
+	Some progress on accessibility.
+	[055345b62d7b] <2.10-maint>
+
+	* qt/qscintilla.pro:
+	Updated the version of the shared library.
+	[fb50133f8770] <2.10-maint>
+
+2018-02-04  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* qt/SciAccessibility.cpp, qt/SciAccessibility.h, qt/qscintilla.pro,
+	qt/qsciscintillabase.cpp:
+	Added the stubs for accessibility support.
+	[61e00a4f944f] <2.10-maint>
+
 2017-11-23  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* .hgtags:
+	Added tag 2.10.2 for changeset bdfb9584af36
+	[d127fc44d4c4] <2.10-maint>
 
 	* NEWS:
 	Released as v2.10.2.

@@ -18,7 +18,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">QScintilla
-   &#160;<span id="projectnumber">2.10.2</span>
+   &#160;<span id="projectnumber">2.10.3</span>
    </div>
   </td>
  </tr>
@@ -62,79 +62,79 @@
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
 <tr class="memitem:ade52f83ef37526736fb767b6e73c5e62"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
-&#160;&#160;<a class="el" href="classQsciLexerCPP.html#ade52f83ef37526736fb767b6e73c5e62aaf3761b6b64a02e306095a77c6e44d22">Default</a> = 0,
-<b>InactiveDefault</b> = Default + 64,
-<a class="el" href="classQsciLexerCPP.html#ade52f83ef37526736fb767b6e73c5e62ab05c80130359b9586979df7f9a85d3fe">Comment</a> = 1,
+&#160;&#160;<a class="el" href="classQsciLexerCPP.html#ade52f83ef37526736fb767b6e73c5e62aaf3761b6b64a02e306095a77c6e44d22">Default</a> = 0, 
+<b>InactiveDefault</b> = Default + 64, 
+<a class="el" href="classQsciLexerCPP.html#ade52f83ef37526736fb767b6e73c5e62ab05c80130359b9586979df7f9a85d3fe">Comment</a> = 1, 
 <br />
-&#160;&#160;<b>InactiveComment</b> = Comment + 64,
-<a class="el" href="classQsciLexerCPP.html#ade52f83ef37526736fb767b6e73c5e62af7a31515ec66490642ab83b9fedb8a78">CommentLine</a> = 2,
-<b>InactiveCommentLine</b> = CommentLine + 64,
+&#160;&#160;<b>InactiveComment</b> = Comment + 64, 
+<a class="el" href="classQsciLexerCPP.html#ade52f83ef37526736fb767b6e73c5e62af7a31515ec66490642ab83b9fedb8a78">CommentLine</a> = 2, 
+<b>InactiveCommentLine</b> = CommentLine + 64, 
 <br />
-&#160;&#160;<a class="el" href="classQsciLexerCPP.html#ade52f83ef37526736fb767b6e73c5e62a12cc5d18b03e47a08bd19098be35631b">CommentDoc</a> = 3,
-<b>InactiveCommentDoc</b> = CommentDoc + 64,
-<a class="el" href="classQsciLexerCPP.html#ade52f83ef37526736fb767b6e73c5e62a3f7d7b7c70a53fe91b336ff31c59e195">Number</a> = 4,
+&#160;&#160;<a class="el" href="classQsciLexerCPP.html#ade52f83ef37526736fb767b6e73c5e62a12cc5d18b03e47a08bd19098be35631b">CommentDoc</a> = 3, 
+<b>InactiveCommentDoc</b> = CommentDoc + 64, 
+<a class="el" href="classQsciLexerCPP.html#ade52f83ef37526736fb767b6e73c5e62a3f7d7b7c70a53fe91b336ff31c59e195">Number</a> = 4, 
 <br />
-&#160;&#160;<b>InactiveNumber</b> = Number + 64,
-<a class="el" href="classQsciLexerCPP.html#ade52f83ef37526736fb767b6e73c5e62a2495558f63baf5987a97cf2dceddbfc7">Keyword</a> = 5,
-<b>InactiveKeyword</b> = Keyword + 64,
+&#160;&#160;<b>InactiveNumber</b> = Number + 64, 
+<a class="el" href="classQsciLexerCPP.html#ade52f83ef37526736fb767b6e73c5e62a2495558f63baf5987a97cf2dceddbfc7">Keyword</a> = 5, 
+<b>InactiveKeyword</b> = Keyword + 64, 
 <br />
-&#160;&#160;<a class="el" href="classQsciLexerCPP.html#ade52f83ef37526736fb767b6e73c5e62a9956498543ca425e9772a8d11e7555b5">DoubleQuotedString</a> = 6,
-<b>InactiveDoubleQuotedString</b> = DoubleQuotedString + 64,
-<a class="el" href="classQsciLexerCPP.html#ade52f83ef37526736fb767b6e73c5e62ad7c37e1eaac5103b567dd7f677fbd5be">SingleQuotedString</a> = 7,
+&#160;&#160;<a class="el" href="classQsciLexerCPP.html#ade52f83ef37526736fb767b6e73c5e62a9956498543ca425e9772a8d11e7555b5">DoubleQuotedString</a> = 6, 
+<b>InactiveDoubleQuotedString</b> = DoubleQuotedString + 64, 
+<a class="el" href="classQsciLexerCPP.html#ade52f83ef37526736fb767b6e73c5e62ad7c37e1eaac5103b567dd7f677fbd5be">SingleQuotedString</a> = 7, 
 <br />
-&#160;&#160;<b>InactiveSingleQuotedString</b> = SingleQuotedString + 64,
-<a class="el" href="classQsciLexerCPP.html#ade52f83ef37526736fb767b6e73c5e62a3ce80212372e40f2ed903c52297f48c7">UUID</a> = 8,
-<b>InactiveUUID</b> = UUID + 64,
+&#160;&#160;<b>InactiveSingleQuotedString</b> = SingleQuotedString + 64, 
+<a class="el" href="classQsciLexerCPP.html#ade52f83ef37526736fb767b6e73c5e62a3ce80212372e40f2ed903c52297f48c7">UUID</a> = 8, 
+<b>InactiveUUID</b> = UUID + 64, 
 <br />
-&#160;&#160;<a class="el" href="classQsciLexerCPP.html#ade52f83ef37526736fb767b6e73c5e62a16c747644d986c230126c5420de1497e">PreProcessor</a> = 9,
-<b>InactivePreProcessor</b> = PreProcessor + 64,
-<a class="el" href="classQsciLexerCPP.html#ade52f83ef37526736fb767b6e73c5e62a4007ebc2021d70cf1ad6e9c6c85aba4e">Operator</a> = 10,
+&#160;&#160;<a class="el" href="classQsciLexerCPP.html#ade52f83ef37526736fb767b6e73c5e62a16c747644d986c230126c5420de1497e">PreProcessor</a> = 9, 
+<b>InactivePreProcessor</b> = PreProcessor + 64, 
+<a class="el" href="classQsciLexerCPP.html#ade52f83ef37526736fb767b6e73c5e62a4007ebc2021d70cf1ad6e9c6c85aba4e">Operator</a> = 10, 
 <br />
-&#160;&#160;<b>InactiveOperator</b> = Operator + 64,
-<a class="el" href="classQsciLexerCPP.html#ade52f83ef37526736fb767b6e73c5e62a162f877d72b7a405250d3a931660080e">Identifier</a> = 11,
-<b>InactiveIdentifier</b> = Identifier + 64,
+&#160;&#160;<b>InactiveOperator</b> = Operator + 64, 
+<a class="el" href="classQsciLexerCPP.html#ade52f83ef37526736fb767b6e73c5e62a162f877d72b7a405250d3a931660080e">Identifier</a> = 11, 
+<b>InactiveIdentifier</b> = Identifier + 64, 
 <br />
-&#160;&#160;<a class="el" href="classQsciLexerCPP.html#ade52f83ef37526736fb767b6e73c5e62a7aae8e724d5fcbbca68f3e7f97460721">UnclosedString</a> = 12,
-<b>InactiveUnclosedString</b> = UnclosedString + 64,
-<a class="el" href="classQsciLexerCPP.html#ade52f83ef37526736fb767b6e73c5e62afb3585e07f994345f2c21f43f7e2ec1a">VerbatimString</a> = 13,
+&#160;&#160;<a class="el" href="classQsciLexerCPP.html#ade52f83ef37526736fb767b6e73c5e62a7aae8e724d5fcbbca68f3e7f97460721">UnclosedString</a> = 12, 
+<b>InactiveUnclosedString</b> = UnclosedString + 64, 
+<a class="el" href="classQsciLexerCPP.html#ade52f83ef37526736fb767b6e73c5e62afb3585e07f994345f2c21f43f7e2ec1a">VerbatimString</a> = 13, 
 <br />
-&#160;&#160;<b>InactiveVerbatimString</b> = VerbatimString + 64,
-<a class="el" href="classQsciLexerCPP.html#ade52f83ef37526736fb767b6e73c5e62ac26a3735f09aa6702cfbbb9fac56d6f5">Regex</a> = 14,
-<b>InactiveRegex</b> = Regex + 64,
+&#160;&#160;<b>InactiveVerbatimString</b> = VerbatimString + 64, 
+<a class="el" href="classQsciLexerCPP.html#ade52f83ef37526736fb767b6e73c5e62ac26a3735f09aa6702cfbbb9fac56d6f5">Regex</a> = 14, 
+<b>InactiveRegex</b> = Regex + 64, 
 <br />
-&#160;&#160;<a class="el" href="classQsciLexerCPP.html#ade52f83ef37526736fb767b6e73c5e62a659ebab287e989f11cf905532c1ccddf">CommentLineDoc</a> = 15,
-<b>InactiveCommentLineDoc</b> = CommentLineDoc + 64,
-<a class="el" href="classQsciLexerCPP.html#ade52f83ef37526736fb767b6e73c5e62ae9944f1484321b3261c8749ccfadbe2d">KeywordSet2</a> = 16,
+&#160;&#160;<a class="el" href="classQsciLexerCPP.html#ade52f83ef37526736fb767b6e73c5e62a659ebab287e989f11cf905532c1ccddf">CommentLineDoc</a> = 15, 
+<b>InactiveCommentLineDoc</b> = CommentLineDoc + 64, 
+<a class="el" href="classQsciLexerCPP.html#ade52f83ef37526736fb767b6e73c5e62ae9944f1484321b3261c8749ccfadbe2d">KeywordSet2</a> = 16, 
 <br />
-&#160;&#160;<b>InactiveKeywordSet2</b> = KeywordSet2 + 64,
-<a class="el" href="classQsciLexerCPP.html#ade52f83ef37526736fb767b6e73c5e62ac640cd198228b554ec3d0b60e00d91bd">CommentDocKeyword</a> = 17,
-<b>InactiveCommentDocKeyword</b> = CommentDocKeyword + 64,
+&#160;&#160;<b>InactiveKeywordSet2</b> = KeywordSet2 + 64, 
+<a class="el" href="classQsciLexerCPP.html#ade52f83ef37526736fb767b6e73c5e62ac640cd198228b554ec3d0b60e00d91bd">CommentDocKeyword</a> = 17, 
+<b>InactiveCommentDocKeyword</b> = CommentDocKeyword + 64, 
 <br />
-&#160;&#160;<a class="el" href="classQsciLexerCPP.html#ade52f83ef37526736fb767b6e73c5e62a52db9ffb3d81b68562da67cbc70d3388">CommentDocKeywordError</a> = 18,
-<b>InactiveCommentDocKeywordError</b> = CommentDocKeywordError + 64,
-<a class="el" href="classQsciLexerCPP.html#ade52f83ef37526736fb767b6e73c5e62a713977fdf2b7b8b59c7e9d23004090dc">GlobalClass</a> = 19,
+&#160;&#160;<a class="el" href="classQsciLexerCPP.html#ade52f83ef37526736fb767b6e73c5e62a52db9ffb3d81b68562da67cbc70d3388">CommentDocKeywordError</a> = 18, 
+<b>InactiveCommentDocKeywordError</b> = CommentDocKeywordError + 64, 
+<a class="el" href="classQsciLexerCPP.html#ade52f83ef37526736fb767b6e73c5e62a713977fdf2b7b8b59c7e9d23004090dc">GlobalClass</a> = 19, 
 <br />
-&#160;&#160;<b>InactiveGlobalClass</b> = GlobalClass + 64,
-<a class="el" href="classQsciLexerCPP.html#ade52f83ef37526736fb767b6e73c5e62a12c1673479aaf32d03b5a2fde6f032a9">RawString</a> = 20,
-<b>InactiveRawString</b> = RawString + 64,
+&#160;&#160;<b>InactiveGlobalClass</b> = GlobalClass + 64, 
+<a class="el" href="classQsciLexerCPP.html#ade52f83ef37526736fb767b6e73c5e62a12c1673479aaf32d03b5a2fde6f032a9">RawString</a> = 20, 
+<b>InactiveRawString</b> = RawString + 64, 
 <br />
-&#160;&#160;<a class="el" href="classQsciLexerCPP.html#ade52f83ef37526736fb767b6e73c5e62a68d65b20c3cd1c04f46914904bc9277c">TripleQuotedVerbatimString</a> = 21,
-<b>InactiveTripleQuotedVerbatimString</b> = TripleQuotedVerbatimString + 64,
-<a class="el" href="classQsciLexerCPP.html#ade52f83ef37526736fb767b6e73c5e62a1b8ef1921a218a2db1d6d7d65ac3242c">HashQuotedString</a> = 22,
+&#160;&#160;<a class="el" href="classQsciLexerCPP.html#ade52f83ef37526736fb767b6e73c5e62a68d65b20c3cd1c04f46914904bc9277c">TripleQuotedVerbatimString</a> = 21, 
+<b>InactiveTripleQuotedVerbatimString</b> = TripleQuotedVerbatimString + 64, 
+<a class="el" href="classQsciLexerCPP.html#ade52f83ef37526736fb767b6e73c5e62a1b8ef1921a218a2db1d6d7d65ac3242c">HashQuotedString</a> = 22, 
 <br />
-&#160;&#160;<b>InactiveHashQuotedString</b> = HashQuotedString + 64,
-<a class="el" href="classQsciLexerCPP.html#ade52f83ef37526736fb767b6e73c5e62a95c728e17fdb37a45ba20d09ee9eda9c">PreProcessorComment</a> = 23,
-<b>InactivePreProcessorComment</b> = PreProcessorComment + 64,
+&#160;&#160;<b>InactiveHashQuotedString</b> = HashQuotedString + 64, 
+<a class="el" href="classQsciLexerCPP.html#ade52f83ef37526736fb767b6e73c5e62a95c728e17fdb37a45ba20d09ee9eda9c">PreProcessorComment</a> = 23, 
+<b>InactivePreProcessorComment</b> = PreProcessorComment + 64, 
 <br />
-&#160;&#160;<a class="el" href="classQsciLexerCPP.html#ade52f83ef37526736fb767b6e73c5e62a5b319d25cf7a161e08b0810a0d2b8470">PreProcessorCommentLineDoc</a> = 24,
-<b>InactivePreProcessorCommentLineDoc</b> = PreProcessorCommentLineDoc + 64,
-<a class="el" href="classQsciLexerCPP.html#ade52f83ef37526736fb767b6e73c5e62a3043c7ad432f1e77406554dcab6f9e0f">UserLiteral</a> = 25,
+&#160;&#160;<a class="el" href="classQsciLexerCPP.html#ade52f83ef37526736fb767b6e73c5e62a5b319d25cf7a161e08b0810a0d2b8470">PreProcessorCommentLineDoc</a> = 24, 
+<b>InactivePreProcessorCommentLineDoc</b> = PreProcessorCommentLineDoc + 64, 
+<a class="el" href="classQsciLexerCPP.html#ade52f83ef37526736fb767b6e73c5e62a3043c7ad432f1e77406554dcab6f9e0f">UserLiteral</a> = 25, 
 <br />
-&#160;&#160;<b>InactiveUserLiteral</b> = UserLiteral + 64,
-<a class="el" href="classQsciLexerCPP.html#ade52f83ef37526736fb767b6e73c5e62a258224273023ab8c9504dd8a8efcad6c">TaskMarker</a> = 26,
-<b>InactiveTaskMarker</b> = TaskMarker + 64,
+&#160;&#160;<b>InactiveUserLiteral</b> = UserLiteral + 64, 
+<a class="el" href="classQsciLexerCPP.html#ade52f83ef37526736fb767b6e73c5e62a258224273023ab8c9504dd8a8efcad6c">TaskMarker</a> = 26, 
+<b>InactiveTaskMarker</b> = TaskMarker + 64, 
 <br />
-&#160;&#160;<a class="el" href="classQsciLexerCPP.html#ade52f83ef37526736fb767b6e73c5e62a96681c59afac878c90c821403c472903">EscapeSequence</a> = 27,
+&#160;&#160;<a class="el" href="classQsciLexerCPP.html#ade52f83ef37526736fb767b6e73c5e62a96681c59afac878c90c821403c472903">EscapeSequence</a> = 27, 
 <b>InactiveEscapeSequence</b> = EscapeSequence + 64
 <br />
  }</td></tr>

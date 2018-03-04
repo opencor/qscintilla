@@ -3,14 +3,14 @@
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
-#
+# 
 # 1. Redistributions of source code must retain the above copyright notice,
 #    this list of conditions and the following disclaimer.
-#
+# 
 # 2. Redistributions in binary form must reproduce the above copyright notice,
 #    this list of conditions and the following disclaimer in the documentation
 #    and/or other materials provided with the distribution.
-#
+# 
 # THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 # AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 # IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -23,7 +23,7 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-# This is v2.2 of this boilerplate.
+# This is v2.3 of this boilerplate.
 
 
 from distutils import sysconfig
@@ -60,7 +60,7 @@ class ModuleConfiguration(object):
 
     # The version of the module as a string.  Set it to None if you don't
     # provide version information.
-    version = '2.10.2'
+    version = '2.10.3'
 
     # Set if a configuration script is provided that handles versions of PyQt4
     # prior to v4.10 (i.e. versions where the pyqtconfig.py module is
@@ -646,8 +646,22 @@ class _HostPythonConfiguration:
         self.debug = hasattr(sys, 'gettotalrefcount')
 
         if sys.platform == 'win32':
+            try:
+                # Python v3.3 and later.
+                base_prefix = sys.base_prefix
+
+            except AttributeError:
+                try:
+                    # virtualenv for Python v2.
+                    base_prefix = sys.real_prefix
+
+                except AttributeError:
+                    # We can't detect the base prefix in Python v3 prior to
+                    # v3.3.
+                    base_prefix = sys.prefix
+
             self.data_dir = sys.prefix
-            self.lib_dir = sys.prefix + '\\libs'
+            self.lib_dir = base_prefix + '\\libs'
         else:
             self.data_dir = sys.prefix + '/share'
             self.lib_dir = sys.prefix + '/lib'
@@ -1110,7 +1124,7 @@ def _create_optparser(target_config, pkg_config):
     if _has_stubs(pkg_config):
         p.add_option('--stubsdir', dest='stubsdir', type='string',
                 default=None, action='callback',
-                callback=optparser_store_abspath, metavar="DIR",
+                callback=optparser_store_abspath, metavar="DIR", 
                 help="the PEP 484 stubs will be installed in DIR [default: "
                         "with the module]")
         p.add_option('--no-stubs', dest='no_stubs', default=False,
@@ -1121,7 +1135,7 @@ def _create_optparser(target_config, pkg_config):
     if pkg_config.qscintilla_api_file:
         p.add_option('--apidir', '-a', dest='apidir', type='string',
                 default=None, action='callback',
-                callback=optparser_store_abspath, metavar="DIR",
+                callback=optparser_store_abspath, metavar="DIR", 
                 help="the QScintilla API file will be installed in DIR "
                         "[default: QT_INSTALL_DATA/qsci]")
         p.add_option('--no-qsci-api', dest='no_qsci_api', default=False,
@@ -1189,7 +1203,7 @@ def _create_optparser(target_config, pkg_config):
                         "[default: %s]" % target_config.pyqt_sip_dir)
 
     p.add_option('--concatenate', '-c', dest='concat', default=False,
-            action='store_true',
+            action='store_true', 
             help="concatenate the C++ source files")
     p.add_option('--concatenate-split', '-j', dest='split', type='int',
             default=1, metavar="N",

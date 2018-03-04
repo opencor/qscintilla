@@ -1,19 +1,19 @@
 // The implementation of the Qt specific subclass of ScintillaBase.
 //
-// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
-//
+// Copyright (c) 2018 Riverbank Computing Limited <info@riverbankcomputing.com>
+// 
 // This file is part of QScintilla.
-//
+// 
 // This file may be used under the terms of the GNU General Public License
 // version 3.0 as published by the Free Software Foundation and appearing in
 // the file LICENSE included in the packaging of this file.  Please review the
 // following information to ensure the GNU General Public License version 3.0
 // requirements will be met: http://www.gnu.org/copyleft/gpl.html.
-//
+// 
 // If you do not wish to use this file under the terms of the GPL version 3.0
 // then you may purchase a commercial license.  For more information contact
 // info@riverbankcomputing.com.
-//
+// 
 // This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
 // WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
@@ -31,6 +31,9 @@
 
 #include "Qsci/qsciscintillabase.h"
 #include "ScintillaQt.h"
+#if !defined(QT_NO_ACCESSIBILITY)
+#include "SciAccessibility.h"
+#endif
 #include "SciClasses.h"
 
 
@@ -119,7 +122,7 @@ QsciScintillaQt::QsciScintillaQt(QsciScintillaBase *qsb_)
 
 // The dtor.
 QsciScintillaQt::~QsciScintillaQt()
-{
+{ 
     Finalise();
 }
 
@@ -172,7 +175,7 @@ sptr_t QsciScintillaQt::WndProc(unsigned int iMessage, uptr_t wParam,
     {
     case SCI_GETDIRECTFUNCTION:
         return reinterpret_cast<sptr_t>(DirectFunction);
-
+    
     case SCI_GETDIRECTPOINTER:
         return reinterpret_cast<sptr_t>(this);
     }
@@ -383,6 +386,15 @@ void QsciScintillaQt::NotifyParent(SCNotification scn)
         {
             char *text;
 
+#if !defined(QT_NO_ACCESSIBILITY)
+            if ((scn.modificationType & SC_MOD_INSERTTEXT) != 0)
+                QsciAccessibleScintillaBase::textInserted(qsb, scn.position,
+                        scn.text, scn.length);
+            else if ((scn.modificationType & SC_MOD_DELETETEXT) != 0)
+                QsciAccessibleScintillaBase::textDeleted(qsb, scn.position,
+                        scn.text, scn.length);
+#endif
+
             // Give some protection to the Python bindings.
             if (scn.text && (scn.modificationType & (SC_MOD_INSERTTEXT|SC_MOD_DELETETEXT) != 0))
             {
@@ -430,6 +442,9 @@ void QsciScintillaQt::NotifyParent(SCNotification scn)
         break;
 
     case SCN_UPDATEUI:
+#if !defined(QT_NO_ACCESSIBILITY)
+        QsciAccessibleScintillaBase::updated(qsb);
+#endif
         emit qsb->SCN_UPDATEUI(scn.updated);
         break;
 
@@ -566,6 +581,10 @@ void QsciScintillaQt::ClaimSelection()
     }
     else
         primarySelection = false;
+
+#if !defined(QT_NO_ACCESSIBILITY)
+    QsciAccessibleScintillaBase::selectionChanged(qsb, isSel);
+#endif
 
     emit qsb->QSCN_SELCHANGED(isSel);
 }

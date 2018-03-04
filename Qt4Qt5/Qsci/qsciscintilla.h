@@ -1,20 +1,20 @@
 // This module defines the "official" high-level API of the Qt port of
 // Scintilla.
 //
-// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
-//
+// Copyright (c) 2018 Riverbank Computing Limited <info@riverbankcomputing.com>
+// 
 // This file is part of QScintilla.
-//
+// 
 // This file may be used under the terms of the GNU General Public License
 // version 3.0 as published by the Free Software Foundation and appearing in
 // the file LICENSE included in the packaging of this file.  Please review the
 // following information to ensure the GNU General Public License version 3.0
 // requirements will be met: http://www.gnu.org/copyleft/gpl.html.
-//
+// 
 // If you do not wish to use this file under the terms of the GPL version 3.0
 // then you may purchase a commercial license.  For more information contact
 // info@riverbankcomputing.com.
-//
+// 
 // This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
 // WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
@@ -766,7 +766,7 @@ public:
     //!
     //! If \a forward is true (the default) then the search is forward from the
     //! starting position to the end of the text, otherwise it is backwards to
-    //! the beginning of the text.
+    //! the beginning of the text. 
     //!
     //! If either \a line or \a index are negative (the default) then the
     //! search begins from the current cursor position.  Otherwise the search
@@ -841,7 +841,7 @@ public:
     //! set to the index at which the selection begins within \a *lineFrom, and
     //! \a *indexTo is set to the index at which the selection ends within
     //! \a *lineTo.  If there is no selection, \a *lineFrom, \a *indexFrom,
-    //! \a *lineTo and \a *indexTo are all set to -1.
+    //! \a *lineTo and \a *indexTo are all set to -1. 
     //!
     //! \sa setSelection()
     void getSelection(int *lineFrom, int *indexFrom, int *lineTo,
@@ -1996,7 +1996,7 @@ public slots:
     //! combined into actions that are undone as a unit.  These sequences occur
     //! between calls to beginUndoAction() and endUndoAction().  These
     //! sequences can be nested and only the top level sequences are undone as
-    //! units.
+    //! units. 
     //!
     //! \sa beginUndoAction(), endUndoAction(), isUndoAvailable()
     virtual void undo();
@@ -2046,7 +2046,7 @@ signals:
     //! \a yes is true if text has been selected and false if text has been
     //! deselected.  If \a yes is true then copy() can be used to copy the
     //! selection to the clipboard.  If \a yes is false then copy() does
-    //! nothing.
+    //! nothing. 
     //!
     //! \sa copy(), selectionChanged()
     void copyAvailable(bool yes);

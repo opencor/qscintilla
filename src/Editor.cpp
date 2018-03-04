@@ -3338,7 +3338,7 @@ int Editor::HorizontalMove(unsigned int iMessage) {
 		SetRectangularRange();
 	} else if (sel.IsRectangular()) {
 		// Not a rectangular extension so switch to stream.
-		const SelectionPosition selAtLimit =
+		const SelectionPosition selAtLimit = 
 			(NaturalDirection(iMessage) > 0) ? sel.Limits().end : sel.Limits().start;
 		sel.selType = Selection::selStream;
 		sel.SetSelection(SelectionRange(selAtLimit));

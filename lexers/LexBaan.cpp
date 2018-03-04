@@ -142,7 +142,7 @@ static inline int IsAnyOtherIdentifier(char *s, int sLength) {
 	switch (sLength) {
 	case 8:
 		if (isalpha(s[0]) && isalpha(s[1]) && isalpha(s[2]) && isalpha(s[3]) && isalpha(s[4]) && IsADigit(s[5]) && IsADigit(s[6]) && IsADigit(s[7])) {
-			//^^^^^###
+			//^^^^^### 
 			return(SCE_BAAN_TABLEDEF);
 		}
 		break;
@@ -911,7 +911,7 @@ void SCI_METHOD LexerBaan::Fold(Sci_PositionU startPos, Sci_Position length, int
 					levelCurrent++;
 			}
 			else if (nextLineStyle != 0 && currLineStyle != nextLineStyle
-				&& (priorSectionIsSubSection(lineCurrent -1 ,styler)
+				&& (priorSectionIsSubSection(lineCurrent -1 ,styler) 
 					|| !nextSectionIsSubSection(lineCurrent + 1, styler))) {
 				for (Sci_Position j = styler.LineStart(lineCurrent + 1); j < styler.LineStart(lineCurrent + 1 + 1) - 1; j++) {
 					if (IsASpaceOrTab(styler[j]))

@@ -15,7 +15,7 @@ function toggleVisibility(linkObj)
    summary.hide();
    $(linkObj).removeClass('closed').addClass('opened');
    $(trigger).attr('src',src.substring(0,src.length-10)+'open.png');
- }
+ } 
  return false;
 }
 

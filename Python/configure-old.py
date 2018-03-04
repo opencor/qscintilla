@@ -1,19 +1,19 @@
 # This script configures QScintilla for PyQt v3 and/or v4.
 #
-# Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
-#
+# Copyright (c) 2018 Riverbank Computing Limited <info@riverbankcomputing.com>
+# 
 # This file is part of QScintilla.
-#
+# 
 # This file may be used under the terms of the GNU General Public License
 # version 3.0 as published by the Free Software Foundation and appearing in
 # the file LICENSE included in the packaging of this file.  Please review the
 # following information to ensure the GNU General Public License version 3.0
 # requirements will be met: http://www.gnu.org/copyleft/gpl.html.
-#
+# 
 # If you do not wish to use this file under the terms of the GPL version 3.0
 # then you may purchase a commercial license.  For more information contact
 # info@riverbankcomputing.com.
-#
+# 
 # This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
 # WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
@@ -77,7 +77,7 @@ def create_optparser():
         setattr(parser.values, option.dest, os.path.abspath(value))
 
     p = optparse.OptionParser(usage="python %prog [options]",
-            version="2.10.2")
+            version="2.10.3")
 
     p.add_option("-a", "--apidir", action="callback", default=None,
             type="string", metavar="DIR", dest="qscidir",
@@ -177,8 +177,8 @@ def check_qscintilla():
             # Because we include the Python bindings with the C++ code we can
             # reasonably force the same version to be used and not bother about
             # versioning.
-            if sciversstr != "2.10.2":
-                sipconfig.error("QScintilla %s is being used but the Python bindings 2.10.2 are being built.  Please use matching versions." % sciversstr)
+            if sciversstr != "2.10.3":
+                sipconfig.error("QScintilla %s is being used but the Python bindings 2.10.3 are being built.  Please use matching versions." % sciversstr)
 
             sipconfig.inform("QScintilla %s is being used." % sciversstr)
         else:

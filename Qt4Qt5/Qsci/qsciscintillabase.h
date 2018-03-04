@@ -1,19 +1,19 @@
 // This class defines the "official" low-level API.
 //
-// Copyright (c) 2017 Riverbank Computing Limited <info@riverbankcomputing.com>
-//
+// Copyright (c) 2018 Riverbank Computing Limited <info@riverbankcomputing.com>
+// 
 // This file is part of QScintilla.
-//
+// 
 // This file may be used under the terms of the GNU General Public License
 // version 3.0 as published by the Free Software Foundation and appearing in
 // the file LICENSE included in the packaging of this file.  Please review the
 // following information to ensure the GNU General Public License version 3.0
 // requirements will be met: http://www.gnu.org/copyleft/gpl.html.
-//
+// 
 // If you do not wish to use this file under the terms of the GPL version 3.0
 // then you may purchase a commercial license.  For more information contact
 // info@riverbankcomputing.com.
-//
+// 
 // This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
 // WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
@@ -99,12 +99,12 @@ public:
         SCI_GETCHARAT = 2007,
 
         //! This message returns the current position.
-        //!
+        //! 
         //! \sa SCI_SETCURRENTPOS
         SCI_GETCURRENTPOS = 2008,
 
         //! This message returns the anchor.
-        //!
+        //! 
         //! \sa SCI_SETANCHOR
         SCI_GETANCHOR = 2009,
 
@@ -122,7 +122,7 @@ public:
 
         //! This message marks the current state of the text as the the save
         //! point. This is usually done when the text is saved or loaded.
-        //!
+        //! 
         //! \sa SCN_SAVEPOINTREACHED(), SCN_SAVEPOINTLEFT()
         SCI_SETSAVEPOINT = 2014,
 
@@ -166,13 +166,13 @@ public:
         //! This message clears the current selection and sets the current
         //! position.
         //! \a wParam is the new current position.
-        //!
+        //! 
         //! \sa SCI_SETCURRENTPOS
         SCI_GOTOPOS = 2025,
 
         //! This message sets the anchor.
         //! \a wParam is the new anchor.
-        //!
+        //! 
         //! \sa SCI_GETANCHOR
         SCI_SETANCHOR = 2026,
 
@@ -181,7 +181,7 @@ public:
 
         //! This message returns the character position of the start of the
         //! text that needs to be syntax styled.
-        //!
+        //! 
         //! \sa SCN_STYLENEEDED()
         SCI_GETENDSTYLED = 2028,
 
@@ -627,13 +627,13 @@ public:
         SCI_GETCARETFORE = 2138,
 
         //! This message returns a non-zero value if the document is read-only.
-        //!
+        //! 
         //! \sa SCI_SETREADONLY
         SCI_GETREADONLY = 2140,
 
         //! This message sets the current position.
         //! \a wParam is the new current position.
-        //!
+        //! 
         //! \sa SCI_GETCURRENTPOS
         SCI_SETCURRENTPOS = 2141,
 
@@ -727,7 +727,7 @@ public:
 
         //! This message sets the read-only state of the document.
         //! \a wParam is the new read-only state of the document.
-        //!
+        //! 
         //! \sa SCI_GETREADONLY
         SCI_SETREADONLY = 2171,
 
@@ -761,14 +761,14 @@ public:
         //! This message sets the text of the document.
         //! \a wParam is unused.
         //! \a lParam is the new text of the document.
-        //!
+        //! 
         //! \sa SCI_GETTEXT
         SCI_SETTEXT = 2181,
 
         //! This message gets the text of the document.
         //! \a wParam is size of the buffer that the text is copied to.
         //! \a lParam is the address of the buffer that the text is copied to.
-        //!
+        //! 
         //! \sa SCI_SETTEXT
         SCI_GETTEXT = 2182,
 
@@ -3569,7 +3569,7 @@ signals:
     //! \a modifiers is the logical or of the modifier keys that were pressed
     //! when the user clicked.
     //! \a margin is the number of the margin the user clicked in: 0, 1 or 2.
-    //!
+    //! 
     //! \sa SCI_GETMARGINSENSITIVEN, SCI_SETMARGINSENSITIVEN
     void SCN_MARGINCLICK(int position, int modifiers, int margin);
 
@@ -3579,7 +3579,7 @@ signals:
     //! \a modifiers is the logical or of the modifier keys that were pressed
     //! when the user clicked.
     //! \a margin is the number of the margin the user clicked in: 0, 1 or 2.
-    //!
+    //! 
     //! \sa SCI_GETMARGINSENSITIVEN, SCI_SETMARGINSENSITIVEN
     void SCN_MARGINRIGHTCLICK(int position, int modifiers, int margin);
 
@@ -3600,7 +3600,7 @@ signals:
 
     //! This signal is emitted when the current state of the text no longer
     //! corresponds to the state of the text at the save point.
-    //!
+    //! 
     //! \sa SCI_SETSAVEPOINT, SCN_SAVEPOINTREACHED()
     void SCN_SAVEPOINTLEFT();
 
@@ -3608,7 +3608,7 @@ signals:
     //! to the state of the text at the save point. This allows feedback to be
     //! given to the user as to whether the text has been modified since it was
     //! last saved.
-    //!
+    //! 
     //! \sa SCI_SETSAVEPOINT, SCN_SAVEPOINTLEFT()
     void SCN_SAVEPOINTREACHED();
 
