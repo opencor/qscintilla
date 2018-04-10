@@ -55,6 +55,8 @@ greaterThan(QT_MAJOR_VERSION, 4) {
 
     # Work around QTBUG-39300.
     CONFIG -= android_install
+} else {
+    DEFINES += QT_NO_ACCESSIBILITY
 }
 
 # For old versions of GCC.

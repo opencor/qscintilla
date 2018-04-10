@@ -1,4 +1,30 @@
+2018-04-10  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS:
+	Released as v2.10.4.
+	[24cb0edc89a9] [2.10.4] <2.10-maint>
+
+	* qt/SciAccessibility.cpp:
+	Fixed the retrieval of accessibility attributes.
+	[e430a7dd7818] <2.10-maint>
+
+2018-04-07  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* qt/qscilexer.cpp:
+	Use STYLE_MAX to define the maximum number of styles.
+	[23ca0cad0227] <2.10-maint>
+
+2018-03-11  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* qt/qscintilla.pro:
+	Force QT_NO_ACCESSIBILITY when building against Qt4.
+	[b65f48ec1852] <2.10-maint>
+
 2018-02-27  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* .hgtags:
+	Added tag 2.10.3 for changeset bc769d6fcf53
+	[279625f1d8c9] <2.10-maint>
 
 	* NEWS:
 	Released as v2.10.3.

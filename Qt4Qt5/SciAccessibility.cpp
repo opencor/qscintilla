@@ -395,8 +395,8 @@ QString QsciAccessibleScintillaBase::attributes(int offset, int *startOffset,
         if (s != style)
             break;
 
-        int end_position = sb->SendScintilla(
-                QsciScintillaBase::SCI_POSITIONAFTER, end_position);
+        end_position = sb->SendScintilla(QsciScintillaBase::SCI_POSITIONAFTER,
+                end_position);
         ++end_text_position;
     }
 
