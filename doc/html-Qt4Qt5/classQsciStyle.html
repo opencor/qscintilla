@@ -18,7 +18,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">QScintilla
-   &#160;<span id="projectnumber">2.10.4</span>
+   &#160;<span id="projectnumber">2.10.6</span>
    </div>
   </td>
  </tr>
@@ -70,8 +70,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a18fcc7c71d904fe05374dc9d75b487bb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a18fcc7c71d904fe05374dc9d75b487bb"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>apply</b> (<a class="el" href="classQsciScintillaBase.html">QsciScintillaBase</a> *sci) const </td></tr>
 <tr class="separator:a18fcc7c71d904fe05374dc9d75b487bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a78718d8b2033e22000fba1af0f91f96e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a78718d8b2033e22000fba1af0f91f96e"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQsciStyle.html#a78718d8b2033e22000fba1af0f91f96e">style</a> () const </td></tr>
+<tr class="memitem:af00ea2dd20e93c5d06d9ce99cbc2cf00"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQsciStyle.html#af00ea2dd20e93c5d06d9ce99cbc2cf00">setStyle</a> (int <a class="el" href="classQsciStyle.html#a78718d8b2033e22000fba1af0f91f96e">style</a>)</td></tr>
+<tr class="separator:af00ea2dd20e93c5d06d9ce99cbc2cf00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78718d8b2033e22000fba1af0f91f96e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQsciStyle.html#a78718d8b2033e22000fba1af0f91f96e">style</a> () const </td></tr>
 <tr class="separator:a78718d8b2033e22000fba1af0f91f96e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abd88d76b875c154f099b4e9f36b6fcab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQsciStyle.html#abd88d76b875c154f099b4e9f36b6fcab">setDescription</a> (const QString &amp;<a class="el" href="classQsciStyle.html#a448b370801f8a51da86a8c371317ef54">description</a>)</td></tr>
 <tr class="separator:abd88d76b875c154f099b4e9f36b6fcab"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -155,7 +156,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Constructs a <a class="el" href="classQsciStyle.html" title="The QsciStyle class encapsulates all the attributes of a style. ">QsciStyle</a> instance for style number <em>style</em>. If <em>style</em> is negative then a new style number is automatically allocated. </p>
+<p>Constructs a <a class="el" href="classQsciStyle.html" title="The QsciStyle class encapsulates all the attributes of a style. ">QsciStyle</a> instance for style number <em>style</em>. If <em>style</em> is negative then a new style number is automatically allocated if possible. If it is not possible then <a class="el" href="classQsciStyle.html#a78718d8b2033e22000fba1af0f91f96e">style()</a> will return a negative value.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classQsciStyle.html#a78718d8b2033e22000fba1af0f91f96e">style()</a> </dd></dl>
 
 </div>
 </div>
@@ -206,11 +208,63 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Constructs a <a class="el" href="classQsciStyle.html" title="The QsciStyle class encapsulates all the attributes of a style. ">QsciStyle</a> instance for style number <em>style</em>. If <em>style</em> is negative then a new style number is automatically allocated. The styles description, color, paper color, font and end-of-line fill are set to <em>description</em>, <em>color</em>, <em>paper</em>, <em>font</em> and <em>eolFill</em> respectively. </p>
+<p>Constructs a <a class="el" href="classQsciStyle.html" title="The QsciStyle class encapsulates all the attributes of a style. ">QsciStyle</a> instance for style number <em>style</em>. If <em>style</em> is negative then a new style number is automatically allocated if possible. If it is not possible then <a class="el" href="classQsciStyle.html#a78718d8b2033e22000fba1af0f91f96e">style()</a> will return a negative value. The styles description, color, paper color, font and end-of-line fill are set to <em>description</em>, <em>color</em>, <em>paper</em>, <em>font</em> and <em>eolFill</em> respectively.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classQsciStyle.html#a78718d8b2033e22000fba1af0f91f96e">style()</a> </dd></dl>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="af00ea2dd20e93c5d06d9ce99cbc2cf00"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void QsciStyle::setStyle </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>style</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>The style's number is set to <em>style</em>.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classQsciStyle.html#a78718d8b2033e22000fba1af0f91f96e">style()</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a78718d8b2033e22000fba1af0f91f96e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int QsciStyle::style </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Returns the number of the style. This will be negative if the style is invalid.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classQsciStyle.html#af00ea2dd20e93c5d06d9ce99cbc2cf00">setStyle()</a> </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="abd88d76b875c154f099b4e9f36b6fcab"></a>
 <div class="memitem">
 <div class="memproto">

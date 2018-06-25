@@ -20,7 +20,7 @@
 
 # This must be kept in sync with Python/configure.py, Python/configure-old.py,
 # example-Qt4Qt5/application.pro and designer-Qt4Qt5/designer.pro.
-!win32:VERSION = 13.1.1
+!win32:VERSION = 13.2.0
 
 TEMPLATE = lib
 CONFIG += qt warn_off thread exceptions hide_symbols
@@ -69,31 +69,19 @@ unix:!macx {
 #DEFINES += SCI_NAMESPACE
 
 target.path = $$[QT_INSTALL_LIBS]
-#---OPENCOR--- BEGIN
-target.path = $$INSTALL_DIR/lib
-#---OPENCOR--- END
 INSTALLS += target
 
 header.path = $$[QT_INSTALL_HEADERS]
-#---OPENCOR--- BEGIN
-header.path = $$INSTALL_DIR/include
-#---OPENCOR--- END
 header.files = Qsci
 INSTALLS += header
 
 trans.path = $$[QT_INSTALL_TRANSLATIONS]
 trans.files = qscintilla_*.qm
 INSTALLS += trans
-#---OPENCOR--- BEGIN
-INSTALLS -= trans
-#---OPENCOR--- END
 
 qsci.path = $$[QT_INSTALL_DATA]
 qsci.files = ../qsci
 INSTALLS += qsci
-#---OPENCOR--- BEGIN
-INSTALLS -= qsci
-#---OPENCOR--- END
 
 greaterThan(QT_MAJOR_VERSION, 4) {
     features.path = $$[QT_HOST_DATA]/mkspecs/features
@@ -106,9 +94,6 @@ CONFIG(staticlib) {
     features.files = $$PWD/features/qscintilla2.prf
 }
 INSTALLS += features
-#---OPENCOR--- BEGIN
-INSTALLS -= features
-#---OPENCOR--- END
 
 HEADERS = \
 	./Qsci/qsciglobal.h \
@@ -131,6 +116,7 @@ HEADERS = \
 	./Qsci/qscilexercustom.h \
 	./Qsci/qscilexerd.h \
 	./Qsci/qscilexerdiff.h \
+	./Qsci/qscilexeredifact.h \
 	./Qsci/qscilexerfortran.h \
 	./Qsci/qscilexerfortran77.h \
 	./Qsci/qscilexerhtml.h \
@@ -241,6 +227,7 @@ SOURCES = \
 	qscilexercustom.cpp \
 	qscilexerd.cpp \
 	qscilexerdiff.cpp \
+	qscilexeredifact.cpp \
 	qscilexerfortran.cpp \
 	qscilexerfortran77.cpp \
 	qscilexerhtml.cpp \

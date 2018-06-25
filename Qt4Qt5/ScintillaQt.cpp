@@ -113,6 +113,11 @@ QsciScintillaQt::QsciScintillaQt(QsciScintillaBase *qsb_)
     // This is ignored.
     imeInteraction = imeInline;
 
+    // Using pixmaps screws things up when moving to a different display
+    // (although this could be because we haven't got the pixmap code right).
+    // However Qt shouldn't need buffered drawing anyway.
+    WndProc(SCI_SETBUFFEREDDRAW, 0, 0);
+
     for (int i = 0; i <= static_cast<int>(tickPlatform); ++i)
         timers[i] = 0;
 
@@ -195,10 +200,12 @@ sptr_t QsciScintillaQt::DefWndProc(unsigned int, uptr_t, sptr_t)
 void QsciScintillaQt::SetMouseCapture(bool on)
 {
     if (mouseDownCaptures)
+    {
         if (on)
             qsb->viewport()->grabMouse();
         else
             qsb->viewport()->releaseMouse();
+    }
 
     capturedMouse = on;
 }
@@ -396,7 +403,7 @@ void QsciScintillaQt::NotifyParent(SCNotification scn)
 #endif
 
             // Give some protection to the Python bindings.
-            if (scn.text && (scn.modificationType & (SC_MOD_INSERTTEXT|SC_MOD_DELETETEXT) != 0))
+            if (scn.text && (scn.modificationType & (SC_MOD_INSERTTEXT|SC_MOD_DELETETEXT)) != 0)
             {
                 text = new char[scn.length + 1];
                 memcpy(text, scn.text, scn.length);

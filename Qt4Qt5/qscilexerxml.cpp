@@ -210,7 +210,7 @@ void QsciLexerXML::refreshProperties()
 // Read properties from the settings.
 bool QsciLexerXML::readProperties(QSettings &qs, const QString &prefix)
 {
-    int rc = QsciLexerHTML::readProperties(qs, prefix), num;
+    int rc = QsciLexerHTML::readProperties(qs, prefix);
 
     scripts = qs.value(prefix + "scriptsstyled", true).toBool();
 

@@ -3662,6 +3662,9 @@ protected:
     //! \sa canInsertFromMimeData(), fromMimeData()
     virtual QMimeData *toMimeData(const QByteArray &text, bool rectangular) const;
 
+    //! \reimp
+    virtual void changeEvent(QEvent *e);
+
     //! Re-implemented to handle the context menu.
     virtual void contextMenuEvent(QContextMenuEvent *e);
 
@@ -3727,6 +3730,9 @@ protected:
 
     //! \internal Convert encoded bytes to a QString.
     QString bytesAsText(const char *bytes) const;
+
+    //! \internal A helper for QsciScintilla::contextMenuEvent().
+    bool contextMenuNeeded(int x, int y) const;
 
 private slots:
     void handleVSb(int value);

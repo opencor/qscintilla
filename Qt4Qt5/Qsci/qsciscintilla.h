@@ -2127,6 +2127,9 @@ protected:
     //! \reimp
     virtual void contextMenuEvent(QContextMenuEvent *e);
 
+    //! \reimp
+    virtual void wheelEvent(QWheelEvent *e);
+
 private slots:
     void handleCallTipClick(int dir);
     void handleCharAdded(int charadded);

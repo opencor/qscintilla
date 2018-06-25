@@ -544,6 +544,7 @@ protected:
     virtual bool event(QEvent *event);
     virtual void changeEvent(QEvent *event);
     virtual void contextMenuEvent(QContextMenuEvent *event);
+    virtual void wheelEvent(QWheelEvent *event);
 
 private:
     QsciScintilla(const QsciScintilla &);

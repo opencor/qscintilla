@@ -303,6 +303,16 @@ void *QsciScintillaBase::SendScintillaPtrResult(unsigned int msg) const
 }
 
 
+// Re-implemented to handle font changes
+void QsciScintillaBase::changeEvent(QEvent *e)
+{
+    if (e->type() == QEvent::FontChange || e->type() == QEvent::ApplicationFontChange)
+        sci->InvalidateStyleRedraw();
+
+    QAbstractScrollArea::changeEvent(e);
+}
+
+
 // Re-implemented to handle the context menu.
 void QsciScintillaBase::contextMenuEvent(QContextMenuEvent *e)
 {
@@ -831,4 +841,20 @@ void QsciScintillaBase::replaceHorizontalScrollBar(QScrollBar *scrollBar)
 {
     setHorizontalScrollBar(scrollBar);
     connectHorizontalScrollBar();
+}
+
+
+// Return true if a context menu should be displayed.  This is provided as a
+// helper to QsciScintilla::contextMenuEvent().  A proper design would break
+// backwards compatibility.
+bool QsciScintillaBase::contextMenuNeeded(int x, int y) const
+{
+    QSCI_SCI_NAMESPACE(Point) pt(x, y);
+
+    // Clear any selection if the mouse is outside.
+    if (!sci->PointInSelection(pt))
+        sci->SetEmptySelection(sci->PositionFromLocation(pt));
+
+    // Respect SC_POPUP_*.
+    return sci->ShouldDisplayPopup(pt);
 }

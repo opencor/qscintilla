@@ -1,4 +1,142 @@
+2018-06-23  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS:
+	Released as v2.10.6.
+	[dc0993c72a05] [2.10.6] <2.10-maint>
+
+2018-06-22  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* .hgtags:
+	Added tag 2.10.5 for changeset f35b3a43a241
+	[8cf5694ca328] <2.10-maint>
+
+	* NEWS:
+	Released as v2.10.5.
+	[f35b3a43a241] [2.10.5] <2.10-maint>
+
+2018-06-21  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS:
+	Updated the NEWS file.
+	[12cb1a2f5ec6] <2.10-maint>
+
+2018-06-19  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS, Python/sip/qscistyle.sip, qt/qscistyle.cpp, qt/qscistyle.h:
+	Added setStyle() to QsciStyle.
+	[cf5281041224] <2.10-maint>
+
+2018-06-16  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* qt/qscintilla_es.qm, qt/qscintilla_es.ts:
+	Updated Spanish translations from Jaime Seuma.
+	[a479b9f5436f] <2.10-maint>
+
+2018-06-09  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* qt/qscintilla_cs.qm, qt/qscintilla_de.qm, qt/qscintilla_de.ts,
+	qt/qscintilla_es.qm, qt/qscintilla_fr.qm, qt/qscintilla_pt_br.qm:
+	Updated German translations from Detlev.
+	[f69379899fb3] <2.10-maint>
+
+2018-06-04  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS, Python/configure.py:
+	Implemented support for the .dist-info directory.
+	[387aa9bf6ad8] <2.10-maint>
+
+2018-06-03  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS, Python/sip/qsciscintillabase.sip, qt/PlatQt.cpp,
+	qt/ScintillaQt.cpp, qt/qsciscintillabase.cpp,
+	qt/qsciscintillabase.h:
+	Fixes for font changes caused by dragging to a different display.
+	[27b1f435e27a] <2.10-maint>
+
+2018-05-29  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* qt/PlatQt.cpp:
+	Disable to macOS use of integer font metrics for Qt5 as it is
+	(probably) specific to Qt4.
+	[c32fe0c4e55d] <2.10-maint>
+
+	* qt/PlatQt.cpp:
+	Fixed cursor positioning when using a secondary display with
+	different scaling to the primary.
+	[20420b7c4a4d] <2.10-maint>
+
+2018-05-22  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* qt/qscilexerverilog.cpp:
+	Fix the handling of the 'fold.verilog.flags' property in the Verilog
+	lexer.
+	[9b698ba38c2b] <2.10-maint>
+
+2018-05-16  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* qt/qscilexerverilog.cpp, qt/qscintilla_cs.ts, qt/qscintilla_de.ts,
+	qt/qscintilla_es.ts, qt/qscintilla_fr.ts, qt/qscintilla_pt_br.ts:
+	Added the missing descriptions of inactive styles in the Verilog
+	lexer.
+	[4be691232e03] <2.10-maint>
+
+2018-05-15  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* qt/qscilexer.h:
+	Updated the QsciLexer::keywords() documentation to point out that
+	sets are numbered from 1.
+	[5954b91e7ec1] <2.10-maint>
+
+2018-04-26  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* Python/sip/qscilexeredifact.sip, qt/qscilexeredifact.cpp,
+	qt/qscilexeredifact.h:
+	Added some default colours to the EDIFACT lexer.
+	[175598286833] <2.10-maint>
+
+2018-04-20  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS, Python/sip/qscilexeredifact.sip, qt/qscilexeredifact.cpp,
+	qt/qscilexeredifact.h, qt/qscintilla.pro, qt/qscintilla_cs.ts,
+	qt/qscintilla_de.ts, qt/qscintilla_es.ts, qt/qscintilla_fr.ts,
+	qt/qscintilla_pt_br.ts:
+	Added the QsciLexerEDIFACT class.
+	[c1e31857f3e7] <2.10-maint>
+
+	* qt/qsciscintilla.cpp, qt/qsciscintillabase.cpp,
+	qt/qsciscintillabase.h:
+	If the context menu is invoked when the cursor is outside the
+	selection then the selection is cleared and the cursor moved to
+	where the mouse was clicked.
+	[7d230dad9379] <2.10-maint>
+
+2018-04-19  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* Python/sip/qsciscintilla.sip, qt/qscintilla.pro,
+	qt/qsciscintilla.cpp, qt/qsciscintilla.h:
+	Control-wheel up/down will now zoom in and out.
+	[ba0049fe03b6] <2.10-maint>
+
+2018-04-11  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* qt/PlatQt.cpp, qt/qsciabstractapis.cpp, qt/qscilexerpython.cpp,
+	qt/qscilexerxml.cpp, qt/qsciscintilla.cpp:
+	Removed warning messages about unused variables.
+	[c2008ef93ee0] <2.10-maint>
+
+	* qt/qscicommandset.cpp:
+	Fixed the saving of alternative keys in the settings.
+	[687470e937c1] <2.10-maint>
+
+	* qt/ScintillaQt.cpp, qt/qsciapis.cpp, qt/qsciscintilla.cpp:
+	Various stylistic changes to eliminate some warning messages.
+	[dc753169870e] <2.10-maint>
+
 2018-04-10  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* .hgtags:
+	Added tag 2.10.4 for changeset 24cb0edc89a9
+	[05ada666e2cf] <2.10-maint>
 
 	* NEWS:
 	Released as v2.10.4.

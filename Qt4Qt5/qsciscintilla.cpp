@@ -264,17 +264,21 @@ void QsciScintilla::handleCharAdded(int ch)
 
     // Handle auto-indentation.
     if (autoInd)
+    {
         if (lex.isNull() || (lex->autoIndentStyle() & AiMaintain))
             maintainIndentation(ch, pos);
         else
             autoIndentation(ch, pos);
+    }
 
     // See if we might want to start auto-completion.
     if (!isCallTipActive() && acSource != AcsNone)
+    {
         if (isStartChar(ch))
             startAutoCompletion(acSource, false, use_single == AcusAlways);
         else if (acThresh >= 1 && isWordCharacter(ch))
             startAutoCompletion(acSource, true, use_single == AcusAlways);
+    }
 }
 
 
@@ -851,12 +855,16 @@ void QsciScintilla::autoIndentLine(long pos, int line, int indent)
     long new_pos = -1;
 
     if (pos_after > pos_before)
+    {
         new_pos = pos + (pos_after - pos_before);
+    }
     else if (pos_after < pos_before && pos >= pos_after)
+    {
         if (pos >= pos_before)
             new_pos = pos + (pos_after - pos_before);
         else
             new_pos = pos_after;
+    }
 
     if (new_pos >= 0)
         SendScintilla(SCI_SETSEL, new_pos, new_pos);
@@ -1271,6 +1279,9 @@ void QsciScintilla::setWrapVisualFlags(WrapVisualFlag endFlag,
 
     switch (endFlag)
     {
+    case WrapFlagNone:
+        break;
+
     case WrapFlagByText:
         flags |= SC_WRAPVISUALFLAG_END;
         loc |= SC_WRAPVISUALFLAGLOC_END_BY_TEXT;
@@ -1287,6 +1298,9 @@ void QsciScintilla::setWrapVisualFlags(WrapVisualFlag endFlag,
 
     switch (startFlag)
     {
+    case WrapFlagNone:
+        break;
+
     case WrapFlagByText:
         flags |= SC_WRAPVISUALFLAG_START;
         loc |= SC_WRAPVISUALFLAGLOC_START_BY_TEXT;
@@ -1331,6 +1345,9 @@ void QsciScintilla::setFolding(FoldStyle folding, int margin)
     // Set the marker symbols to use.
     switch (folding)
     {
+    case NoFoldStyle:
+        break;
+
     case PlainFoldStyle:
         setFoldMarker(SC_MARKNUM_FOLDEROPEN, SC_MARK_MINUS);
         setFoldMarker(SC_MARKNUM_FOLDER, SC_MARK_PLUS);
@@ -1631,6 +1648,12 @@ void QsciScintilla::handleModified(int pos, int mtype, const char *text,
         int len, int added, int line, int foldNow, int foldPrev, int token,
         int annotationLinesAdded)
 {
+    Q_UNUSED(pos);
+    Q_UNUSED(text);
+    Q_UNUSED(len);
+    Q_UNUSED(token);
+    Q_UNUSED(annotationLinesAdded);
+
     if (mtype & SC_MOD_CHANGEFOLD)
     {
         if (fold)
@@ -4329,6 +4352,29 @@ bool QsciScintilla::event(QEvent *e)
 }
 
 
+// Re-implemented to zoom when the Control modifier is pressed.
+void QsciScintilla::wheelEvent(QWheelEvent *e)
+{
+#if defined(Q_OS_MAC)
+    const Qt::KeyboardModifier zoom_modifier = Qt::MetaModifier;
+#else
+    const Qt::KeyboardModifier zoom_modifier = Qt::ControlModifier;
+#endif
+
+   if ((e->modifiers() & zoom_modifier) != 0)
+   {
+       if (e->delta() > 0)
+           zoomIn();
+       else
+           zoomOut();
+   }
+   else 
+   {
+       QsciScintillaBase::wheelEvent(e);
+   }
+}
+
+
 // Re-implemented to handle chenges to the enabled state.
 void QsciScintilla::changeEvent(QEvent *e)
 {
@@ -4391,12 +4437,15 @@ void QsciScintilla::setEnabledColors(int style, QColor &fore, QColor &back)
 // Re-implemented to implement a more Qt-like context menu.
 void QsciScintilla::contextMenuEvent(QContextMenuEvent *e)
 {
-    QMenu *menu = createStandardContextMenu();
-
-    if (menu)
+    if (contextMenuNeeded(e->x(), e->y()))
     {
-        menu->setAttribute(Qt::WA_DeleteOnClose);
-        menu->popup(e->globalPos());
+        QMenu *menu = createStandardContextMenu();
+
+        if (menu)
+        {
+            menu->setAttribute(Qt::WA_DeleteOnClose);
+            menu->popup(e->globalPos());
+        }
     }
 }
 

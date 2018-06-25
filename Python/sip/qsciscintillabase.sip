@@ -1492,6 +1492,7 @@ protected:
     virtual QByteArray fromMimeData(const QMimeData *source, bool &rectangular) const;
     virtual QMimeData *toMimeData(const QByteArray &text, bool rectangular) const;
 
+    virtual void changeEvent(QEvent *e);
     virtual void contextMenuEvent(QContextMenuEvent *e);
     virtual void dragEnterEvent(QDragEnterEvent *e);
     virtual void dragLeaveEvent(QDragLeaveEvent *e);

@@ -1,3 +1,17 @@
+v2.10.6 24th June 2018
+  - A pseudo-release to create a version number for updated Python wheels.
+
+v2.10.5 23rd June 2018
+  - Added the QsciLexerEDIFACT class.
+  - Added setStyle() to QsciStyle.
+  - Control-wheel scroll will now zoom in and out of the document.
+  - Buffered drawing is now disabled by default.
+  - The Python bindings create a PEP 376 .dist-info directory on installation
+    that provides version information for dependent packages and allows pip to
+    uninstall.
+  - Added the --no-dist-info option to the Python bindings' configure.py.
+  - Bug fixes.
+
 v2.10.4 10th April 2018
   - Bug fixes.
 

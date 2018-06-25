@@ -35,6 +35,7 @@ public:
     QsciStyle(int style, const QString &description, const QColor &color,
             const QColor &paper, const QFont &font, bool eolFill = false);
 
+    void setStyle(int style);
     int style() const;
 
     void setDescription(const QString &description);
