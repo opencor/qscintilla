@@ -1472,7 +1472,7 @@ signals:
     void SCN_HOTSPOTRELEASECLICK(int position, int modifiers);
     void SCN_INDICATORCLICK(int position, int modifiers);
     void SCN_INDICATORRELEASE(int position, int modifiers);
-    void SCN_MACRORECORD(unsigned int, unsigned long, void *);
+    void SCN_MACRORECORD(unsigned int, ulong, void *);
     void SCN_MARGINCLICK(int position, int modifiers, int margin);
     void SCN_MARGINRIGHTCLICK(int position, int modifiers, int margin);
     void SCN_MODIFIED(int, int, const char *, int, int, int, int, int, int, int);

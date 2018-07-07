@@ -1,4 +1,26 @@
+2018-06-29  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS:
+	Released as v2.10.7.
+	[60598a703fd4] [2.10.7] <2.10-maint>
+
+	* NEWS:
+	Updated the NEWS file.
+	[92edf18019ec] <2.10-maint>
+
+2018-06-25  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS, Python/sip/qsciscintillabase.sip:
+	Tweaked the signature of the QscoScintillaBase::SCN_MACRORECORD()
+	signal so that it matches what Qt uses so that the signal test
+	passes.
+	[bfcd9319329a] <2.10-maint>
+
 2018-06-23  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* .hgtags:
+	Added tag 2.10.6 for changeset dc0993c72a05
+	[9c774d0a9694] <2.10-maint>
 
 	* NEWS:
 	Released as v2.10.6.
