@@ -23,7 +23,7 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-# This is v2.4 of this boilerplate.
+# This is v2.5 of this boilerplate.
 
 
 from distutils import sysconfig
@@ -60,7 +60,7 @@ class ModuleConfiguration(object):
 
     # The version of the module as a string.  Set it to None if you don't
     # provide version information.
-    version = '2.10.6'
+    version = '2.10.7'
 
     # The name of the PEP 376 .dist-info directory to be created.
     distinfo_name = 'QScintilla'
@@ -1852,7 +1852,7 @@ INSTALLS += api
     if target_config.distinfo:
         distinfo_dir = os.path.join(target_config.py_module_dir,
             pkg_config.distinfo_name + '-' + pkg_config.version + '.dist-info')
-        mk_distinfo = sys.executable + ' mk_distinfo.py ' + distinfo_dir + ' installed.txt'
+        mk_distinfo = sys.executable + ' mk_distinfo.py $(INSTALL_ROOT)' + distinfo_dir + ' installed.txt'
 
         pro.write('''
 distinfo.extra = %s
