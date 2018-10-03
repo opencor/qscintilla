@@ -66,6 +66,15 @@ public:
     void setCursorPosition(int position);
 
     QString text(int startOffset, int endOffset) const;
+    QString textBeforeOffset(int offset,
+            QAccessible::TextBoundaryType boundaryType, int *startOffset,
+            int *endOffset) const;
+    QString textAfterOffset(int offset,
+            QAccessible::TextBoundaryType boundaryType, int *startOffset,
+            int *endOffset) const;
+    QString textAtOffset(int offset,
+            QAccessible::TextBoundaryType boundaryType, int *startOffset,
+            int *endOffset) const;
     int characterCount() const;
     QRect characterRect(int offset) const;
     int offsetAtPoint(const QPoint &point) const;
@@ -82,16 +91,25 @@ public:
 private:
     static bool needs_initialising;
     static QList<QsciAccessibleScintillaBase *> all_accessibles;
-    int current_cursor_position;
+    int current_cursor_offset;
     bool is_selection;
 
     static QsciAccessibleScintillaBase *findAccessible(QsciScintillaBase *sb);
     QsciScintillaBase *sciWidget() const;
+    int validPosition(int offset) const;
+    static bool boundaries(QsciScintillaBase *sb, int position,
+            QAccessible::TextBoundaryType boundaryType, int *start_position,
+            int *end_position);
+    static QString textRange(QsciScintillaBase *sb, int start_position,
+            int end_position);
     static QString bytesAsText(QsciScintillaBase *sb, const char *bytes,
             int length);
     static QByteArray textAsBytes(QsciScintillaBase *sb, const QString &text);
-    static int positionAsTextPosition(QsciScintillaBase *sb, int position);
-    static int textPositionAsPosition(QsciScintillaBase *sb, int textPosition);
+    static int positionAsOffset(QsciScintillaBase *sb, int position);
+    static void positionRangeAsOffsetRange(QsciScintillaBase *sb,
+            int start_position, int end_position, int *startOffset,
+            int *endOffset);
+    static int offsetAsPosition(QsciScintillaBase *sb, int offset);
     static QString colourAsRGB(int colour);
     static void addAttribute(QString &attrs, const char *name,
             const QString &value);

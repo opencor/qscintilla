@@ -25,32 +25,36 @@ def error(message):
 
 
 # Parse the command line.
-if len(sys.argv) != 3:
-    error("usage: {0} dist-info installed".format(sys.argv[0]))
+if len(sys.argv) != 4:
+    error("usage: {0} prefix dist-info installed".format(sys.argv[0]))
 
-distinfo_dir = sys.argv[1]
-installed_fn = sys.argv[2]
+prefix_dir = sys.argv[1]
+distinfo_dir = sys.argv[2]
+installed_fn = sys.argv[3]
 
 # Read the list of installed files.
 installed_f = open(installed_fn)
 installed = installed_f.read().strip().split('\n')
 installed_f.close()
 
+# The prefix directory corresponds to DESTDIR or INSTALL_ROOT.
+real_distinfo_dir = prefix_dir + distinfo_dir
+
 # Remove any existing dist-info directory and create an empty one.
-if os.path.exists(distinfo_dir):
+if os.path.exists(real_distinfo_dir):
     try:
-        shutil.rmtree(distinfo_dir)
+        shutil.rmtree(real_distinfo_dir)
     except:
-        error("unable to delete existing {0}".format(distinfo_dir))
+        error("unable to delete existing {0}".format(real_distinfo_dir))
 
 try:
-    os.mkdir(distinfo_dir)
+    os.mkdir(real_distinfo_dir)
 except:
-    error("unable to create {0}".format(distinfo_dir))
+    error("unable to create {0}".format(real_distinfo_dir))
 
 # Create the INSTALLER file.  We pretend that pip was the installer.
 installer_fn = os.path.join(distinfo_dir, 'INSTALLER')
-installer_f = open(installer_fn, 'w')
+installer_f = open(prefix_dir + installer_fn, 'w')
 installer_f.write('pip\n')
 installer_f.close()
 
@@ -66,7 +70,7 @@ distinfo_path, distinfo_base = os.path.split(distinfo_dir)
 pkg_name, version = os.path.splitext(distinfo_base)[0].split('-')
 
 metadata_fn = os.path.join(distinfo_dir, 'METADATA')
-metadata_f = open(metadata_fn, 'w')
+metadata_f = open(prefix_dir + metadata_fn, 'w')
 metadata_f.write(METADATA.format(pkg_name, version))
 metadata_f.close()
 
@@ -74,10 +78,10 @@ installed.append(metadata_fn)
 
 # Create the RECORD file.
 record_fn = os.path.join(distinfo_dir, 'RECORD')
-record_f = open(record_fn, 'w')
+record_f = open(prefix_dir + record_fn, 'w')
 
 for name in installed:
-    native_name = name.replace('/', os.sep)
+    native_name = prefix_dir + name.replace('/', os.sep)
     if os.path.isdir(native_name):
         all_fns = []
 
@@ -88,15 +92,18 @@ for name in installed:
             if '__pycache__' in dirs:
                 dirs.remove('__pycache__')
     else:
-        all_fns = [name]
+        all_fns = [prefix_dir + name]
 
     for fn in all_fns:
-        if fn.startswith(distinfo_path):
-            fn_name = fn[len(distinfo_path) + 1:].replace('\\', '/')
-        elif fn.startswith(sys.prefix):
-            fn_name = os.path.relpath(fn, distinfo_path).replace('\\', '/')
+        real_distinfo_path = prefix_dir + distinfo_path
+
+        if fn.startswith(real_distinfo_path):
+            fn_name = fn[len(real_distinfo_path) + 1:].replace('\\', '/')
+        elif fn.startswith(prefix_dir + sys.prefix):
+            fn_name = os.path.relpath(
+                    fn, real_distinfo_path).replace('\\', '/')
         else:
-            fn_name = fn
+            fn_name = fn[len(prefix_dir):]
 
         fn_f = open(fn, 'rb')
         data = fn_f.read()
