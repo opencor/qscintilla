@@ -23,7 +23,7 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-# This is v2.5 of this boilerplate.
+# This is v2.8 of this boilerplate.
 
 
 from distutils import sysconfig
@@ -60,7 +60,7 @@ class ModuleConfiguration(object):
 
     # The version of the module as a string.  Set it to None if you don't
     # provide version information.
-    version = '2.10.7'
+    version = '2.10.8'
 
     # The name of the PEP 376 .dist-info directory to be created.
     distinfo_name = 'QScintilla'
@@ -827,6 +827,11 @@ class _TargetConfiguration:
             # Construct the SIP flags.
             flags = []
 
+            sip_module = parser.get(section, 'sip_module')
+            if sip_module is not None:
+                flags.append('-n')
+                flags.append(sip_module)
+
             flags.append('-t')
             flags.append(self._get_platform_tag())
 
@@ -1370,8 +1375,10 @@ def _generate_code(target_config, opts, pkg_config, module_config, all_installs)
     argv.append('-c')
     argv.append(os.path.abspath(module_config.name))
 
-    # This assumes that, for multi-module packages, all modules's .sip files
+    # This assumes that, for multi-module packages, each modules' .sip files
     # will be rooted in a common root directory.
+    pkg_root = os.path.dirname(os.path.abspath(__file__))
+
     sip_file = module_config.get_sip_file(target_config)
 
     head, tail = os.path.split(sip_file)
@@ -1380,9 +1387,9 @@ def _generate_code(target_config, opts, pkg_config, module_config, all_installs)
 
     if tail != sip_file:
         argv.append('-I')
-        argv.append(quote(tail))
+        argv.append(quote(os.path.join(pkg_root, tail)))
 
-    argv.append(sip_file)
+    argv.append(os.path.join(pkg_root, sip_file))
 
     check_file = os.path.join(module_config.name,
             'sipAPI%s.h' % module_config.name)
@@ -1510,8 +1517,12 @@ target.path = %s
 INSTALLS += target
 ''' % quote(target_config.module_dir))
 
-    mod_ext = '.pyd' if sys.platform == 'win32' else '.so'
-    all_installs.append(target_config.module_dir + '/' + mname + mod_ext)
+    if sys.platform == 'win32':
+        fs = '{}.lib' if opts.static else '{}.pyd'
+    else:
+        fs = 'lib{}.a' if opts.static else '{}.so'
+
+    all_installs.append(target_config.module_dir + '/' + fs.format(mname))
 
     sip_installs = module_config.get_sip_installs(target_config)
     if sip_installs is not None:
@@ -1850,15 +1861,19 @@ INSTALLS += api
         all_installs.append(api_dir + '/' + api_file)
 
     if target_config.distinfo:
+        # Allow for out-of-tree builds.
+        mk_distinfo = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                'mk_distinfo.py')
         distinfo_dir = os.path.join(target_config.py_module_dir,
             pkg_config.distinfo_name + '-' + pkg_config.version + '.dist-info')
-        mk_distinfo = sys.executable + ' mk_distinfo.py $(INSTALL_ROOT)' + distinfo_dir + ' installed.txt'
+        run_mk_distinfo = '%s %s \\"$(INSTALL_ROOT)\\" %s installed.txt' % (
+                sys.executable, mk_distinfo, distinfo_dir)
 
         pro.write('''
 distinfo.extra = %s
 distinfo.path = %s
 INSTALLS += distinfo
-''' % (mk_distinfo, target_config.module_dir))
+''' % (run_mk_distinfo, target_config.module_dir))
 
         # Create the file containing the names of all installed files.
         installed = open('installed.txt', 'w')

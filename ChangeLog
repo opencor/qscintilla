@@ -1,4 +1,37 @@
+2018-10-01  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS:
+	Released as v2.10.8.
+	[57c8b6076899] [2.10.8] <2.10-maint>
+
+2018-09-30  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS:
+	Updated the NEWS file.
+	[345f597a4a90] <2.10-maint>
+
+2018-08-02  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* qt/SciAccessibility.cpp:
+	More accessibility fixes.
+	[2cc2d6865762] <2.10-maint>
+
+	* qt/SciAccessibility.cpp, qt/SciAccessibility.h, qt/qscintilla.pro:
+	Refactored the accessibility support to use less of the Qt stuff
+	which doesn't handle CR-LF end-of-lines.
+	[8b2d6e3e73d8] <2.10-maint>
+
+2018-07-15  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS:
+	Updated the NEWS file.
+	[fc1deaccc716] <2.10-maint>
+
 2018-06-29  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* .hgtags:
+	Added tag 2.10.7 for changeset 60598a703fd4
+	[8828f9ad7dc6] <2.10-maint>
 
 	* NEWS:
 	Released as v2.10.7.

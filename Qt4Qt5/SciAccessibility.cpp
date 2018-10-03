@@ -47,7 +47,7 @@ static QAccessibleInterface *factory(const QString &classname, QObject *object);
 // The ctor.
 QsciAccessibleScintillaBase::QsciAccessibleScintillaBase(QWidget *widget) :
         QAccessibleWidget(widget, QAccessible::EditableText),
-        current_cursor_position(-1), is_selection(false)
+        current_cursor_offset(-1), is_selection(false)
 {
     all_accessibles.append(this);
 }
@@ -114,10 +114,103 @@ void QsciAccessibleScintillaBase::textInserted(QsciScintillaBase *sb,
     Q_ASSERT(text);
 
     QString new_text = bytesAsText(sb, text, length);
-    int text_position = positionAsTextPosition(sb, position);
+    int offset = positionAsOffset(sb, position);
 
-    QAccessibleTextInsertEvent ev(sb, text_position, new_text);
+    QAccessibleTextInsertEvent ev(sb, offset, new_text);
     QAccessible::updateAccessibility(&ev);
+}
+
+
+// Return the fragment of text before an offset.
+QString QsciAccessibleScintillaBase::textBeforeOffset(int offset,
+        QAccessible::TextBoundaryType boundaryType, int *startOffset,
+        int *endOffset) const
+{
+    QsciScintillaBase *sb = sciWidget();
+
+    // Initialise in case of errors.
+    *startOffset = *endOffset = -1;
+
+    int position = validPosition(offset);
+
+    if (position < 0)
+        return QString();
+
+    int start_position, end_position;
+
+    if (!boundaries(sb, position, boundaryType, &start_position, &end_position))
+        return QString();
+
+    if (start_position == 0)
+        return QString();
+
+    if (!boundaries(sb, start_position - 1, boundaryType, &start_position, &end_position))
+        return QString();
+
+    positionRangeAsOffsetRange(sb, start_position, end_position, startOffset,
+            endOffset);
+
+    return textRange(sb, start_position, end_position);
+}
+
+
+// Return the fragment of text after an offset.
+QString QsciAccessibleScintillaBase::textAfterOffset(int offset,
+        QAccessible::TextBoundaryType boundaryType, int *startOffset,
+        int *endOffset) const
+{
+    QsciScintillaBase *sb = sciWidget();
+
+    // Initialise in case of errors.
+    *startOffset = *endOffset = -1;
+
+    int position = validPosition(offset);
+
+    if (position < 0)
+        return QString();
+
+    int start_position, end_position;
+
+    if (!boundaries(sb, position, boundaryType, &start_position, &end_position))
+        return QString();
+
+    if (end_position >= sb->SendScintilla(QsciScintillaBase::SCI_GETTEXTLENGTH))
+        return QString();
+
+    if (!boundaries(sb, end_position, boundaryType, &start_position, &end_position))
+        return QString();
+
+    positionRangeAsOffsetRange(sb, start_position, end_position, startOffset,
+            endOffset);
+
+    return textRange(sb, start_position, end_position);
+}
+
+
+// Return the fragment of text at an offset.
+QString QsciAccessibleScintillaBase::textAtOffset(int offset,
+        QAccessible::TextBoundaryType boundaryType, int *startOffset,
+        int *endOffset) const
+{
+    QsciScintillaBase *sb = sciWidget();
+
+    // Initialise in case of errors.
+    *startOffset = *endOffset = -1;
+
+    int position = validPosition(offset);
+
+    if (position < 0)
+        return QString();
+
+    int start_position, end_position;
+
+    if (!boundaries(sb, position, boundaryType, &start_position, &end_position))
+        return QString();
+
+    positionRangeAsOffsetRange(sb, start_position, end_position, startOffset,
+            endOffset);
+
+    return textRange(sb, start_position, end_position);
 }
 
 
@@ -128,9 +221,9 @@ void QsciAccessibleScintillaBase::textDeleted(QsciScintillaBase *sb,
     Q_ASSERT(text);
 
     QString old_text = bytesAsText(sb, text, length);
-    int text_position = positionAsTextPosition(sb, position);
+    int offset = positionAsOffset(sb, position);
 
-    QAccessibleTextRemoveEvent ev(sb, text_position, old_text);
+    QAccessibleTextRemoveEvent ev(sb, offset, old_text);
     QAccessible::updateAccessibility(&ev);
 }
 
@@ -143,16 +236,130 @@ void QsciAccessibleScintillaBase::updated(QsciScintillaBase *sb)
     if (!acc_sb)
         return;
 
-    int cursor_position = positionAsTextPosition(sb,
+    int cursor_offset = positionAsOffset(sb,
             sb->SendScintilla(QsciScintillaBase::SCI_GETCURRENTPOS));
 
-    if (acc_sb->current_cursor_position != cursor_position)
+    if (acc_sb->current_cursor_offset != cursor_offset)
     {
-        acc_sb->current_cursor_position = cursor_position;
+        acc_sb->current_cursor_offset = cursor_offset;
 
-        QAccessibleTextCursorEvent ev(sb, cursor_position);
+        QAccessibleTextCursorEvent ev(sb, cursor_offset);
         QAccessible::updateAccessibility(&ev);
     }
+}
+
+
+// Return a valid position from an offset or -1 if it was invalid.
+int QsciAccessibleScintillaBase::validPosition(int offset) const
+{
+    // An offset of -1 is interpreted as the length of the text.
+    int nr_chars = characterCount();
+
+    if (offset == -1)
+        offset = nr_chars;
+
+    // Check there is some text and the offset is within range.
+    if (nr_chars == 0 || offset < 0 || offset > nr_chars)
+        return -1;
+
+    return offsetAsPosition(sciWidget(), offset);
+}
+
+
+// Get the start and end boundary positions for a type of boundary.  true is
+// returned if the boundary positions are valid.
+bool QsciAccessibleScintillaBase::boundaries(QsciScintillaBase *sb,
+        int position, QAccessible::TextBoundaryType boundaryType,
+        int *start_position, int *end_position)
+{
+    // This implementation is based on what Qt does although that may itself be
+    // wrong.  The cursor is in a word if it is before or after any character
+    // in the word.  If the cursor is not in a word (eg. is has a space each
+    // side) then the previous word is current.
+
+    switch (boundaryType)
+    {
+    case QAccessible::CharBoundary:
+        *start_position = position;
+        *end_position = sb->SendScintilla(
+                QsciScintillaBase::SCI_POSITIONAFTER, position);
+        break;
+
+    case QAccessible::WordBoundary:
+        *start_position = sb->SendScintilla(
+                QsciScintillaBase::SCI_WORDSTARTPOSITION, position, 1);
+        *end_position = sb->SendScintilla(
+                QsciScintillaBase::SCI_WORDENDPOSITION, position, 1);
+
+        // If the start and end positions are the same then we are not in a
+        // word.
+        if (*start_position == *end_position)
+        {
+            // We need the immediately preceding word.  Note that Qt behaves
+            // differently as it will not move before the current line.
+
+            // Find the end of the preceding word.
+            *end_position = sb->SendScintilla(
+                    QsciScintillaBase::SCI_WORDSTARTPOSITION, position, 0L);
+
+            // If the end is 0 then there isn't a preceding word.
+            if (*end_position == 0)
+                return false;
+
+            // Now find the start.
+            *start_position = sb->SendScintilla(
+                    QsciScintillaBase::SCI_WORDSTARTPOSITION, *end_position,
+                    1);
+        }
+
+        break;
+
+    case QAccessible::SentenceBoundary:
+        return false;
+
+    case QAccessible::ParagraphBoundary:
+        // Paragraph boundaries are supposed to be supported but it isn't clear
+        // what this means in a code editor.
+        return false;
+
+    case QAccessible::LineBoundary:
+        {
+            int line = sb->SendScintilla(
+                    QsciScintillaBase::SCI_LINEFROMPOSITION, position);
+
+            *start_position = sb->SendScintilla(
+                    QsciScintillaBase::SCI_POSITIONFROMLINE, line);
+            *end_position = sb->SendScintilla(
+                    QsciScintillaBase::SCI_POSITIONFROMLINE, line + 1);
+
+            // See if we are after the last end-of-line character.
+            if (*start_position == *end_position)
+                return false;
+        }
+
+        break;
+
+    case QAccessible::NoBoundary:
+        *start_position = 0;
+        *end_position = sb->SendScintilla(
+                QsciScintillaBase::SCI_GETTEXTLENGTH);
+        break;
+    }
+
+    return true;
+}
+
+
+// Return the text between two positions.
+QString QsciAccessibleScintillaBase::textRange(QsciScintillaBase *sb,
+        int start_position, int end_position)
+{
+    QByteArray bytes(end_position - start_position + 1, '\0');
+
+    sb->SendScintilla(QsciScintillaBase::SCI_GETTEXTRANGE, start_position,
+            end_position, bytes.data());
+
+    return bytesAsText(sb, bytes.constData(), bytes.size() - 1);
 }
 
 
@@ -178,26 +385,31 @@ QByteArray QsciAccessibleScintillaBase::textAsBytes(QsciScintillaBase *sb,
 }
 
 
-// Convert a byte position to a text position.
-int QsciAccessibleScintillaBase::positionAsTextPosition(QsciScintillaBase *sb,
+// Convert a byte position to a character offset.
+int QsciAccessibleScintillaBase::positionAsOffset(QsciScintillaBase *sb,
         int position)
 {
-    return sb->SendScintilla(QsciScintillaBase::SCI_POSITIONRELATIVE, 0,
+    return sb->SendScintilla(QsciScintillaBase::SCI_COUNTCHARACTERS, 0,
             position);
 }
 
 
-// Convert a text position to a byte position.
-int QsciAccessibleScintillaBase::textPositionAsPosition(QsciScintillaBase *sb,
-        int textPosition)
+// Convert a range of byte poisitions to character offsets.
+void QsciAccessibleScintillaBase::positionRangeAsOffsetRange(
+        QsciScintillaBase *sb, int start_position, int end_position,
+        int *startOffset, int *endOffset)
 {
-    int position = 0;
+    *startOffset = positionAsOffset(sb, start_position);
+    *endOffset = positionAsOffset(sb, end_position);
+}
 
-    for (int p = 0; p < textPosition; ++p)
-        position = sb->SendScintilla(QsciScintillaBase::SCI_POSITIONAFTER,
-                position);
 
-    return position;
+// Convert character offset position to a byte position.
+int QsciAccessibleScintillaBase::offsetAsPosition(QsciScintillaBase *sb,
+        int offset)
+{
+    return sb->SendScintilla(QsciScintillaBase::SCI_POSITIONRELATIVE, 0,
+            offset);
 }
 
 
@@ -215,8 +427,8 @@ void QsciAccessibleScintillaBase::selection(int selectionIndex,
         int end_position = sb->SendScintilla(
                 QsciScintillaBase::SCI_GETSELECTIONEND);
 
-        start = positionAsTextPosition(sb, start_position);
-        end = positionAsTextPosition(sb, end_position);
+        start = positionAsOffset(sb, start_position);
+        end = positionAsOffset(sb, end_position);
     }
     else
     {
@@ -258,43 +470,37 @@ void QsciAccessibleScintillaBase::setSelection(int selectionIndex,
     {
         QsciScintillaBase *sb = sciWidget();
         sb->SendScintilla(QsciScintillaBase::SCI_SETSELECTIONSTART,
-                textPositionAsPosition(sb, startOffset));
+                offsetAsPosition(sb, startOffset));
         sb->SendScintilla(QsciScintillaBase::SCI_SETSELECTIONEND,
-                textPositionAsPosition(sb, endOffset));
+                offsetAsPosition(sb, endOffset));
     }
 }
 
 
-// Return the current cursor text position.
+// Return the current cursor offset.
 int QsciAccessibleScintillaBase::cursorPosition() const
 {
-    return current_cursor_position;
+    return current_cursor_offset;
 }
 
 
-// Set the cursor position.
+// Set the cursor offset.
 void QsciAccessibleScintillaBase::setCursorPosition(int position)
 {
     QsciScintillaBase *sb = sciWidget();
 
     sb->SendScintilla(QsciScintillaBase::SCI_GOTOPOS,
-            textPositionAsPosition(sb, position));
+            offsetAsPosition(sb, position));
 }
 
 
-// Return the text between two positions.
+// Return the text between two offsets.
 QString QsciAccessibleScintillaBase::text(int startOffset, int endOffset) const
 {
     QsciScintillaBase *sb = sciWidget();
-    int byte_start = textPositionAsPosition(sb, startOffset);
-    int byte_end = textPositionAsPosition(sb, endOffset);
 
-    QByteArray bytes(byte_end - byte_start + 1, '\0');
-
-    sb->SendScintilla(QsciScintillaBase::SCI_GETTEXTRANGE, byte_start,
-            byte_end, bytes.data());
-
-    return bytesAsText(sb, bytes.constData(), bytes.size() - 1);
+    return textRange(sb, offsetAsPosition(sb, startOffset),
+            offsetAsPosition(sb, endOffset));
 }
 
 
@@ -303,7 +509,7 @@ int QsciAccessibleScintillaBase::characterCount() const
 {
     QsciScintillaBase *sb = sciWidget();
 
-    return positionAsTextPosition(sb,
+    return sb->SendScintilla(QsciScintillaBase::SCI_COUNTCHARACTERS, 0,
             sb->SendScintilla(QsciScintillaBase::SCI_GETTEXTLENGTH));
 }
 
@@ -311,7 +517,7 @@ int QsciAccessibleScintillaBase::characterCount() const
 QRect QsciAccessibleScintillaBase::characterRect(int offset) const
 {
     QsciScintillaBase *sb = sciWidget();
-    int position = textPositionAsPosition(sb, offset);
+    int position = offsetAsPosition(sb, offset);
     int x_vport = sb->SendScintilla(QsciScintillaBase::SCI_POINTXFROMPOSITION,
             position);
     int y_vport = sb->SendScintilla(QsciScintillaBase::SCI_POINTYFROMPOSITION,
@@ -337,7 +543,7 @@ int QsciAccessibleScintillaBase::offsetAtPoint(const QPoint &point) const
     int position = sb->SendScintilla(QsciScintillaBase::SCI_POSITIONFROMPOINT,
             p.x(), p.y());
 
-    return (position >= 0) ? positionAsTextPosition(sb, position) : -1;
+    return (position >= 0) ? positionAsOffset(sb, position) : -1;
 }
 
 
@@ -346,8 +552,8 @@ void QsciAccessibleScintillaBase::scrollToSubstring(int startIndex,
         int endIndex)
 {
     QsciScintillaBase *sb = sciWidget();
-    int start = textPositionAsPosition(sb, startIndex);
-    int end = textPositionAsPosition(sb, endIndex);
+    int start = offsetAsPosition(sb, startIndex);
+    int end = offsetAsPosition(sb, endIndex);
 
     sb->SendScintilla(QsciScintillaBase::SCI_SCROLLRANGE, end, start);
 }
@@ -358,7 +564,7 @@ QString QsciAccessibleScintillaBase::attributes(int offset, int *startOffset,
         int *endOffset) const
 {
     QsciScintillaBase *sb = sciWidget();
-    int position = textPositionAsPosition(sb, offset);
+    int position = offsetAsPosition(sb, offset);
     int style = sb->SendScintilla(QsciScintillaBase::SCI_GETSTYLEAT, position);
 
     // Find the start of the text with this style.
@@ -495,8 +701,7 @@ void QsciAccessibleScintillaBase::insertText(int offset, const QString &text)
     QsciScintillaBase *sb = sciWidget();
 
     sb->SendScintilla(QsciScintillaBase::SCI_INSERTTEXT,
-            textPositionAsPosition(sb, offset),
-            textAsBytes(sb, text).constData());
+            offsetAsPosition(sb, offset), textAsBytes(sb, text).constData());
 }
 
 
