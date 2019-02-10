@@ -4,7 +4,7 @@
 // and more readably here: https://en.wikipedia.org/wiki/EDIFACT
 // This code is subject to the same license terms as the rest of the scintilla project:
 // The License.txt file describes the conditions under which this software may be distributed.
-// 
+//
 
 // Header order must match order in scripts/HeaderOrder.txt
 #include <cstdlib>
@@ -18,12 +18,11 @@
 
 #include "LexAccessor.h"
 #include "LexerModule.h"
+#include "DefaultLexer.h"
 
-#ifdef SCI_NAMESPACE
 using namespace Scintilla;
-#endif
 
-class LexerEDIFACT : public ILexer
+class LexerEDIFACT : public DefaultLexer
 {
 public:
 	LexerEDIFACT();
@@ -33,48 +32,57 @@ public:
 		return new LexerEDIFACT;
 	}
 
-	virtual int SCI_METHOD Version() const
+	int SCI_METHOD Version() const override
 	{
 		return lvOriginal;
 	}
-	virtual void SCI_METHOD Release()
+	void SCI_METHOD Release() override
 	{
 		delete this;
 	}
 
-	const char * SCI_METHOD PropertyNames()
+	const char * SCI_METHOD PropertyNames() override
 	{
-		return "fold";
+		return "fold\nlexer.edifact.highlight.un.all";
 	}
-	int SCI_METHOD PropertyType(const char *)
+	int SCI_METHOD PropertyType(const char *) override
 	{
 		return SC_TYPE_BOOLEAN; // Only one property!
 	}
-	const char * SCI_METHOD DescribeProperty(const char *name)
+	const char * SCI_METHOD DescribeProperty(const char *name) override
 	{
-		if (strcmp(name, "fold"))
-			return NULL;
-		return "Whether to apply folding to document or not";
+		if (!strcmp(name, "fold"))
+			return "Whether to apply folding to document or not";
+		if (!strcmp(name, "lexer.edifact.highlight.un.all"))
+			return "Whether to apply UN* highlighting to all UN segments, or just to UNH";
+		return NULL;
 	}
 
-	virtual Sci_Position SCI_METHOD PropertySet(const char *key, const char *val)
+	Sci_Position SCI_METHOD PropertySet(const char *key, const char *val) override
 	{
-		if (strcmp(key, "fold"))
-			return -1;
-		m_bFold = strcmp(val, "0") ? true : false;
-		return 0;
+		if (!strcmp(key, "fold"))
+		{
+			m_bFold = strcmp(val, "0") ? true : false;
+			return 0;
+		}
+		if (!strcmp(key, "lexer.edifact.highlight.un.all"))	// GetProperty
+		{
+			m_bHighlightAllUN = strcmp(val, "0") ? true : false;
+			return 0;
+		}
+		return -1;
 	}
-	const char * SCI_METHOD DescribeWordListSets()
+	const char * SCI_METHOD DescribeWordListSets() override
 	{
 		return NULL;
 	}
-	virtual Sci_Position SCI_METHOD WordListSet(int, const char *)
+	Sci_Position SCI_METHOD WordListSet(int, const char *) override
 	{
 		return -1;
 	}
-	virtual void SCI_METHOD Lex(Sci_PositionU startPos, Sci_Position lengthDoc, int initStyle, IDocument *pAccess);
-	virtual void SCI_METHOD Fold(Sci_PositionU startPos, Sci_Position lengthDoc, int initStyle, IDocument *pAccess);
-	virtual void * SCI_METHOD PrivateCall(int, void *)
+	void SCI_METHOD Lex(Sci_PositionU startPos, Sci_Position lengthDoc, int initStyle, IDocument *pAccess) override;
+	void SCI_METHOD Fold(Sci_PositionU startPos, Sci_Position lengthDoc, int initStyle, IDocument *pAccess) override;
+	void * SCI_METHOD PrivateCall(int, void *) override
 	{
 		return NULL;
 	}
@@ -86,6 +94,11 @@ protected:
 	int DetectSegmentHeader(char SegmentHeader[3]) const;
 
 	bool m_bFold;
+
+	// property lexer.edifact.highlight.un.all
+	//	Set to 0 to highlight only UNA segments, or 1 to highlight all UNx segments.
+	bool m_bHighlightAllUN;
+
 	char m_chComponent;
 	char m_chData;
 	char m_chDecimal;
@@ -104,6 +117,7 @@ LexerModule lmEDIFACT(SCLEX_EDIFACT, LexerEDIFACT::Factory, "edifact");
 LexerEDIFACT::LexerEDIFACT()
 {
 	m_bFold = false;
+	m_bHighlightAllUN = false;
 	m_chComponent = ':';
 	m_chData = '+';
 	m_chDecimal = '.';
@@ -146,7 +160,7 @@ void LexerEDIFACT::Lex(Sci_PositionU startPos, Sci_Position lengthDoc, int, IDoc
 		if (SegmentStyle == SCE_EDI_UNA)
 		{
 			posCurrent += 9;
-			styler.ColourTo(posCurrent - 1, SCE_EDI_UNA); // UNA   
+			styler.ColourTo(posCurrent - 1, SCE_EDI_UNA); // UNA
 			continue;
 		}
 		posSegmentStart = posCurrent;
@@ -295,9 +309,12 @@ int LexerEDIFACT::DetectSegmentHeader(char SegmentHeader[3]) const
 		SegmentHeader[2] < 'A' || SegmentHeader[2] > 'Z')
 		return SCE_EDI_BADSEGMENT;
 
-	if (memcmp(SegmentHeader, "UNA", 3) == 0)
+	if (!memcmp(SegmentHeader, "UNA", 3))
 		return SCE_EDI_UNA;
-	if (memcmp(SegmentHeader, "UNH", 3) == 0)
+
+	if (m_bHighlightAllUN && !memcmp(SegmentHeader, "UN", 2))
+		return SCE_EDI_UNH;
+	else if (memcmp(SegmentHeader, "UNH", 3) == 0)
 		return SCE_EDI_UNH;
 
 	return SCE_EDI_SEGMENTSTART;

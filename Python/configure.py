@@ -23,7 +23,7 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-# This is v2.8 of this boilerplate.
+# This is v2.10 of this boilerplate.
 
 
 from distutils import sysconfig
@@ -40,7 +40,7 @@ import sys
 
 # This must be kept in sync with Python/configure-old.py, qscintilla.pro,
 # example-Qt4Qt5/application.pro and designer-Qt4Qt5/designer.pro.
-QSCI_API_MAJOR = 13
+QSCI_API_MAJOR = 14
 
 
 class ModuleConfiguration(object):
@@ -60,7 +60,7 @@ class ModuleConfiguration(object):
 
     # The version of the module as a string.  Set it to None if you don't
     # provide version information.
-    version = '2.10.8'
+    version = '2.11'
 
     # The name of the PEP 376 .dist-info directory to be created.
     distinfo_name = 'QScintilla'
@@ -1333,10 +1333,27 @@ def _generate_code(target_config, opts, pkg_config, module_config, all_installs)
     if target_config.sip_version >= 0x041301 and target_config.py_debug:
         argv.append('-D')
 
-    # Add the module-specific flags.
-    argv.extend(pkg_config.get_sip_flags(target_config))
+    # This assumes that, for multi-module packages, each modules' .sip files
+    # will be rooted in a common root directory.  We must do this now so that
+    # any '-I' needed appears first.
+    pkg_root = os.path.dirname(os.path.abspath(__file__))
 
+    sip_file = module_config.get_sip_file(target_config)
+
+    head, tail = os.path.split(sip_file)
+    while head:
+        head, tail = os.path.split(head)
+
+    if tail != sip_file:
+        argv.append('-I')
+        argv.append(quote(os.path.join(pkg_root, tail)))
+
+    # Add the PyQt-specific flags.
     if target_config.pyqt_package is not None:
+        # Add PyQt's .sip files to the search path.
+        argv.append('-I')
+        argv.append(quote(target_config.pyqt_sip_dir))
+
         # Get the flags used for the main PyQt module.
         argv.extend(target_config.pyqt_sip_flags.split())
 
@@ -1345,9 +1362,8 @@ def _generate_code(target_config, opts, pkg_config, module_config, all_installs)
         argv.append('Qt_6_0_0' if target_config.pyqt_package == 'PyQt5'
                 else 'Qt_5_0_0')
 
-        # Add PyQt's .sip files to the search path.
-        argv.append('-I')
-        argv.append(quote(target_config.pyqt_sip_dir))
+    # Add the module-specific flags.
+    argv.extend(pkg_config.get_sip_flags(target_config))
 
     if target_config.stubs_dir != '':
         # Generate the stub file.
@@ -1374,20 +1390,6 @@ def _generate_code(target_config, opts, pkg_config, module_config, all_installs)
 
     argv.append('-c')
     argv.append(os.path.abspath(module_config.name))
-
-    # This assumes that, for multi-module packages, each modules' .sip files
-    # will be rooted in a common root directory.
-    pkg_root = os.path.dirname(os.path.abspath(__file__))
-
-    sip_file = module_config.get_sip_file(target_config)
-
-    head, tail = os.path.split(sip_file)
-    while head:
-        head, tail = os.path.split(head)
-
-    if tail != sip_file:
-        argv.append('-I')
-        argv.append(quote(os.path.join(pkg_root, tail)))
 
     argv.append(os.path.join(pkg_root, sip_file))
 
@@ -1524,7 +1526,16 @@ INSTALLS += target
 
     all_installs.append(target_config.module_dir + '/' + fs.format(mname))
 
+    # Change to the directory containing this script (in case of out-of-source
+    # builds).
+    pkg_root = os.path.dirname(os.path.abspath(__file__))
+    old_cwd = os.getcwd()
+    os.chdir(pkg_root)
+
     sip_installs = module_config.get_sip_installs(target_config)
+
+    os.chdir(old_cwd)
+
     if sip_installs is not None:
         path, files = sip_installs
 
@@ -1532,8 +1543,17 @@ INSTALLS += target
 sip.path = %s
 sip.files =''' % quote(path))
 
-        for f in files:
-            pro.write(' \\\n    ../%s' % f)
+        rel_pkg_root = os.path.relpath(pkg_root)
+
+        for fn in files:
+            # The filename should be relative to the current directory and use
+            # POSIX separators.
+            fn = fn.replace('/', os.sep)
+            fn = os.path.join(rel_pkg_root, fn)
+            fn = fn.replace(os.sep, '/')
+            fn = os.path.normpath(fn)
+
+            pro.write(' \\\n    ../%s' % fn)
 
         pro.write('''
 INSTALLS += sip
@@ -1595,7 +1615,7 @@ macx {
     pro.write('HEADERS = sipAPI%s.h\n' % mname)
 
     pro.write('SOURCES =')
-    for s in os.listdir(module_config.name):
+    for s in sorted(os.listdir(module_config.name)):
         if s.endswith('.cpp'):
             pro.write(' \\\n    %s' % s)
     pro.write('\n')

@@ -1,6 +1,6 @@
 // This is the SIP interface definition for QsciLexerDiff.
 //
-// Copyright (c) 2018 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of QScintilla.
 // 
@@ -33,7 +33,11 @@ public:
         Position,
         LineRemoved,
         LineAdded,
-        LineChanged
+        LineChanged,
+        AddingPatchAdded,
+        RemovingPatchAdded,
+        AddingPatchRemoved,
+        RemovingPatchRemoved,
     };
 
     QsciLexerDiff(QObject *parent /TransferThis/ = 0);

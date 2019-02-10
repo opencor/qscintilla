@@ -1,6 +1,6 @@
 // This is the SIP interface definition for QsciScintilla.
 //
-// Copyright (c) 2018 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of QScintilla.
 // 
@@ -112,6 +112,8 @@ public:
         TextColorIndicator,
         TriangleIndicator,
         TriangleCharacterIndicator,
+        GradientIndicator,
+        CentreGradientIndicator,
     };
 
     enum {
@@ -191,6 +193,7 @@ public:
         WrapIndentFixed,
         WrapIndentSame,
         WrapIndentIndented,
+        WrapIndentDeeplyIndented,
     };
 
     QsciScintilla(QWidget *parent /TransferThis/ = 0);
@@ -224,6 +227,7 @@ public:
     CallTipsPosition callTipsPosition() const;
     CallTipsStyle callTipsStyle() const;
     int callTipsVisible() const;
+    void cancelFind();
     void cancelList();
     bool caseSensitive() const;
     void clearRegisteredImages();
@@ -246,10 +250,10 @@ public:
 
     virtual bool findFirst(const QString &expr, bool re, bool cs, bool wo,
             bool wrap, bool forward = true, int line = -1, int index = -1,
-            bool show = true, bool posix = false);
+            bool show = true, bool posix = false, bool cxx11 = false);
     virtual bool findFirstInSelection(const QString &expr, bool re, bool cs,
             bool wo, bool forward = true, bool show = true,
-            bool posix = false);
+            bool posix = false, bool cxx11 = false);
     virtual bool findNext();
     int firstVisibleLine() const;
     FoldStyle folding() const;
@@ -471,6 +475,7 @@ public slots:
     virtual void setBackspaceUnindents(bool unindent);
     virtual void setCaretForegroundColor(const QColor &col);
     virtual void setCaretLineBackgroundColor(const QColor &col);
+    virtual void setCaretLineFrameWidth(int width);
     virtual void setCaretLineVisible(bool enable);
     virtual void setCaretWidth(int width);
     virtual void setColor(const QColor &col);

@@ -1,6 +1,6 @@
 # The project file for the QScintilla library.
 #
-# Copyright (c) 2018 Riverbank Computing Limited <info@riverbankcomputing.com>
+# Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
 # 
 # This file is part of QScintilla.
 # 
@@ -20,7 +20,7 @@
 
 # This must be kept in sync with Python/configure.py, Python/configure-old.py,
 # example-Qt4Qt5/application.pro and designer-Qt4Qt5/designer.pro.
-!win32:VERSION = 13.2.1
+!win32:VERSION = 14.0.0
 
 TEMPLATE = lib
 CONFIG += qt warn_off thread exceptions hide_symbols
@@ -44,7 +44,7 @@ INCLUDEPATH += . ../include ../lexlib ../src
 !CONFIG(staticlib) {
     DEFINES += QSCINTILLA_MAKE_DLL
 }
-DEFINES += SCINTILLA_QT SCI_LEXER
+DEFINES += SCINTILLA_QT SCI_LEXER INCLUDE_DEPRECATED_FEATURES
 
 greaterThan(QT_MAJOR_VERSION, 4) {
 	QT += widgets printsupport
@@ -152,7 +152,6 @@ HEADERS = \
 	ListBoxQt.h \
 	SciAccessibility.h \
 	SciClasses.h \
-	SciNamespace.h \
 	ScintillaQt.h \
 	../include/ILexer.h \
 	../include/Platform.h \
@@ -163,6 +162,7 @@ HEADERS = \
 	../lexlib/Accessor.h \
 	../lexlib/CharacterCategory.h \
 	../lexlib/CharacterSet.h \
+	../lexlib/DefaultLexer.h \
 	../lexlib/LexAccessor.h \
 	../lexlib/LexerBase.h \
 	../lexlib/LexerModule.h \
@@ -182,14 +182,17 @@ HEADERS = \
 	../src/CellBuffer.h \
 	../src/CharClassify.h \
 	../src/ContractionState.h \
+	../src/DBCS.h \
 	../src/Decoration.h \
 	../src/Document.h \
 	../src/EditModel.h \
 	../src/Editor.h \
 	../src/EditView.h \
+	../src/ElapsedPeriod.h \
 	../src/ExternalLexer.h \
 	../src/FontQuality.h \
 	../src/Indicator.h \
+	../src/IntegerRectangle.h \
 	../src/KeyMap.h \
 	../src/LineMarker.h \
 	../src/MarginView.h \
@@ -202,8 +205,8 @@ HEADERS = \
 	../src/Selection.h \
 	../src/SplitVector.h \
 	../src/Style.h \
-	../src/UnicodeFromUTF8.h \
 	../src/UniConversion.h \
+	../src/UniqueString.h \
 	../src/ViewStyle.h \
 	../src/XPM.h
 
@@ -311,6 +314,7 @@ SOURCES = \
 	../lexers/LexHaskell.cpp \
 	../lexers/LexHex.cpp \
 	../lexers/LexHTML.cpp \
+	../lexers/LexIndent.cpp \
 	../lexers/LexInno.cpp \
 	../lexers/LexJSON.cpp \
 	../lexers/LexKix.cpp \
@@ -323,6 +327,7 @@ SOURCES = \
 	../lexers/LexMake.cpp \
 	../lexers/LexMarkdown.cpp \
 	../lexers/LexMatlab.cpp \
+	../lexers/LexMaxima.cpp \
 	../lexers/LexMetapost.cpp \
 	../lexers/LexMMIXAL.cpp \
 	../lexers/LexModula.cpp \
@@ -351,6 +356,7 @@ SOURCES = \
 	../lexers/LexRegistry.cpp \
 	../lexers/LexRuby.cpp \
 	../lexers/LexRust.cpp \
+	../lexers/LexSAS.cpp \
 	../lexers/LexScriptol.cpp \
 	../lexers/LexSmalltalk.cpp \
 	../lexers/LexSML.cpp \
@@ -358,6 +364,7 @@ SOURCES = \
 	../lexers/LexSpecman.cpp \
 	../lexers/LexSpice.cpp \
 	../lexers/LexSQL.cpp \
+	../lexers/LexStata.cpp \
 	../lexers/LexSTTXT.cpp \
 	../lexers/LexTACL.cpp \
 	../lexers/LexTADS3.cpp \
@@ -374,6 +381,7 @@ SOURCES = \
 	../lexlib/Accessor.cpp \
 	../lexlib/CharacterCategory.cpp \
 	../lexlib/CharacterSet.cpp \
+	../lexlib/DefaultLexer.cpp \
 	../lexlib/LexerBase.cpp \
 	../lexlib/LexerModule.cpp \
 	../lexlib/LexerNoExceptions.cpp \
@@ -389,6 +397,7 @@ SOURCES = \
 	../src/CellBuffer.cpp \
 	../src/CharClassify.cpp \
 	../src/ContractionState.cpp \
+	../src/DBCS.cpp \
 	../src/Decoration.cpp \
 	../src/Document.cpp \
 	../src/EditModel.cpp \
