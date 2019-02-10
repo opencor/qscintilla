@@ -32,7 +32,7 @@ QScintilla also includes language bindings for
 <a href="https://www.riverbankcomputing.com/software/pyqt/">PyQt</a> v4 or v5
 is also installed.
 
-This version of QScintilla is based on Scintilla v3.7.2.
+This version of QScintilla is based on Scintilla v3.10.1.
 
 
 <h2>Licensing</h2>

@@ -18,7 +18,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">QScintilla
-   &#160;<span id="projectnumber">2.10.8</span>
+   &#160;<span id="projectnumber">2.11</span>
    </div>
   </td>
  </tr>
@@ -158,7 +158,10 @@ Public Types</h2></td></tr>
 <a class="el" href="classQsciScintilla.html#a3333f3a47163153c1bd7db1a362b8974ab2245f80f3cbb9a114fc4dddd7f004e2">TextColorIndicator</a> = INDIC_TEXTFORE, 
 <br />
 &#160;&#160;<a class="el" href="classQsciScintilla.html#a3333f3a47163153c1bd7db1a362b8974aaade48e18985d23630c6178148bf1c8d">TriangleIndicator</a> = INDIC_POINT, 
-<a class="el" href="classQsciScintilla.html#a3333f3a47163153c1bd7db1a362b8974ab1d6bb2b94362ebcd6e8388f8812e3f4">TriangleCharacterIndicator</a> = INDIC_POINTCHARACTER
+<a class="el" href="classQsciScintilla.html#a3333f3a47163153c1bd7db1a362b8974ab1d6bb2b94362ebcd6e8388f8812e3f4">TriangleCharacterIndicator</a> = INDIC_POINTCHARACTER, 
+<a class="el" href="classQsciScintilla.html#a3333f3a47163153c1bd7db1a362b8974a7f4b165aed1dd094770e16c93c976d08">GradientIndicator</a> = INDIC_GRADIENT, 
+<br />
+&#160;&#160;<a class="el" href="classQsciScintilla.html#a3333f3a47163153c1bd7db1a362b8974aca7717bb45779f822c9fcea2d78456dc">CentreGradientIndicator</a> = INDIC_GRADIENTCENTRE
 <br />
  }</td></tr>
 <tr class="separator:a3333f3a47163153c1bd7db1a362b8974"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -252,9 +255,13 @@ Public Types</h2></td></tr>
 <br />
  }</td></tr>
 <tr class="separator:ac4d1c67938c75806b2c139d0779d0478"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a59b529ccfcb1f7896efb523025371a03"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQsciScintilla.html#a59b529ccfcb1f7896efb523025371a03">WrapIndentMode</a> { <a class="el" href="classQsciScintilla.html#a59b529ccfcb1f7896efb523025371a03a041dc048521b889bf1db274546d0f562">WrapIndentFixed</a> = SC_WRAPINDENT_FIXED, 
+<tr class="memitem:a59b529ccfcb1f7896efb523025371a03"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQsciScintilla.html#a59b529ccfcb1f7896efb523025371a03">WrapIndentMode</a> { <br />
+&#160;&#160;<a class="el" href="classQsciScintilla.html#a59b529ccfcb1f7896efb523025371a03a041dc048521b889bf1db274546d0f562">WrapIndentFixed</a> = SC_WRAPINDENT_FIXED, 
 <a class="el" href="classQsciScintilla.html#a59b529ccfcb1f7896efb523025371a03ab9cc585fd0eb9a14e0f8c7d9389656e8">WrapIndentSame</a> = SC_WRAPINDENT_SAME, 
-<a class="el" href="classQsciScintilla.html#a59b529ccfcb1f7896efb523025371a03a0cb2a2ef379ad02b388a08880a624f2b">WrapIndentIndented</a> = SC_WRAPINDENT_INDENT
+<a class="el" href="classQsciScintilla.html#a59b529ccfcb1f7896efb523025371a03a0cb2a2ef379ad02b388a08880a624f2b">WrapIndentIndented</a> = SC_WRAPINDENT_INDENT, 
+<br />
+&#160;&#160;<a class="el" href="classQsciScintilla.html#a59b529ccfcb1f7896efb523025371a03aa2d7362610a92c58aa764a1df8914146">WrapIndentDeeplyIndented</a> = SC_WRAPINDENT_DEEPINDENT
+<br />
  }</td></tr>
 <tr class="separator:a59b529ccfcb1f7896efb523025371a03"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_types_classQsciScintillaBase"><td colspan="2" onclick="javascript:toggleInherit('pub_types_classQsciScintillaBase')"><img src="closed.png" alt="-"/>&#160;Public Types inherited from <a class="el" href="classQsciScintillaBase.html">QsciScintillaBase</a></td></tr>
@@ -699,488 +706,515 @@ Public Types</h2></td></tr>
 <b>SCI_BRACEBADLIGHT</b> = 2352, 
 <b>SCI_BRACEMATCH</b> = 2353, 
 <br />
-&#160;&#160;<b>SCI_GETVIEWEOL</b> = 2355, 
+&#160;&#160;<b>SCI_LINEREVERSE</b> = 2354, 
+<b>SCI_GETVIEWEOL</b> = 2355, 
 <b>SCI_SETVIEWEOL</b> = 2356, 
-<b>SCI_GETDOCPOINTER</b> = 2357, 
 <br />
-&#160;&#160;<b>SCI_SETDOCPOINTER</b> = 2358, 
+&#160;&#160;<b>SCI_GETDOCPOINTER</b> = 2357, 
+<b>SCI_SETDOCPOINTER</b> = 2358, 
 <b>SCI_SETMODEVENTMASK</b> = 2359, 
-<b>SCI_GETEDGECOLUMN</b> = 2360, 
 <br />
-&#160;&#160;<b>SCI_SETEDGECOLUMN</b> = 2361, 
+&#160;&#160;<b>SCI_GETEDGECOLUMN</b> = 2360, 
+<b>SCI_SETEDGECOLUMN</b> = 2361, 
 <b>SCI_GETEDGEMODE</b> = 2362, 
-<b>SCI_SETEDGEMODE</b> = 2363, 
 <br />
-&#160;&#160;<b>SCI_GETEDGECOLOUR</b> = 2364, 
+&#160;&#160;<b>SCI_SETEDGEMODE</b> = 2363, 
+<b>SCI_GETEDGECOLOUR</b> = 2364, 
 <b>SCI_SETEDGECOLOUR</b> = 2365, 
-<b>SCI_SEARCHANCHOR</b> = 2366, 
 <br />
-&#160;&#160;<b>SCI_SEARCHNEXT</b> = 2367, 
+&#160;&#160;<b>SCI_SEARCHANCHOR</b> = 2366, 
+<b>SCI_SEARCHNEXT</b> = 2367, 
 <b>SCI_SEARCHPREV</b> = 2368, 
-<b>SCI_LINESONSCREEN</b> = 2370, 
 <br />
-&#160;&#160;<b>SCI_USEPOPUP</b> = 2371, 
+&#160;&#160;<b>SCI_LINESONSCREEN</b> = 2370, 
+<b>SCI_USEPOPUP</b> = 2371, 
 <b>SCI_SELECTIONISRECTANGLE</b> = 2372, 
-<b>SCI_SETZOOM</b> = 2373, 
 <br />
-&#160;&#160;<b>SCI_GETZOOM</b> = 2374, 
+&#160;&#160;<b>SCI_SETZOOM</b> = 2373, 
+<b>SCI_GETZOOM</b> = 2374, 
 <b>SCI_CREATEDOCUMENT</b> = 2375, 
-<b>SCI_ADDREFDOCUMENT</b> = 2376, 
 <br />
-&#160;&#160;<b>SCI_RELEASEDOCUMENT</b> = 2377, 
+&#160;&#160;<b>SCI_ADDREFDOCUMENT</b> = 2376, 
+<b>SCI_RELEASEDOCUMENT</b> = 2377, 
 <b>SCI_GETMODEVENTMASK</b> = 2378, 
-<b>SCI_SETFOCUS</b> = 2380, 
 <br />
-&#160;&#160;<b>SCI_GETFOCUS</b> = 2381, 
+&#160;&#160;<b>SCI_SETFOCUS</b> = 2380, 
+<b>SCI_GETFOCUS</b> = 2381, 
 <b>SCI_SETSTATUS</b> = 2382, 
-<b>SCI_GETSTATUS</b> = 2383, 
 <br />
-&#160;&#160;<b>SCI_SETMOUSEDOWNCAPTURES</b> = 2384, 
+&#160;&#160;<b>SCI_GETSTATUS</b> = 2383, 
+<b>SCI_SETMOUSEDOWNCAPTURES</b> = 2384, 
 <b>SCI_GETMOUSEDOWNCAPTURES</b> = 2385, 
-<b>SCI_SETCURSOR</b> = 2386, 
 <br />
-&#160;&#160;<b>SCI_GETCURSOR</b> = 2387, 
+&#160;&#160;<b>SCI_SETCURSOR</b> = 2386, 
+<b>SCI_GETCURSOR</b> = 2387, 
 <b>SCI_SETCONTROLCHARSYMBOL</b> = 2388, 
-<b>SCI_GETCONTROLCHARSYMBOL</b> = 2389, 
 <br />
-&#160;&#160;<b>SCI_WORDPARTLEFT</b> = 2390, 
+&#160;&#160;<b>SCI_GETCONTROLCHARSYMBOL</b> = 2389, 
+<b>SCI_WORDPARTLEFT</b> = 2390, 
 <b>SCI_WORDPARTLEFTEXTEND</b> = 2391, 
-<b>SCI_WORDPARTRIGHT</b> = 2392, 
 <br />
-&#160;&#160;<b>SCI_WORDPARTRIGHTEXTEND</b> = 2393, 
+&#160;&#160;<b>SCI_WORDPARTRIGHT</b> = 2392, 
+<b>SCI_WORDPARTRIGHTEXTEND</b> = 2393, 
 <b>SCI_SETVISIBLEPOLICY</b> = 2394, 
-<b>SCI_DELLINELEFT</b> = 2395, 
 <br />
-&#160;&#160;<b>SCI_DELLINERIGHT</b> = 2396, 
+&#160;&#160;<b>SCI_DELLINELEFT</b> = 2395, 
+<b>SCI_DELLINERIGHT</b> = 2396, 
 <b>SCI_SETXOFFSET</b> = 2397, 
-<b>SCI_GETXOFFSET</b> = 2398, 
 <br />
-&#160;&#160;<b>SCI_CHOOSECARETX</b> = 2399, 
+&#160;&#160;<b>SCI_GETXOFFSET</b> = 2398, 
+<b>SCI_CHOOSECARETX</b> = 2399, 
 <b>SCI_GRABFOCUS</b> = 2400, 
-<b>SCI_SETXCARETPOLICY</b> = 2402, 
 <br />
-&#160;&#160;<b>SCI_SETYCARETPOLICY</b> = 2403, 
+&#160;&#160;<b>SCI_SETXCARETPOLICY</b> = 2402, 
+<b>SCI_SETYCARETPOLICY</b> = 2403, 
 <b>SCI_LINEDUPLICATE</b> = 2404, 
-<a class="el" href="classQsciScintillaBase.html#a09d85c486690a5380792405faaaa220ca5c17528701e5a34fc8b685be0914d4a8">SCI_REGISTERIMAGE</a> = 2405, 
 <br />
-&#160;&#160;<b>SCI_SETPRINTWRAPMODE</b> = 2406, 
+&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a09d85c486690a5380792405faaaa220ca5c17528701e5a34fc8b685be0914d4a8">SCI_REGISTERIMAGE</a> = 2405, 
+<b>SCI_SETPRINTWRAPMODE</b> = 2406, 
 <b>SCI_GETPRINTWRAPMODE</b> = 2407, 
-<a class="el" href="classQsciScintillaBase.html#a09d85c486690a5380792405faaaa220ca4eca65e764b9d0ef2fb23d22bc872bcb">SCI_CLEARREGISTEREDIMAGES</a> = 2408, 
 <br />
-&#160;&#160;<b>SCI_STYLESETHOTSPOT</b> = 2409, 
+&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a09d85c486690a5380792405faaaa220ca4eca65e764b9d0ef2fb23d22bc872bcb">SCI_CLEARREGISTEREDIMAGES</a> = 2408, 
+<b>SCI_STYLESETHOTSPOT</b> = 2409, 
 <b>SCI_SETHOTSPOTACTIVEFORE</b> = 2410, 
-<b>SCI_SETHOTSPOTACTIVEBACK</b> = 2411, 
 <br />
-&#160;&#160;<b>SCI_SETHOTSPOTACTIVEUNDERLINE</b> = 2412, 
+&#160;&#160;<b>SCI_SETHOTSPOTACTIVEBACK</b> = 2411, 
+<b>SCI_SETHOTSPOTACTIVEUNDERLINE</b> = 2412, 
 <b>SCI_PARADOWN</b> = 2413, 
-<b>SCI_PARADOWNEXTEND</b> = 2414, 
 <br />
-&#160;&#160;<b>SCI_PARAUP</b> = 2415, 
+&#160;&#160;<b>SCI_PARADOWNEXTEND</b> = 2414, 
+<b>SCI_PARAUP</b> = 2415, 
 <b>SCI_PARAUPEXTEND</b> = 2416, 
-<b>SCI_POSITIONBEFORE</b> = 2417, 
 <br />
-&#160;&#160;<b>SCI_POSITIONAFTER</b> = 2418, 
+&#160;&#160;<b>SCI_POSITIONBEFORE</b> = 2417, 
+<b>SCI_POSITIONAFTER</b> = 2418, 
 <b>SCI_COPYRANGE</b> = 2419, 
-<b>SCI_COPYTEXT</b> = 2420, 
 <br />
-&#160;&#160;<b>SCI_SETHOTSPOTSINGLELINE</b> = 2421, 
+&#160;&#160;<b>SCI_COPYTEXT</b> = 2420, 
+<b>SCI_SETHOTSPOTSINGLELINE</b> = 2421, 
 <b>SCI_SETSELECTIONMODE</b> = 2422, 
-<b>SCI_GETSELECTIONMODE</b> = 2423, 
 <br />
-&#160;&#160;<b>SCI_GETLINESELSTARTPOSITION</b> = 2424, 
+&#160;&#160;<b>SCI_GETSELECTIONMODE</b> = 2423, 
+<b>SCI_GETLINESELSTARTPOSITION</b> = 2424, 
 <b>SCI_GETLINESELENDPOSITION</b> = 2425, 
-<b>SCI_LINEDOWNRECTEXTEND</b> = 2426, 
 <br />
-&#160;&#160;<b>SCI_LINEUPRECTEXTEND</b> = 2427, 
+&#160;&#160;<b>SCI_LINEDOWNRECTEXTEND</b> = 2426, 
+<b>SCI_LINEUPRECTEXTEND</b> = 2427, 
 <b>SCI_CHARLEFTRECTEXTEND</b> = 2428, 
-<b>SCI_CHARRIGHTRECTEXTEND</b> = 2429, 
 <br />
-&#160;&#160;<b>SCI_HOMERECTEXTEND</b> = 2430, 
+&#160;&#160;<b>SCI_CHARRIGHTRECTEXTEND</b> = 2429, 
+<b>SCI_HOMERECTEXTEND</b> = 2430, 
 <b>SCI_VCHOMERECTEXTEND</b> = 2431, 
-<b>SCI_LINEENDRECTEXTEND</b> = 2432, 
 <br />
-&#160;&#160;<b>SCI_PAGEUPRECTEXTEND</b> = 2433, 
+&#160;&#160;<b>SCI_LINEENDRECTEXTEND</b> = 2432, 
+<b>SCI_PAGEUPRECTEXTEND</b> = 2433, 
 <b>SCI_PAGEDOWNRECTEXTEND</b> = 2434, 
-<b>SCI_STUTTEREDPAGEUP</b> = 2435, 
 <br />
-&#160;&#160;<b>SCI_STUTTEREDPAGEUPEXTEND</b> = 2436, 
+&#160;&#160;<b>SCI_STUTTEREDPAGEUP</b> = 2435, 
+<b>SCI_STUTTEREDPAGEUPEXTEND</b> = 2436, 
 <b>SCI_STUTTEREDPAGEDOWN</b> = 2437, 
-<b>SCI_STUTTEREDPAGEDOWNEXTEND</b> = 2438, 
 <br />
-&#160;&#160;<b>SCI_WORDLEFTEND</b> = 2439, 
+&#160;&#160;<b>SCI_STUTTEREDPAGEDOWNEXTEND</b> = 2438, 
+<b>SCI_WORDLEFTEND</b> = 2439, 
 <b>SCI_WORDLEFTENDEXTEND</b> = 2440, 
-<b>SCI_WORDRIGHTEND</b> = 2441, 
 <br />
-&#160;&#160;<b>SCI_WORDRIGHTENDEXTEND</b> = 2442, 
+&#160;&#160;<b>SCI_WORDRIGHTEND</b> = 2441, 
+<b>SCI_WORDRIGHTENDEXTEND</b> = 2442, 
 <b>SCI_SETWHITESPACECHARS</b> = 2443, 
-<b>SCI_SETCHARSDEFAULT</b> = 2444, 
 <br />
-&#160;&#160;<b>SCI_AUTOCGETCURRENT</b> = 2445, 
+&#160;&#160;<b>SCI_SETCHARSDEFAULT</b> = 2444, 
+<b>SCI_AUTOCGETCURRENT</b> = 2445, 
 <b>SCI_ALLOCATE</b> = 2446, 
-<b>SCI_HOMEWRAP</b> = 2349, 
 <br />
-&#160;&#160;<b>SCI_HOMEWRAPEXTEND</b> = 2450, 
+&#160;&#160;<b>SCI_HOMEWRAP</b> = 2349, 
+<b>SCI_HOMEWRAPEXTEND</b> = 2450, 
 <b>SCI_LINEENDWRAP</b> = 2451, 
-<b>SCI_LINEENDWRAPEXTEND</b> = 2452, 
 <br />
-&#160;&#160;<b>SCI_VCHOMEWRAP</b> = 2453, 
+&#160;&#160;<b>SCI_LINEENDWRAPEXTEND</b> = 2452, 
+<b>SCI_VCHOMEWRAP</b> = 2453, 
 <b>SCI_VCHOMEWRAPEXTEND</b> = 2454, 
-<b>SCI_LINECOPY</b> = 2455, 
 <br />
-&#160;&#160;<b>SCI_FINDCOLUMN</b> = 2456, 
+&#160;&#160;<b>SCI_LINECOPY</b> = 2455, 
+<b>SCI_FINDCOLUMN</b> = 2456, 
 <b>SCI_GETCARETSTICKY</b> = 2457, 
-<b>SCI_SETCARETSTICKY</b> = 2458, 
 <br />
-&#160;&#160;<b>SCI_TOGGLECARETSTICKY</b> = 2459, 
+&#160;&#160;<b>SCI_SETCARETSTICKY</b> = 2458, 
+<b>SCI_TOGGLECARETSTICKY</b> = 2459, 
 <b>SCI_SETWRAPVISUALFLAGS</b> = 2460, 
-<b>SCI_GETWRAPVISUALFLAGS</b> = 2461, 
 <br />
-&#160;&#160;<b>SCI_SETWRAPVISUALFLAGSLOCATION</b> = 2462, 
+&#160;&#160;<b>SCI_GETWRAPVISUALFLAGS</b> = 2461, 
+<b>SCI_SETWRAPVISUALFLAGSLOCATION</b> = 2462, 
 <b>SCI_GETWRAPVISUALFLAGSLOCATION</b> = 2463, 
-<b>SCI_SETWRAPSTARTINDENT</b> = 2464, 
 <br />
-&#160;&#160;<b>SCI_GETWRAPSTARTINDENT</b> = 2465, 
+&#160;&#160;<b>SCI_SETWRAPSTARTINDENT</b> = 2464, 
+<b>SCI_GETWRAPSTARTINDENT</b> = 2465, 
 <b>SCI_MARKERADDSET</b> = 2466, 
-<b>SCI_SETPASTECONVERTENDINGS</b> = 2467, 
 <br />
-&#160;&#160;<b>SCI_GETPASTECONVERTENDINGS</b> = 2468, 
+&#160;&#160;<b>SCI_SETPASTECONVERTENDINGS</b> = 2467, 
+<b>SCI_GETPASTECONVERTENDINGS</b> = 2468, 
 <b>SCI_SELECTIONDUPLICATE</b> = 2469, 
-<b>SCI_SETCARETLINEBACKALPHA</b> = 2470, 
 <br />
-&#160;&#160;<b>SCI_GETCARETLINEBACKALPHA</b> = 2471, 
+&#160;&#160;<b>SCI_SETCARETLINEBACKALPHA</b> = 2470, 
+<b>SCI_GETCARETLINEBACKALPHA</b> = 2471, 
 <b>SCI_SETWRAPINDENTMODE</b> = 2472, 
-<b>SCI_GETWRAPINDENTMODE</b> = 2473, 
 <br />
-&#160;&#160;<b>SCI_MARKERSETALPHA</b> = 2476, 
+&#160;&#160;<b>SCI_GETWRAPINDENTMODE</b> = 2473, 
+<b>SCI_MARKERSETALPHA</b> = 2476, 
 <b>SCI_GETSELALPHA</b> = 2477, 
-<b>SCI_SETSELALPHA</b> = 2478, 
 <br />
-&#160;&#160;<b>SCI_GETSELEOLFILLED</b> = 2479, 
+&#160;&#160;<b>SCI_SETSELALPHA</b> = 2478, 
+<b>SCI_GETSELEOLFILLED</b> = 2479, 
 <b>SCI_SETSELEOLFILLED</b> = 2480, 
-<b>SCI_STYLEGETFORE</b> = 2481, 
 <br />
-&#160;&#160;<b>SCI_STYLEGETBACK</b> = 2482, 
+&#160;&#160;<b>SCI_STYLEGETFORE</b> = 2481, 
+<b>SCI_STYLEGETBACK</b> = 2482, 
 <b>SCI_STYLEGETBOLD</b> = 2483, 
-<b>SCI_STYLEGETITALIC</b> = 2484, 
 <br />
-&#160;&#160;<b>SCI_STYLEGETSIZE</b> = 2485, 
+&#160;&#160;<b>SCI_STYLEGETITALIC</b> = 2484, 
+<b>SCI_STYLEGETSIZE</b> = 2485, 
 <b>SCI_STYLEGETFONT</b> = 2486, 
-<b>SCI_STYLEGETEOLFILLED</b> = 2487, 
 <br />
-&#160;&#160;<b>SCI_STYLEGETUNDERLINE</b> = 2488, 
+&#160;&#160;<b>SCI_STYLEGETEOLFILLED</b> = 2487, 
+<b>SCI_STYLEGETUNDERLINE</b> = 2488, 
 <b>SCI_STYLEGETCASE</b> = 2489, 
-<b>SCI_STYLEGETCHARACTERSET</b> = 2490, 
 <br />
-&#160;&#160;<b>SCI_STYLEGETVISIBLE</b> = 2491, 
+&#160;&#160;<b>SCI_STYLEGETCHARACTERSET</b> = 2490, 
+<b>SCI_STYLEGETVISIBLE</b> = 2491, 
 <b>SCI_STYLEGETCHANGEABLE</b> = 2492, 
-<b>SCI_STYLEGETHOTSPOT</b> = 2493, 
 <br />
-&#160;&#160;<b>SCI_GETHOTSPOTACTIVEFORE</b> = 2494, 
+&#160;&#160;<b>SCI_STYLEGETHOTSPOT</b> = 2493, 
+<b>SCI_GETHOTSPOTACTIVEFORE</b> = 2494, 
 <b>SCI_GETHOTSPOTACTIVEBACK</b> = 2495, 
-<b>SCI_GETHOTSPOTACTIVEUNDERLINE</b> = 2496, 
 <br />
-&#160;&#160;<b>SCI_GETHOTSPOTSINGLELINE</b> = 2497, 
+&#160;&#160;<b>SCI_GETHOTSPOTACTIVEUNDERLINE</b> = 2496, 
+<b>SCI_GETHOTSPOTSINGLELINE</b> = 2497, 
 <b>SCI_BRACEHIGHLIGHTINDICATOR</b> = 2498, 
-<b>SCI_BRACEBADLIGHTINDICATOR</b> = 2499, 
 <br />
-&#160;&#160;<b>SCI_SETINDICATORCURRENT</b> = 2500, 
+&#160;&#160;<b>SCI_BRACEBADLIGHTINDICATOR</b> = 2499, 
+<b>SCI_SETINDICATORCURRENT</b> = 2500, 
 <b>SCI_GETINDICATORCURRENT</b> = 2501, 
-<b>SCI_SETINDICATORVALUE</b> = 2502, 
 <br />
-&#160;&#160;<b>SCI_GETINDICATORVALUE</b> = 2503, 
+&#160;&#160;<b>SCI_SETINDICATORVALUE</b> = 2502, 
+<b>SCI_GETINDICATORVALUE</b> = 2503, 
 <b>SCI_INDICATORFILLRANGE</b> = 2504, 
-<b>SCI_INDICATORCLEARRANGE</b> = 2505, 
 <br />
-&#160;&#160;<b>SCI_INDICATORALLONFOR</b> = 2506, 
+&#160;&#160;<b>SCI_INDICATORCLEARRANGE</b> = 2505, 
+<b>SCI_INDICATORALLONFOR</b> = 2506, 
 <b>SCI_INDICATORVALUEAT</b> = 2507, 
-<b>SCI_INDICATORSTART</b> = 2508, 
 <br />
-&#160;&#160;<b>SCI_INDICATOREND</b> = 2509, 
+&#160;&#160;<b>SCI_INDICATORSTART</b> = 2508, 
+<b>SCI_INDICATOREND</b> = 2509, 
 <b>SCI_INDICSETUNDER</b> = 2510, 
-<b>SCI_INDICGETUNDER</b> = 2511, 
 <br />
-&#160;&#160;<b>SCI_SETCARETSTYLE</b> = 2512, 
+&#160;&#160;<b>SCI_INDICGETUNDER</b> = 2511, 
+<b>SCI_SETCARETSTYLE</b> = 2512, 
 <b>SCI_GETCARETSTYLE</b> = 2513, 
-<b>SCI_SETPOSITIONCACHE</b> = 2514, 
 <br />
-&#160;&#160;<b>SCI_GETPOSITIONCACHE</b> = 2515, 
+&#160;&#160;<b>SCI_SETPOSITIONCACHE</b> = 2514, 
+<b>SCI_GETPOSITIONCACHE</b> = 2515, 
 <b>SCI_SETSCROLLWIDTHTRACKING</b> = 2516, 
-<b>SCI_GETSCROLLWIDTHTRACKING</b> = 2517, 
 <br />
-&#160;&#160;<b>SCI_DELWORDRIGHTEND</b> = 2518, 
+&#160;&#160;<b>SCI_GETSCROLLWIDTHTRACKING</b> = 2517, 
+<b>SCI_DELWORDRIGHTEND</b> = 2518, 
 <a class="el" href="classQsciScintillaBase.html#a09d85c486690a5380792405faaaa220ca0fd449316fa24a3cb53721cf17b9f684">SCI_COPYALLOWLINE</a> = 2519, 
-<a class="el" href="classQsciScintillaBase.html#a09d85c486690a5380792405faaaa220ca4e6fc6b70c85f83622c9a17516bb2675">SCI_GETCHARACTERPOINTER</a> = 2520, 
 <br />
-&#160;&#160;<b>SCI_INDICSETALPHA</b> = 2523, 
+&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a09d85c486690a5380792405faaaa220ca4e6fc6b70c85f83622c9a17516bb2675">SCI_GETCHARACTERPOINTER</a> = 2520, 
+<b>SCI_INDICSETALPHA</b> = 2523, 
 <b>SCI_INDICGETALPHA</b> = 2524, 
-<b>SCI_SETEXTRAASCENT</b> = 2525, 
 <br />
-&#160;&#160;<b>SCI_GETEXTRAASCENT</b> = 2526, 
+&#160;&#160;<b>SCI_SETEXTRAASCENT</b> = 2525, 
+<b>SCI_GETEXTRAASCENT</b> = 2526, 
 <b>SCI_SETEXTRADESCENT</b> = 2527, 
-<b>SCI_GETEXTRADESCENT</b> = 2528, 
 <br />
-&#160;&#160;<b>SCI_MARKERSYMBOLDEFINED</b> = 2529, 
+&#160;&#160;<b>SCI_GETEXTRADESCENT</b> = 2528, 
+<b>SCI_MARKERSYMBOLDEFINED</b> = 2529, 
 <b>SCI_MARGINSETTEXT</b> = 2530, 
-<b>SCI_MARGINGETTEXT</b> = 2531, 
 <br />
-&#160;&#160;<b>SCI_MARGINSETSTYLE</b> = 2532, 
+&#160;&#160;<b>SCI_MARGINGETTEXT</b> = 2531, 
+<b>SCI_MARGINSETSTYLE</b> = 2532, 
 <b>SCI_MARGINGETSTYLE</b> = 2533, 
-<b>SCI_MARGINSETSTYLES</b> = 2534, 
 <br />
-&#160;&#160;<b>SCI_MARGINGETSTYLES</b> = 2535, 
+&#160;&#160;<b>SCI_MARGINSETSTYLES</b> = 2534, 
+<b>SCI_MARGINGETSTYLES</b> = 2535, 
 <b>SCI_MARGINTEXTCLEARALL</b> = 2536, 
-<b>SCI_MARGINSETSTYLEOFFSET</b> = 2537, 
 <br />
-&#160;&#160;<b>SCI_MARGINGETSTYLEOFFSET</b> = 2538, 
+&#160;&#160;<b>SCI_MARGINSETSTYLEOFFSET</b> = 2537, 
+<b>SCI_MARGINGETSTYLEOFFSET</b> = 2538, 
 <b>SCI_SETMARGINOPTIONS</b> = 2539, 
-<b>SCI_ANNOTATIONSETTEXT</b> = 2540, 
 <br />
-&#160;&#160;<b>SCI_ANNOTATIONGETTEXT</b> = 2541, 
+&#160;&#160;<b>SCI_ANNOTATIONSETTEXT</b> = 2540, 
+<b>SCI_ANNOTATIONGETTEXT</b> = 2541, 
 <b>SCI_ANNOTATIONSETSTYLE</b> = 2542, 
-<b>SCI_ANNOTATIONGETSTYLE</b> = 2543, 
 <br />
-&#160;&#160;<b>SCI_ANNOTATIONSETSTYLES</b> = 2544, 
+&#160;&#160;<b>SCI_ANNOTATIONGETSTYLE</b> = 2543, 
+<b>SCI_ANNOTATIONSETSTYLES</b> = 2544, 
 <b>SCI_ANNOTATIONGETSTYLES</b> = 2545, 
-<b>SCI_ANNOTATIONGETLINES</b> = 2546, 
 <br />
-&#160;&#160;<b>SCI_ANNOTATIONCLEARALL</b> = 2547, 
+&#160;&#160;<b>SCI_ANNOTATIONGETLINES</b> = 2546, 
+<b>SCI_ANNOTATIONCLEARALL</b> = 2547, 
 <b>SCI_ANNOTATIONSETVISIBLE</b> = 2548, 
-<b>SCI_ANNOTATIONGETVISIBLE</b> = 2549, 
 <br />
-&#160;&#160;<b>SCI_ANNOTATIONSETSTYLEOFFSET</b> = 2550, 
+&#160;&#160;<b>SCI_ANNOTATIONGETVISIBLE</b> = 2549, 
+<b>SCI_ANNOTATIONSETSTYLEOFFSET</b> = 2550, 
 <b>SCI_ANNOTATIONGETSTYLEOFFSET</b> = 2551, 
-<b>SCI_RELEASEALLEXTENDEDSTYLES</b> = 2552, 
 <br />
-&#160;&#160;<b>SCI_ALLOCATEEXTENDEDSTYLES</b> = 2553, 
+&#160;&#160;<b>SCI_RELEASEALLEXTENDEDSTYLES</b> = 2552, 
+<b>SCI_ALLOCATEEXTENDEDSTYLES</b> = 2553, 
 <b>SCI_SETEMPTYSELECTION</b> = 2556, 
-<b>SCI_GETMARGINOPTIONS</b> = 2557, 
 <br />
-&#160;&#160;<b>SCI_INDICSETOUTLINEALPHA</b> = 2558, 
+&#160;&#160;<b>SCI_GETMARGINOPTIONS</b> = 2557, 
+<b>SCI_INDICSETOUTLINEALPHA</b> = 2558, 
 <b>SCI_INDICGETOUTLINEALPHA</b> = 2559, 
-<b>SCI_ADDUNDOACTION</b> = 2560, 
 <br />
-&#160;&#160;<b>SCI_CHARPOSITIONFROMPOINT</b> = 2561, 
+&#160;&#160;<b>SCI_ADDUNDOACTION</b> = 2560, 
+<b>SCI_CHARPOSITIONFROMPOINT</b> = 2561, 
 <b>SCI_CHARPOSITIONFROMPOINTCLOSE</b> = 2562, 
-<b>SCI_SETMULTIPLESELECTION</b> = 2563, 
 <br />
-&#160;&#160;<b>SCI_GETMULTIPLESELECTION</b> = 2564, 
+&#160;&#160;<b>SCI_SETMULTIPLESELECTION</b> = 2563, 
+<b>SCI_GETMULTIPLESELECTION</b> = 2564, 
 <b>SCI_SETADDITIONALSELECTIONTYPING</b> = 2565, 
-<b>SCI_GETADDITIONALSELECTIONTYPING</b> = 2566, 
 <br />
-&#160;&#160;<b>SCI_SETADDITIONALCARETSBLINK</b> = 2567, 
+&#160;&#160;<b>SCI_GETADDITIONALSELECTIONTYPING</b> = 2566, 
+<b>SCI_SETADDITIONALCARETSBLINK</b> = 2567, 
 <b>SCI_GETADDITIONALCARETSBLINK</b> = 2568, 
-<b>SCI_SCROLLRANGE</b> = 2569, 
 <br />
-&#160;&#160;<b>SCI_GETSELECTIONS</b> = 2570, 
+&#160;&#160;<b>SCI_SCROLLRANGE</b> = 2569, 
+<b>SCI_GETSELECTIONS</b> = 2570, 
 <b>SCI_CLEARSELECTIONS</b> = 2571, 
-<b>SCI_SETSELECTION</b> = 2572, 
 <br />
-&#160;&#160;<b>SCI_ADDSELECTION</b> = 2573, 
+&#160;&#160;<b>SCI_SETSELECTION</b> = 2572, 
+<b>SCI_ADDSELECTION</b> = 2573, 
 <b>SCI_SETMAINSELECTION</b> = 2574, 
-<b>SCI_GETMAINSELECTION</b> = 2575, 
 <br />
-&#160;&#160;<b>SCI_SETSELECTIONNCARET</b> = 2576, 
+&#160;&#160;<b>SCI_GETMAINSELECTION</b> = 2575, 
+<b>SCI_SETSELECTIONNCARET</b> = 2576, 
 <b>SCI_GETSELECTIONNCARET</b> = 2577, 
-<b>SCI_SETSELECTIONNANCHOR</b> = 2578, 
 <br />
-&#160;&#160;<b>SCI_GETSELECTIONNANCHOR</b> = 2579, 
+&#160;&#160;<b>SCI_SETSELECTIONNANCHOR</b> = 2578, 
+<b>SCI_GETSELECTIONNANCHOR</b> = 2579, 
 <b>SCI_SETSELECTIONNCARETVIRTUALSPACE</b> = 2580, 
-<b>SCI_GETSELECTIONNCARETVIRTUALSPACE</b> = 2581, 
 <br />
-&#160;&#160;<b>SCI_SETSELECTIONNANCHORVIRTUALSPACE</b> = 2582, 
+&#160;&#160;<b>SCI_GETSELECTIONNCARETVIRTUALSPACE</b> = 2581, 
+<b>SCI_SETSELECTIONNANCHORVIRTUALSPACE</b> = 2582, 
 <b>SCI_GETSELECTIONNANCHORVIRTUALSPACE</b> = 2583, 
-<b>SCI_SETSELECTIONNSTART</b> = 2584, 
 <br />
-&#160;&#160;<b>SCI_GETSELECTIONNSTART</b> = 2585, 
+&#160;&#160;<b>SCI_SETSELECTIONNSTART</b> = 2584, 
+<b>SCI_GETSELECTIONNSTART</b> = 2585, 
 <b>SCI_SETSELECTIONNEND</b> = 2586, 
-<b>SCI_GETSELECTIONNEND</b> = 2587, 
 <br />
-&#160;&#160;<b>SCI_SETRECTANGULARSELECTIONCARET</b> = 2588, 
+&#160;&#160;<b>SCI_GETSELECTIONNEND</b> = 2587, 
+<b>SCI_SETRECTANGULARSELECTIONCARET</b> = 2588, 
 <b>SCI_GETRECTANGULARSELECTIONCARET</b> = 2589, 
-<b>SCI_SETRECTANGULARSELECTIONANCHOR</b> = 2590, 
 <br />
-&#160;&#160;<b>SCI_GETRECTANGULARSELECTIONANCHOR</b> = 2591, 
+&#160;&#160;<b>SCI_SETRECTANGULARSELECTIONANCHOR</b> = 2590, 
+<b>SCI_GETRECTANGULARSELECTIONANCHOR</b> = 2591, 
 <b>SCI_SETRECTANGULARSELECTIONCARETVIRTUALSPACE</b> = 2592, 
-<b>SCI_GETRECTANGULARSELECTIONCARETVIRTUALSPACE</b> = 2593, 
 <br />
-&#160;&#160;<b>SCI_SETRECTANGULARSELECTIONANCHORVIRTUALSPACE</b> = 2594, 
+&#160;&#160;<b>SCI_GETRECTANGULARSELECTIONCARETVIRTUALSPACE</b> = 2593, 
+<b>SCI_SETRECTANGULARSELECTIONANCHORVIRTUALSPACE</b> = 2594, 
 <b>SCI_GETRECTANGULARSELECTIONANCHORVIRTUALSPACE</b> = 2595, 
-<b>SCI_SETVIRTUALSPACEOPTIONS</b> = 2596, 
 <br />
-&#160;&#160;<b>SCI_GETVIRTUALSPACEOPTIONS</b> = 2597, 
+&#160;&#160;<b>SCI_SETVIRTUALSPACEOPTIONS</b> = 2596, 
+<b>SCI_GETVIRTUALSPACEOPTIONS</b> = 2597, 
 <b>SCI_SETRECTANGULARSELECTIONMODIFIER</b> = 2598, 
-<b>SCI_GETRECTANGULARSELECTIONMODIFIER</b> = 2599, 
 <br />
-&#160;&#160;<b>SCI_SETADDITIONALSELFORE</b> = 2600, 
+&#160;&#160;<b>SCI_GETRECTANGULARSELECTIONMODIFIER</b> = 2599, 
+<b>SCI_SETADDITIONALSELFORE</b> = 2600, 
 <b>SCI_SETADDITIONALSELBACK</b> = 2601, 
-<b>SCI_SETADDITIONALSELALPHA</b> = 2602, 
 <br />
-&#160;&#160;<b>SCI_GETADDITIONALSELALPHA</b> = 2603, 
+&#160;&#160;<b>SCI_SETADDITIONALSELALPHA</b> = 2602, 
+<b>SCI_GETADDITIONALSELALPHA</b> = 2603, 
 <b>SCI_SETADDITIONALCARETFORE</b> = 2604, 
-<b>SCI_GETADDITIONALCARETFORE</b> = 2605, 
 <br />
-&#160;&#160;<b>SCI_ROTATESELECTION</b> = 2606, 
+&#160;&#160;<b>SCI_GETADDITIONALCARETFORE</b> = 2605, 
+<b>SCI_ROTATESELECTION</b> = 2606, 
 <b>SCI_SWAPMAINANCHORCARET</b> = 2607, 
-<b>SCI_SETADDITIONALCARETSVISIBLE</b> = 2608, 
 <br />
-&#160;&#160;<b>SCI_GETADDITIONALCARETSVISIBLE</b> = 2609, 
+&#160;&#160;<b>SCI_SETADDITIONALCARETSVISIBLE</b> = 2608, 
+<b>SCI_GETADDITIONALCARETSVISIBLE</b> = 2609, 
 <b>SCI_AUTOCGETCURRENTTEXT</b> = 2610, 
-<b>SCI_SETFONTQUALITY</b> = 2611, 
 <br />
-&#160;&#160;<b>SCI_GETFONTQUALITY</b> = 2612, 
+&#160;&#160;<b>SCI_SETFONTQUALITY</b> = 2611, 
+<b>SCI_GETFONTQUALITY</b> = 2612, 
 <b>SCI_SETFIRSTVISIBLELINE</b> = 2613, 
-<b>SCI_SETMULTIPASTE</b> = 2614, 
 <br />
-&#160;&#160;<b>SCI_GETMULTIPASTE</b> = 2615, 
+&#160;&#160;<b>SCI_SETMULTIPASTE</b> = 2614, 
+<b>SCI_GETMULTIPASTE</b> = 2615, 
 <b>SCI_GETTAG</b> = 2616, 
-<b>SCI_CHANGELEXERSTATE</b> = 2617, 
 <br />
-&#160;&#160;<b>SCI_CONTRACTEDFOLDNEXT</b> = 2618, 
+&#160;&#160;<b>SCI_CHANGELEXERSTATE</b> = 2617, 
+<b>SCI_CONTRACTEDFOLDNEXT</b> = 2618, 
 <b>SCI_VERTICALCENTRECARET</b> = 2619, 
-<b>SCI_MOVESELECTEDLINESUP</b> = 2620, 
 <br />
-&#160;&#160;<b>SCI_MOVESELECTEDLINESDOWN</b> = 2621, 
+&#160;&#160;<b>SCI_MOVESELECTEDLINESUP</b> = 2620, 
+<b>SCI_MOVESELECTEDLINESDOWN</b> = 2621, 
 <b>SCI_SETIDENTIFIER</b> = 2622, 
-<b>SCI_GETIDENTIFIER</b> = 2623, 
 <br />
-&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a09d85c486690a5380792405faaaa220ca93791e94e6f6a9382f1f7e29f341f342">SCI_RGBAIMAGESETWIDTH</a> = 2624, 
+&#160;&#160;<b>SCI_GETIDENTIFIER</b> = 2623, 
+<a class="el" href="classQsciScintillaBase.html#a09d85c486690a5380792405faaaa220ca93791e94e6f6a9382f1f7e29f341f342">SCI_RGBAIMAGESETWIDTH</a> = 2624, 
 <a class="el" href="classQsciScintillaBase.html#a09d85c486690a5380792405faaaa220cabf4b5d1cf3d1aa52c010b489c2ccffc6">SCI_RGBAIMAGESETHEIGHT</a> = 2625, 
-<a class="el" href="classQsciScintillaBase.html#a09d85c486690a5380792405faaaa220ca8ff17201e6d0cb9fe6e738a7a2e81932">SCI_MARKERDEFINERGBAIMAGE</a> = 2626, 
 <br />
-&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a09d85c486690a5380792405faaaa220caf1e4de8ebec57382f46449112d4f6821">SCI_REGISTERRGBAIMAGE</a> = 2627, 
+&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a09d85c486690a5380792405faaaa220ca8ff17201e6d0cb9fe6e738a7a2e81932">SCI_MARKERDEFINERGBAIMAGE</a> = 2626, 
+<a class="el" href="classQsciScintillaBase.html#a09d85c486690a5380792405faaaa220caf1e4de8ebec57382f46449112d4f6821">SCI_REGISTERRGBAIMAGE</a> = 2627, 
 <b>SCI_SCROLLTOSTART</b> = 2628, 
-<b>SCI_SCROLLTOEND</b> = 2629, 
 <br />
-&#160;&#160;<b>SCI_SETTECHNOLOGY</b> = 2630, 
+&#160;&#160;<b>SCI_SCROLLTOEND</b> = 2629, 
+<b>SCI_SETTECHNOLOGY</b> = 2630, 
 <b>SCI_GETTECHNOLOGY</b> = 2631, 
-<b>SCI_CREATELOADER</b> = 2632, 
 <br />
-&#160;&#160;<b>SCI_COUNTCHARACTERS</b> = 2633, 
+&#160;&#160;<b>SCI_CREATELOADER</b> = 2632, 
+<b>SCI_COUNTCHARACTERS</b> = 2633, 
 <b>SCI_AUTOCSETCASEINSENSITIVEBEHAVIOUR</b> = 2634, 
-<b>SCI_AUTOCGETCASEINSENSITIVEBEHAVIOUR</b> = 2635, 
 <br />
-&#160;&#160;<b>SCI_AUTOCSETMULTI</b> = 2636, 
+&#160;&#160;<b>SCI_AUTOCGETCASEINSENSITIVEBEHAVIOUR</b> = 2635, 
+<b>SCI_AUTOCSETMULTI</b> = 2636, 
 <b>SCI_AUTOCGETMULTI</b> = 2637, 
-<b>SCI_FINDINDICATORSHOW</b> = 2640, 
 <br />
-&#160;&#160;<b>SCI_FINDINDICATORFLASH</b> = 2641, 
+&#160;&#160;<b>SCI_FINDINDICATORSHOW</b> = 2640, 
+<b>SCI_FINDINDICATORFLASH</b> = 2641, 
 <b>SCI_FINDINDICATORHIDE</b> = 2642, 
-<b>SCI_GETRANGEPOINTER</b> = 2643, 
 <br />
-&#160;&#160;<b>SCI_GETGAPPOSITION</b> = 2644, 
+&#160;&#160;<b>SCI_GETRANGEPOINTER</b> = 2643, 
+<b>SCI_GETGAPPOSITION</b> = 2644, 
 <b>SCI_DELETERANGE</b> = 2645, 
-<b>SCI_GETWORDCHARS</b> = 2646, 
 <br />
-&#160;&#160;<b>SCI_GETWHITESPACECHARS</b> = 2647, 
+&#160;&#160;<b>SCI_GETWORDCHARS</b> = 2646, 
+<b>SCI_GETWHITESPACECHARS</b> = 2647, 
 <b>SCI_SETPUNCTUATIONCHARS</b> = 2648, 
-<b>SCI_GETPUNCTUATIONCHARS</b> = 2649, 
 <br />
-&#160;&#160;<b>SCI_GETSELECTIONEMPTY</b> = 2650, 
+&#160;&#160;<b>SCI_GETPUNCTUATIONCHARS</b> = 2649, 
+<b>SCI_GETSELECTIONEMPTY</b> = 2650, 
 <b>SCI_RGBAIMAGESETSCALE</b> = 2651, 
-<b>SCI_VCHOMEDISPLAY</b> = 2652, 
 <br />
-&#160;&#160;<b>SCI_VCHOMEDISPLAYEXTEND</b> = 2653, 
+&#160;&#160;<b>SCI_VCHOMEDISPLAY</b> = 2652, 
+<b>SCI_VCHOMEDISPLAYEXTEND</b> = 2653, 
 <b>SCI_GETCARETLINEVISIBLEALWAYS</b> = 2654, 
-<b>SCI_SETCARETLINEVISIBLEALWAYS</b> = 2655, 
 <br />
-&#160;&#160;<b>SCI_SETLINEENDTYPESALLOWED</b> = 2656, 
+&#160;&#160;<b>SCI_SETCARETLINEVISIBLEALWAYS</b> = 2655, 
+<b>SCI_SETLINEENDTYPESALLOWED</b> = 2656, 
 <b>SCI_GETLINEENDTYPESALLOWED</b> = 2657, 
-<b>SCI_GETLINEENDTYPESACTIVE</b> = 2658, 
 <br />
-&#160;&#160;<b>SCI_AUTOCSETORDER</b> = 2660, 
+&#160;&#160;<b>SCI_GETLINEENDTYPESACTIVE</b> = 2658, 
+<b>SCI_AUTOCSETORDER</b> = 2660, 
 <b>SCI_AUTOCGETORDER</b> = 2661, 
-<b>SCI_FOLDALL</b> = 2662, 
 <br />
-&#160;&#160;<b>SCI_SETAUTOMATICFOLD</b> = 2663, 
+&#160;&#160;<b>SCI_FOLDALL</b> = 2662, 
+<b>SCI_SETAUTOMATICFOLD</b> = 2663, 
 <b>SCI_GETAUTOMATICFOLD</b> = 2664, 
-<b>SCI_SETREPRESENTATION</b> = 2665, 
 <br />
-&#160;&#160;<b>SCI_GETREPRESENTATION</b> = 2666, 
+&#160;&#160;<b>SCI_SETREPRESENTATION</b> = 2665, 
+<b>SCI_GETREPRESENTATION</b> = 2666, 
 <b>SCI_CLEARREPRESENTATION</b> = 2667, 
-<b>SCI_SETMOUSESELECTIONRECTANGULARSWITCH</b> = 2668, 
 <br />
-&#160;&#160;<b>SCI_GETMOUSESELECTIONRECTANGULARSWITCH</b> = 2669, 
+&#160;&#160;<b>SCI_SETMOUSESELECTIONRECTANGULARSWITCH</b> = 2668, 
+<b>SCI_GETMOUSESELECTIONRECTANGULARSWITCH</b> = 2669, 
 <b>SCI_POSITIONRELATIVE</b> = 2670, 
-<b>SCI_DROPSELECTIONN</b> = 2671, 
 <br />
-&#160;&#160;<b>SCI_CHANGEINSERTION</b> = 2672, 
+&#160;&#160;<b>SCI_DROPSELECTIONN</b> = 2671, 
+<b>SCI_CHANGEINSERTION</b> = 2672, 
 <b>SCI_GETPHASESDRAW</b> = 2673, 
-<b>SCI_SETPHASESDRAW</b> = 2674, 
 <br />
-&#160;&#160;<b>SCI_CLEARTABSTOPS</b> = 2675, 
+&#160;&#160;<b>SCI_SETPHASESDRAW</b> = 2674, 
+<b>SCI_CLEARTABSTOPS</b> = 2675, 
 <b>SCI_ADDTABSTOP</b> = 2676, 
-<b>SCI_GETNEXTTABSTOP</b> = 2677, 
 <br />
-&#160;&#160;<b>SCI_GETIMEINTERACTION</b> = 2678, 
+&#160;&#160;<b>SCI_GETNEXTTABSTOP</b> = 2677, 
+<b>SCI_GETIMEINTERACTION</b> = 2678, 
 <b>SCI_SETIMEINTERACTION</b> = 2679, 
-<b>SCI_INDICSETHOVERSTYLE</b> = 2680, 
 <br />
-&#160;&#160;<b>SCI_INDICGETHOVERSTYLE</b> = 2681, 
+&#160;&#160;<b>SCI_INDICSETHOVERSTYLE</b> = 2680, 
+<b>SCI_INDICGETHOVERSTYLE</b> = 2681, 
 <b>SCI_INDICSETHOVERFORE</b> = 2682, 
-<b>SCI_INDICGETHOVERFORE</b> = 2683, 
 <br />
-&#160;&#160;<b>SCI_INDICSETFLAGS</b> = 2684, 
+&#160;&#160;<b>SCI_INDICGETHOVERFORE</b> = 2683, 
+<b>SCI_INDICSETFLAGS</b> = 2684, 
 <b>SCI_INDICGETFLAGS</b> = 2685, 
-<b>SCI_SETTARGETRANGE</b> = 2686, 
 <br />
-&#160;&#160;<b>SCI_GETTARGETTEXT</b> = 2687, 
+&#160;&#160;<b>SCI_SETTARGETRANGE</b> = 2686, 
+<b>SCI_GETTARGETTEXT</b> = 2687, 
 <b>SCI_MULTIPLESELECTADDNEXT</b> = 2688, 
-<b>SCI_MULTIPLESELECTADDEACH</b> = 2689, 
 <br />
-&#160;&#160;<b>SCI_TARGETWHOLEDOCUMENT</b> = 2690, 
+&#160;&#160;<b>SCI_MULTIPLESELECTADDEACH</b> = 2689, 
+<b>SCI_TARGETWHOLEDOCUMENT</b> = 2690, 
 <b>SCI_ISRANGEWORD</b> = 2691, 
-<b>SCI_SETIDLESTYLING</b> = 2692, 
 <br />
-&#160;&#160;<b>SCI_GETIDLESTYLING</b> = 2693, 
+&#160;&#160;<b>SCI_SETIDLESTYLING</b> = 2692, 
+<b>SCI_GETIDLESTYLING</b> = 2693, 
 <b>SCI_MULTIEDGEADDLINE</b> = 2694, 
-<b>SCI_MULTIEDGECLEARALL</b> = 2695, 
 <br />
-&#160;&#160;<b>SCI_SETMOUSEWHEELCAPTURES</b> = 2696, 
+&#160;&#160;<b>SCI_MULTIEDGECLEARALL</b> = 2695, 
+<b>SCI_SETMOUSEWHEELCAPTURES</b> = 2696, 
 <b>SCI_GETMOUSEWHEELCAPTURES</b> = 2697, 
-<b>SCI_GETTABDRAWMODE</b> = 2698, 
 <br />
-&#160;&#160;<b>SCI_SETTABDRAWMODE</b> = 2699, 
+&#160;&#160;<b>SCI_GETTABDRAWMODE</b> = 2698, 
+<b>SCI_SETTABDRAWMODE</b> = 2699, 
 <b>SCI_TOGGLEFOLDSHOWTEXT</b> = 2700, 
-<b>SCI_FOLDDISPLAYTEXTSETSTYLE</b> = 2701, 
 <br />
-&#160;&#160;<b>SCI_STARTRECORD</b> = 3001, 
-<b>SCI_STOPRECORD</b> = 3002, 
+&#160;&#160;<b>SCI_FOLDDISPLAYTEXTSETSTYLE</b> = 2701, 
+<b>SCI_SETACCESSIBILITY</b> = 2702, 
+<b>SCI_GETACCESSIBILITY</b> = 2703, 
+<br />
+&#160;&#160;<b>SCI_GETCARETLINEFRAME</b> = 2704, 
+<b>SCI_SETCARETLINEFRAME</b> = 2705, 
+<b>SCI_STARTRECORD</b> = 3001, 
+<br />
+&#160;&#160;<b>SCI_STOPRECORD</b> = 3002, 
 <a class="el" href="classQsciScintillaBase.html#a09d85c486690a5380792405faaaa220ca29b928416c21edb11e32d4325764fcc7">SCI_SETLEXER</a> = 4001, 
+<a class="el" href="classQsciScintillaBase.html#a09d85c486690a5380792405faaaa220caf625e0ecead2e1d0bc3e0cefe2e8954a">SCI_GETLEXER</a> = 4002, 
 <br />
-&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a09d85c486690a5380792405faaaa220caf625e0ecead2e1d0bc3e0cefe2e8954a">SCI_GETLEXER</a> = 4002, 
-<b>SCI_COLOURISE</b> = 4003, 
+&#160;&#160;<b>SCI_COLOURISE</b> = 4003, 
 <b>SCI_SETPROPERTY</b> = 4004, 
+<b>SCI_SETKEYWORDS</b> = 4005, 
 <br />
-&#160;&#160;<b>SCI_SETKEYWORDS</b> = 4005, 
-<a class="el" href="classQsciScintillaBase.html#a09d85c486690a5380792405faaaa220ca6309b2b8bf3813c1041d31cb54ce3feb">SCI_SETLEXERLANGUAGE</a> = 4006, 
+&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a09d85c486690a5380792405faaaa220ca6309b2b8bf3813c1041d31cb54ce3feb">SCI_SETLEXERLANGUAGE</a> = 4006, 
 <b>SCI_LOADLEXERLIBRARY</b> = 4007, 
+<b>SCI_GETPROPERTY</b> = 4008, 
 <br />
-&#160;&#160;<b>SCI_GETPROPERTY</b> = 4008, 
-<b>SCI_GETPROPERTYEXPANDED</b> = 4009, 
+&#160;&#160;<b>SCI_GETPROPERTYEXPANDED</b> = 4009, 
 <b>SCI_GETPROPERTYINT</b> = 4010, 
+<b>SCI_GETSTYLEBITSNEEDED</b> = 4011, 
 <br />
-&#160;&#160;<b>SCI_GETSTYLEBITSNEEDED</b> = 4011, 
-<b>SCI_GETLEXERLANGUAGE</b> = 4012, 
+&#160;&#160;<b>SCI_GETLEXERLANGUAGE</b> = 4012, 
 <b>SCI_PRIVATELEXERCALL</b> = 4013, 
+<b>SCI_PROPERTYNAMES</b> = 4014, 
 <br />
-&#160;&#160;<b>SCI_PROPERTYNAMES</b> = 4014, 
-<b>SCI_PROPERTYTYPE</b> = 4015, 
+&#160;&#160;<b>SCI_PROPERTYTYPE</b> = 4015, 
 <b>SCI_DESCRIBEPROPERTY</b> = 4016, 
+<b>SCI_DESCRIBEKEYWORDSETS</b> = 4017, 
 <br />
-&#160;&#160;<b>SCI_DESCRIBEKEYWORDSETS</b> = 4017, 
-<b>SCI_GETLINEENDTYPESSUPPORTED</b> = 4018, 
+&#160;&#160;<b>SCI_GETLINEENDTYPESSUPPORTED</b> = 4018, 
 <b>SCI_ALLOCATESUBSTYLES</b> = 4020, 
+<b>SCI_GETSUBSTYLESSTART</b> = 4021, 
 <br />
-&#160;&#160;<b>SCI_GETSUBSTYLESSTART</b> = 4021, 
-<b>SCI_GETSUBSTYLESLENGTH</b> = 4022, 
+&#160;&#160;<b>SCI_GETSUBSTYLESLENGTH</b> = 4022, 
 <b>SCI_GETSTYLEFROMSUBSTYLE</b> = 4027, 
+<b>SCI_GETPRIMARYSTYLEFROMSTYLE</b> = 4028, 
 <br />
-&#160;&#160;<b>SCI_GETPRIMARYSTYLEFROMSTYLE</b> = 4028, 
-<b>SCI_FREESUBSTYLES</b> = 4023, 
+&#160;&#160;<b>SCI_FREESUBSTYLES</b> = 4023, 
 <b>SCI_SETIDENTIFIERS</b> = 4024, 
+<b>SCI_DISTANCETOSECONDARYSTYLES</b> = 4025, 
 <br />
-&#160;&#160;<b>SCI_DISTANCETOSECONDARYSTYLES</b> = 4025, 
-<b>SCI_GETSUBSTYLEBASES</b> = 4026
+&#160;&#160;<b>SCI_GETSUBSTYLEBASES</b> = 4026, 
+<b>SCI_GETLINECHARACTERINDEX</b> = 2710, 
+<b>SCI_ALLOCATELINECHARACTERINDEX</b> = 2711, 
+<br />
+&#160;&#160;<b>SCI_RELEASELINECHARACTERINDEX</b> = 2712, 
+<b>SCI_LINEFROMINDEXPOSITION</b> = 2713, 
+<b>SCI_INDEXPOSITIONFROMLINE</b> = 2714, 
+<br />
+&#160;&#160;<b>SCI_COUNTCODEUNITS</b> = 2715, 
+<b>SCI_POSITIONRELATIVECODEUNITS</b> = 2716, 
+<b>SCI_GETNAMEDSTYLES</b> = 4029, 
+<br />
+&#160;&#160;<b>SCI_NAMEOFSTYLE</b> = 4030, 
+<b>SCI_TAGSOFSTYLE</b> = 4031, 
+<b>SCI_DESCRIPTIONOFSTYLE</b> = 4032, 
+<br />
+&#160;&#160;<b>SCI_GETMOVEEXTENDSSELECTION</b> = 2706, 
+<b>SCI_SETCOMMANDEVENTS</b> = 2717, 
+<b>SCI_GETCOMMANDEVENTS</b> = 2718, 
+<br />
+&#160;&#160;<b>SCI_GETDOCUMENTOPTIONS</b> = 2379
 <br />
  }</td></tr>
 <tr class="separator:a09d85c486690a5380792405faaaa220c inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1204,7 +1238,12 @@ Public Types</h2></td></tr>
 <b>SC_CARETSTICKY_WHITESPACE</b> = 2
  }</td></tr>
 <tr class="separator:a3477f4d751d01b39b5e7e38d93856fef inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a299f0d0556673ceff9aae3e11099bb68 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a299f0d0556673ceff9aae3e11099bb68"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
+<tr class="memitem:a299f0d0556673ceff9aae3e11099bb68 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a299f0d0556673ceff9aae3e11099bb68"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>SC_DOCUMENTOPTION_DEFAULT</b> = 0x0000, 
+<b>SC_DOCUMENTOPTION_STYLES_NONE</b> = 0x0001, 
+<b>SC_DOCUMENTOPTION_TEXT_LARGE</b> = 0x0100
+ }</td></tr>
+<tr class="separator:a299f0d0556673ceff9aae3e11099bb68 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ae69b065d2ac2dfaab53656df932306 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7ae69b065d2ac2dfaab53656df932306"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
 &#160;&#160;<b>SC_EFF_QUALITY_MASK</b> = 0x0f, 
 <b>SC_EFF_QUALITY_DEFAULT</b> = 0, 
 <b>SC_EFF_QUALITY_NON_ANTIALIASED</b> = 1, 
@@ -1213,8 +1252,8 @@ Public Types</h2></td></tr>
 <b>SC_EFF_QUALITY_LCD_OPTIMIZED</b> = 3
 <br />
  }</td></tr>
-<tr class="separator:a299f0d0556673ceff9aae3e11099bb68 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7ae69b065d2ac2dfaab53656df932306 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7ae69b065d2ac2dfaab53656df932306"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
+<tr class="separator:a7ae69b065d2ac2dfaab53656df932306 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36b85609dd203b3b27c14a16e24321b9 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a36b85609dd203b3b27c14a16e24321b9"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
 &#160;&#160;<b>SC_IDLESTYLING_NONE</b> = 0, 
 <b>SC_IDLESTYLING_TOVISIBLE</b> = 1, 
 <b>SC_IDLESTYLING_AFTERVISIBLE</b> = 2, 
@@ -1222,29 +1261,34 @@ Public Types</h2></td></tr>
 &#160;&#160;<b>SC_IDLESTYLING_ALL</b> = 3
 <br />
  }</td></tr>
-<tr class="separator:a7ae69b065d2ac2dfaab53656df932306 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a36b85609dd203b3b27c14a16e24321b9 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a36b85609dd203b3b27c14a16e24321b9"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>SC_IME_WINDOWED</b> = 0, 
+<tr class="separator:a36b85609dd203b3b27c14a16e24321b9 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b6243d26078b6ee34246844721d2ad9 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6b6243d26078b6ee34246844721d2ad9"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>SC_IME_WINDOWED</b> = 0, 
 <b>SC_IME_INLINE</b> = 1
  }</td></tr>
-<tr class="separator:a36b85609dd203b3b27c14a16e24321b9 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6b6243d26078b6ee34246844721d2ad9 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6b6243d26078b6ee34246844721d2ad9"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>SC_MARGINOPTION_NONE</b> = 0x00, 
-<b>SC_MARGINOPTION_SUBLINESELECT</b> = 0x01
- }</td></tr>
 <tr class="separator:a6b6243d26078b6ee34246844721d2ad9 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac9677f1e758e2aaa368dc70c8eac011b inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac9677f1e758e2aaa368dc70c8eac011b"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>SC_MULTIAUTOC_ONCE</b> = 0, 
-<b>SC_MULTIAUTOC_EACH</b> = 1
+<tr class="memitem:ac9677f1e758e2aaa368dc70c8eac011b inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac9677f1e758e2aaa368dc70c8eac011b"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>SC_LINECHARACTERINDEX_NONE</b> = 0, 
+<b>SC_LINECHARACTERINDEX_UTF32</b> = 1, 
+<b>SC_LINECHARACTERINDEX_UTF16</b> = 2
  }</td></tr>
 <tr class="separator:ac9677f1e758e2aaa368dc70c8eac011b inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a387e5fb00390c98f574c1a63e5cc6990 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a387e5fb00390c98f574c1a63e5cc6990"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>SC_MULTIPASTE_ONCE</b> = 0, 
-<b>SC_MULTIPASTE_EACH</b> = 1
+<tr class="memitem:a387e5fb00390c98f574c1a63e5cc6990 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a387e5fb00390c98f574c1a63e5cc6990"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>SC_MARGINOPTION_NONE</b> = 0x00, 
+<b>SC_MARGINOPTION_SUBLINESELECT</b> = 0x01
  }</td></tr>
 <tr class="separator:a387e5fb00390c98f574c1a63e5cc6990 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a74a237b74599034b49c7eb219976143f inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a74a237b74599034b49c7eb219976143f"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>SC_POPUP_NEVER</b> = 0, 
+<tr class="memitem:a74a237b74599034b49c7eb219976143f inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a74a237b74599034b49c7eb219976143f"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>SC_MULTIAUTOC_ONCE</b> = 0, 
+<b>SC_MULTIAUTOC_EACH</b> = 1
+ }</td></tr>
+<tr class="separator:a74a237b74599034b49c7eb219976143f inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad04a7f86e07a9e8bcc8b3d835abe9f5d inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad04a7f86e07a9e8bcc8b3d835abe9f5d"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>SC_MULTIPASTE_ONCE</b> = 0, 
+<b>SC_MULTIPASTE_EACH</b> = 1
+ }</td></tr>
+<tr class="separator:ad04a7f86e07a9e8bcc8b3d835abe9f5d inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ffda257161a3e02664b8e78edc75255 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1ffda257161a3e02664b8e78edc75255"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>SC_POPUP_NEVER</b> = 0, 
 <b>SC_POPUP_ALL</b> = 1, 
 <b>SC_POPUP_TEXT</b> = 2
  }</td></tr>
-<tr class="separator:a74a237b74599034b49c7eb219976143f inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad04a7f86e07a9e8bcc8b3d835abe9f5d inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
+<tr class="separator:a1ffda257161a3e02664b8e78edc75255 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad239e77cce3abfe60c72f70460dd70ca inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
 &#160;&#160;<b>SC_SEL_STREAM</b> = 0, 
 <b>SC_SEL_RECTANGLE</b> = 1, 
 <b>SC_SEL_LINES</b> = 2, 
@@ -1252,8 +1296,8 @@ Public Types</h2></td></tr>
 &#160;&#160;<b>SC_SEL_THIN</b> = 3
 <br />
  }</td></tr>
-<tr class="separator:ad04a7f86e07a9e8bcc8b3d835abe9f5d inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1ffda257161a3e02664b8e78edc75255 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1ffda257161a3e02664b8e78edc75255"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
+<tr class="separator:ad239e77cce3abfe60c72f70460dd70ca inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c80c96e6a7f6a37bf1b355d6be1b4f6 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2c80c96e6a7f6a37bf1b355d6be1b4f6"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
 &#160;&#160;<b>SC_STATUS_OK</b> = 0, 
 <b>SC_STATUS_FAILURE</b> = 1, 
 <b>SC_STATUS_BADALLOC</b> = 2, 
@@ -1262,13 +1306,13 @@ Public Types</h2></td></tr>
 <b>SC_STATUS_WARNREGEX</b> = 1001
 <br />
  }</td></tr>
-<tr class="separator:a1ffda257161a3e02664b8e78edc75255 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad239e77cce3abfe60c72f70460dd70ca inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad239e77cce3abfe60c72f70460dd70ca"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>SC_TYPE_BOOLEAN</b> = 0, 
+<tr class="separator:a2c80c96e6a7f6a37bf1b355d6be1b4f6 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f68a3ed6fdd9fc9fe3113bf51e06916 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9f68a3ed6fdd9fc9fe3113bf51e06916"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>SC_TYPE_BOOLEAN</b> = 0, 
 <b>SC_TYPE_INTEGER</b> = 1, 
 <b>SC_TYPE_STRING</b> = 2
  }</td></tr>
-<tr class="separator:ad239e77cce3abfe60c72f70460dd70ca inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2c80c96e6a7f6a37bf1b355d6be1b4f6 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2c80c96e6a7f6a37bf1b355d6be1b4f6"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
+<tr class="separator:a9f68a3ed6fdd9fc9fe3113bf51e06916 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c2dea0c8bd3f89ee89586d5e5a89889 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5c2dea0c8bd3f89ee89586d5e5a89889"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
 &#160;&#160;<b>SC_UPDATE_CONTENT</b> = 0x01, 
 <b>SC_UPDATE_SELECTION</b> = 0x02, 
 <b>SC_UPDATE_V_SCROLL</b> = 0x04, 
@@ -1276,8 +1320,8 @@ Public Types</h2></td></tr>
 &#160;&#160;<b>SC_UPDATE_H_SCROLL</b> = 0x08
 <br />
  }</td></tr>
-<tr class="separator:a2c80c96e6a7f6a37bf1b355d6be1b4f6 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9f68a3ed6fdd9fc9fe3113bf51e06916 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9f68a3ed6fdd9fc9fe3113bf51e06916"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
+<tr class="separator:a5c2dea0c8bd3f89ee89586d5e5a89889 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae100b109f91ace045feded7e5ca7267 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aae100b109f91ace045feded7e5ca7267"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
 &#160;&#160;<b>SC_WRAPVISUALFLAG_NONE</b> = 0x0000, 
 <b>SC_WRAPVISUALFLAG_END</b> = 0x0001, 
 <b>SC_WRAPVISUALFLAG_START</b> = 0x0002, 
@@ -1285,17 +1329,17 @@ Public Types</h2></td></tr>
 &#160;&#160;<b>SC_WRAPVISUALFLAG_MARGIN</b> = 0x0004
 <br />
  }</td></tr>
-<tr class="separator:a9f68a3ed6fdd9fc9fe3113bf51e06916 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5c2dea0c8bd3f89ee89586d5e5a89889 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5c2dea0c8bd3f89ee89586d5e5a89889"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>SC_WRAPVISUALFLAGLOC_DEFAULT</b> = 0x0000, 
+<tr class="separator:aae100b109f91ace045feded7e5ca7267 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76f793f6e6ce5b6f14b3925e78ea2aa6 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a76f793f6e6ce5b6f14b3925e78ea2aa6"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>SC_WRAPVISUALFLAGLOC_DEFAULT</b> = 0x0000, 
 <b>SC_WRAPVISUALFLAGLOC_END_BY_TEXT</b> = 0x0001, 
 <b>SC_WRAPVISUALFLAGLOC_START_BY_TEXT</b> = 0x0002
  }</td></tr>
-<tr class="separator:a5c2dea0c8bd3f89ee89586d5e5a89889 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aae100b109f91ace045feded7e5ca7267 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aae100b109f91ace045feded7e5ca7267"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>SCTD_LONGARROW</b> = 0, 
+<tr class="separator:a76f793f6e6ce5b6f14b3925e78ea2aa6 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa4ab44fd6a7374eb16d07762aa51c7c0 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa4ab44fd6a7374eb16d07762aa51c7c0"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>SCTD_LONGARROW</b> = 0, 
 <b>SCTD_STRIKEOUT</b> = 1
  }</td></tr>
-<tr class="separator:aae100b109f91ace045feded7e5ca7267 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a76f793f6e6ce5b6f14b3925e78ea2aa6 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a76f793f6e6ce5b6f14b3925e78ea2aa6"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
+<tr class="separator:aa4ab44fd6a7374eb16d07762aa51c7c0 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80ff71d78cd014abb3ba387d190547df inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a80ff71d78cd014abb3ba387d190547df"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
 &#160;&#160;<b>SCVS_NONE</b> = 0, 
 <b>SCVS_RECTANGULARSELECTION</b> = 1, 
 <b>SCVS_USERACCESSIBLE</b> = 2, 
@@ -1303,8 +1347,8 @@ Public Types</h2></td></tr>
 &#160;&#160;<b>SCVS_NOWRAPLINESTART</b> = 4
 <br />
  }</td></tr>
-<tr class="separator:a76f793f6e6ce5b6f14b3925e78ea2aa6 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa4ab44fd6a7374eb16d07762aa51c7c0 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa4ab44fd6a7374eb16d07762aa51c7c0"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
+<tr class="separator:a80ff71d78cd014abb3ba387d190547df inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab69a4898ecba5b929124e7a11d504cb9 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab69a4898ecba5b929124e7a11d504cb9"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
 &#160;&#160;<b>SCWS_INVISIBLE</b> = 0, 
 <b>SCWS_VISIBLEALWAYS</b> = 1, 
 <b>SCWS_VISIBLEAFTERINDENT</b> = 2, 
@@ -1312,64 +1356,64 @@ Public Types</h2></td></tr>
 &#160;&#160;<b>SCWS_VISIBLEONLYININDENT</b> = 3
 <br />
  }</td></tr>
-<tr class="separator:aa4ab44fd6a7374eb16d07762aa51c7c0 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a80ff71d78cd014abb3ba387d190547df inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a80ff71d78cd014abb3ba387d190547df"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>SC_EOL_CRLF</b> = 0, 
+<tr class="separator:ab69a4898ecba5b929124e7a11d504cb9 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7bfd9660119d4ff15969a312874e3f0d inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7bfd9660119d4ff15969a312874e3f0d"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>SC_EOL_CRLF</b> = 0, 
 <b>SC_EOL_CR</b> = 1, 
 <b>SC_EOL_LF</b> = 2
  }</td></tr>
-<tr class="separator:a80ff71d78cd014abb3ba387d190547df inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab69a4898ecba5b929124e7a11d504cb9 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab69a4898ecba5b929124e7a11d504cb9"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>SC_CP_DBCS</b> = 1, 
+<tr class="separator:a7bfd9660119d4ff15969a312874e3f0d inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c275507899f6fd247db63d1dcd83003 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3c275507899f6fd247db63d1dcd83003"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>SC_CP_DBCS</b> = 1, 
 <b>SC_CP_UTF8</b> = 65001
  }</td></tr>
-<tr class="separator:ab69a4898ecba5b929124e7a11d504cb9 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7bfd9660119d4ff15969a312874e3f0d inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
-&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a7bfd9660119d4ff15969a312874e3f0dabf08078081d1fb79be98e1b5a6401ec3">SC_MARK_CIRCLE</a> = 0, 
-<a class="el" href="classQsciScintillaBase.html#a7bfd9660119d4ff15969a312874e3f0da39e5d4cae13901613bcfae619cd496b5">SC_MARK_ROUNDRECT</a> = 1, 
-<a class="el" href="classQsciScintillaBase.html#a7bfd9660119d4ff15969a312874e3f0da940ced5307e462959ce165d8717a31d4">SC_MARK_ARROW</a> = 2, 
+<tr class="separator:a3c275507899f6fd247db63d1dcd83003 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2236594c42c6b16ae3a048eef7a88624 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
+&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a2236594c42c6b16ae3a048eef7a88624abf08078081d1fb79be98e1b5a6401ec3">SC_MARK_CIRCLE</a> = 0, 
+<a class="el" href="classQsciScintillaBase.html#a2236594c42c6b16ae3a048eef7a88624a39e5d4cae13901613bcfae619cd496b5">SC_MARK_ROUNDRECT</a> = 1, 
+<a class="el" href="classQsciScintillaBase.html#a2236594c42c6b16ae3a048eef7a88624a940ced5307e462959ce165d8717a31d4">SC_MARK_ARROW</a> = 2, 
 <br />
-&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a7bfd9660119d4ff15969a312874e3f0dafa1a0af509be0284f7c69df8134d85ca">SC_MARK_SMALLRECT</a> = 3, 
-<a class="el" href="classQsciScintillaBase.html#a7bfd9660119d4ff15969a312874e3f0da60f9340f78d0c386cb2df238849f121d">SC_MARK_SHORTARROW</a> = 4, 
-<a class="el" href="classQsciScintillaBase.html#a7bfd9660119d4ff15969a312874e3f0dacf6e7cca56bcd03b660b3590153d1075">SC_MARK_EMPTY</a> = 5, 
+&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a2236594c42c6b16ae3a048eef7a88624afa1a0af509be0284f7c69df8134d85ca">SC_MARK_SMALLRECT</a> = 3, 
+<a class="el" href="classQsciScintillaBase.html#a2236594c42c6b16ae3a048eef7a88624a60f9340f78d0c386cb2df238849f121d">SC_MARK_SHORTARROW</a> = 4, 
+<a class="el" href="classQsciScintillaBase.html#a2236594c42c6b16ae3a048eef7a88624acf6e7cca56bcd03b660b3590153d1075">SC_MARK_EMPTY</a> = 5, 
 <br />
-&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a7bfd9660119d4ff15969a312874e3f0da6f1caf375a3079d67c36998c1bd453a4">SC_MARK_ARROWDOWN</a> = 6, 
-<a class="el" href="classQsciScintillaBase.html#a7bfd9660119d4ff15969a312874e3f0da7baf71a4e105fbebbaa7803a3f722b0f">SC_MARK_MINUS</a> = 7, 
-<a class="el" href="classQsciScintillaBase.html#a7bfd9660119d4ff15969a312874e3f0dae324f61ed2740c6be760489cbaa69fb8">SC_MARK_PLUS</a> = 8, 
+&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a2236594c42c6b16ae3a048eef7a88624a6f1caf375a3079d67c36998c1bd453a4">SC_MARK_ARROWDOWN</a> = 6, 
+<a class="el" href="classQsciScintillaBase.html#a2236594c42c6b16ae3a048eef7a88624a7baf71a4e105fbebbaa7803a3f722b0f">SC_MARK_MINUS</a> = 7, 
+<a class="el" href="classQsciScintillaBase.html#a2236594c42c6b16ae3a048eef7a88624ae324f61ed2740c6be760489cbaa69fb8">SC_MARK_PLUS</a> = 8, 
 <br />
-&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a7bfd9660119d4ff15969a312874e3f0da8770dbe317581062d5d1bcb85592b784">SC_MARK_VLINE</a> = 9, 
-<a class="el" href="classQsciScintillaBase.html#a7bfd9660119d4ff15969a312874e3f0daf591d473d118d6fa98adf5e73fd9c61d">SC_MARK_LCORNER</a> = 10, 
-<a class="el" href="classQsciScintillaBase.html#a7bfd9660119d4ff15969a312874e3f0daa9ae33880a1ee19ce4db6544bb61a84d">SC_MARK_TCORNER</a> = 11, 
+&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a2236594c42c6b16ae3a048eef7a88624a8770dbe317581062d5d1bcb85592b784">SC_MARK_VLINE</a> = 9, 
+<a class="el" href="classQsciScintillaBase.html#a2236594c42c6b16ae3a048eef7a88624af591d473d118d6fa98adf5e73fd9c61d">SC_MARK_LCORNER</a> = 10, 
+<a class="el" href="classQsciScintillaBase.html#a2236594c42c6b16ae3a048eef7a88624aa9ae33880a1ee19ce4db6544bb61a84d">SC_MARK_TCORNER</a> = 11, 
 <br />
-&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a7bfd9660119d4ff15969a312874e3f0da6b210dd7ba9ae1b8c503965b6e9ada9a">SC_MARK_BOXPLUS</a> = 12, 
-<a class="el" href="classQsciScintillaBase.html#a7bfd9660119d4ff15969a312874e3f0da3582c3195c0533bca604a874ee1ecab8">SC_MARK_BOXPLUSCONNECTED</a> = 13, 
-<a class="el" href="classQsciScintillaBase.html#a7bfd9660119d4ff15969a312874e3f0dacebb22ccb805fa137c65eda743d32e0a">SC_MARK_BOXMINUS</a> = 14, 
+&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a2236594c42c6b16ae3a048eef7a88624a6b210dd7ba9ae1b8c503965b6e9ada9a">SC_MARK_BOXPLUS</a> = 12, 
+<a class="el" href="classQsciScintillaBase.html#a2236594c42c6b16ae3a048eef7a88624a3582c3195c0533bca604a874ee1ecab8">SC_MARK_BOXPLUSCONNECTED</a> = 13, 
+<a class="el" href="classQsciScintillaBase.html#a2236594c42c6b16ae3a048eef7a88624acebb22ccb805fa137c65eda743d32e0a">SC_MARK_BOXMINUS</a> = 14, 
 <br />
-&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a7bfd9660119d4ff15969a312874e3f0da8d928f238170d0765acb492d0e8f0f65">SC_MARK_BOXMINUSCONNECTED</a> = 15, 
-<a class="el" href="classQsciScintillaBase.html#a7bfd9660119d4ff15969a312874e3f0da85a6c4d68e4c936c46c8711f656d95ca">SC_MARK_LCORNERCURVE</a> = 16, 
-<a class="el" href="classQsciScintillaBase.html#a7bfd9660119d4ff15969a312874e3f0da787e7e471b489bda535116b75765acad">SC_MARK_TCORNERCURVE</a> = 17, 
+&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a2236594c42c6b16ae3a048eef7a88624a8d928f238170d0765acb492d0e8f0f65">SC_MARK_BOXMINUSCONNECTED</a> = 15, 
+<a class="el" href="classQsciScintillaBase.html#a2236594c42c6b16ae3a048eef7a88624a85a6c4d68e4c936c46c8711f656d95ca">SC_MARK_LCORNERCURVE</a> = 16, 
+<a class="el" href="classQsciScintillaBase.html#a2236594c42c6b16ae3a048eef7a88624a787e7e471b489bda535116b75765acad">SC_MARK_TCORNERCURVE</a> = 17, 
 <br />
-&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a7bfd9660119d4ff15969a312874e3f0da222004d413ee607197204f26950f3a0c">SC_MARK_CIRCLEPLUS</a> = 18, 
-<a class="el" href="classQsciScintillaBase.html#a7bfd9660119d4ff15969a312874e3f0da5293176024a0bba9eeb54b061a2930f9">SC_MARK_CIRCLEPLUSCONNECTED</a> = 19, 
-<a class="el" href="classQsciScintillaBase.html#a7bfd9660119d4ff15969a312874e3f0da58fc2ba342cf7cc9e5f5e9a59d4319bc">SC_MARK_CIRCLEMINUS</a> = 20, 
+&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a2236594c42c6b16ae3a048eef7a88624a222004d413ee607197204f26950f3a0c">SC_MARK_CIRCLEPLUS</a> = 18, 
+<a class="el" href="classQsciScintillaBase.html#a2236594c42c6b16ae3a048eef7a88624a5293176024a0bba9eeb54b061a2930f9">SC_MARK_CIRCLEPLUSCONNECTED</a> = 19, 
+<a class="el" href="classQsciScintillaBase.html#a2236594c42c6b16ae3a048eef7a88624a58fc2ba342cf7cc9e5f5e9a59d4319bc">SC_MARK_CIRCLEMINUS</a> = 20, 
 <br />
-&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a7bfd9660119d4ff15969a312874e3f0da2bbb4d3dea9e0b75ef9374c1c2b23c65">SC_MARK_CIRCLEMINUSCONNECTED</a> = 21, 
-<a class="el" href="classQsciScintillaBase.html#a7bfd9660119d4ff15969a312874e3f0da8a44e2cee896ee89527e1d026e8cd9ff">SC_MARK_BACKGROUND</a> = 22, 
-<a class="el" href="classQsciScintillaBase.html#a7bfd9660119d4ff15969a312874e3f0da961e0562a26ab763fba1bc1e92123b85">SC_MARK_DOTDOTDOT</a> = 23, 
+&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a2236594c42c6b16ae3a048eef7a88624a2bbb4d3dea9e0b75ef9374c1c2b23c65">SC_MARK_CIRCLEMINUSCONNECTED</a> = 21, 
+<a class="el" href="classQsciScintillaBase.html#a2236594c42c6b16ae3a048eef7a88624a8a44e2cee896ee89527e1d026e8cd9ff">SC_MARK_BACKGROUND</a> = 22, 
+<a class="el" href="classQsciScintillaBase.html#a2236594c42c6b16ae3a048eef7a88624a961e0562a26ab763fba1bc1e92123b85">SC_MARK_DOTDOTDOT</a> = 23, 
 <br />
-&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a7bfd9660119d4ff15969a312874e3f0da6f07eeddc235e313c4ca597220c71a0c">SC_MARK_ARROWS</a> = 24, 
-<a class="el" href="classQsciScintillaBase.html#a7bfd9660119d4ff15969a312874e3f0da464ae044427aa620a0668510ff1430b9">SC_MARK_PIXMAP</a> = 25, 
-<a class="el" href="classQsciScintillaBase.html#a7bfd9660119d4ff15969a312874e3f0da4f29b2c933a525fe0a80f0a58ba7eb61">SC_MARK_FULLRECT</a> = 26, 
+&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a2236594c42c6b16ae3a048eef7a88624a6f07eeddc235e313c4ca597220c71a0c">SC_MARK_ARROWS</a> = 24, 
+<a class="el" href="classQsciScintillaBase.html#a2236594c42c6b16ae3a048eef7a88624a464ae044427aa620a0668510ff1430b9">SC_MARK_PIXMAP</a> = 25, 
+<a class="el" href="classQsciScintillaBase.html#a2236594c42c6b16ae3a048eef7a88624a4f29b2c933a525fe0a80f0a58ba7eb61">SC_MARK_FULLRECT</a> = 26, 
 <br />
-&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a7bfd9660119d4ff15969a312874e3f0da08a00107e2110dce658fe7cb10f75e58">SC_MARK_LEFTRECT</a> = 27, 
-<a class="el" href="classQsciScintillaBase.html#a7bfd9660119d4ff15969a312874e3f0da53a38f2234ab3e6df8d6cec09ecd7318">SC_MARK_AVAILABLE</a> = 28, 
-<a class="el" href="classQsciScintillaBase.html#a7bfd9660119d4ff15969a312874e3f0dadf0e9f9a2980c5e693c67819a64f132e">SC_MARK_UNDERLINE</a> = 29, 
+&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a2236594c42c6b16ae3a048eef7a88624a08a00107e2110dce658fe7cb10f75e58">SC_MARK_LEFTRECT</a> = 27, 
+<a class="el" href="classQsciScintillaBase.html#a2236594c42c6b16ae3a048eef7a88624a53a38f2234ab3e6df8d6cec09ecd7318">SC_MARK_AVAILABLE</a> = 28, 
+<a class="el" href="classQsciScintillaBase.html#a2236594c42c6b16ae3a048eef7a88624adf0e9f9a2980c5e693c67819a64f132e">SC_MARK_UNDERLINE</a> = 29, 
 <br />
-&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a7bfd9660119d4ff15969a312874e3f0daa1866931fbc9dea971e6ae3f5be83abd">SC_MARK_RGBAIMAGE</a> = 30, 
-<a class="el" href="classQsciScintillaBase.html#a7bfd9660119d4ff15969a312874e3f0da500892fc4eef318262b009f6eddc9eda">SC_MARK_BOOKMARK</a> = 31, 
-<a class="el" href="classQsciScintillaBase.html#a7bfd9660119d4ff15969a312874e3f0da8c649856f102e81a5caa5a92f28b38fd">SC_MARK_CHARACTER</a> = 10000
+&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a2236594c42c6b16ae3a048eef7a88624aa1866931fbc9dea971e6ae3f5be83abd">SC_MARK_RGBAIMAGE</a> = 30, 
+<a class="el" href="classQsciScintillaBase.html#a2236594c42c6b16ae3a048eef7a88624a500892fc4eef318262b009f6eddc9eda">SC_MARK_BOOKMARK</a> = 31, 
+<a class="el" href="classQsciScintillaBase.html#a2236594c42c6b16ae3a048eef7a88624a8c649856f102e81a5caa5a92f28b38fd">SC_MARK_CHARACTER</a> = 10000
 <br />
  }</td></tr>
-<tr class="separator:a7bfd9660119d4ff15969a312874e3f0d inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3c275507899f6fd247db63d1dcd83003 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3c275507899f6fd247db63d1dcd83003"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
+<tr class="separator:a2236594c42c6b16ae3a048eef7a88624 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d8147b1c9082f33f6b41eefdb249f9e inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2d8147b1c9082f33f6b41eefdb249f9e"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
 &#160;&#160;<b>SC_MARKNUM_FOLDEREND</b> = 25, 
 <b>SC_MARKNUM_FOLDEROPENMID</b> = 26, 
 <b>SC_MARKNUM_FOLDERMIDTAIL</b> = 27, 
@@ -1382,21 +1426,21 @@ Public Types</h2></td></tr>
 <b>SC_MASK_FOLDERS</b> = 0xfe000000
 <br />
  }</td></tr>
-<tr class="separator:a3c275507899f6fd247db63d1dcd83003 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2236594c42c6b16ae3a048eef7a88624 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
-&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a2236594c42c6b16ae3a048eef7a88624a7776c14d3a1424576a26a8da304b96bf">SC_MARGIN_SYMBOL</a> = 0, 
-<a class="el" href="classQsciScintillaBase.html#a2236594c42c6b16ae3a048eef7a88624a55a92a7661156a126c48237234251e1d">SC_MARGIN_NUMBER</a> = 1, 
-<a class="el" href="classQsciScintillaBase.html#a2236594c42c6b16ae3a048eef7a88624a68a70615f89282762ba21aa6ec629dac">SC_MARGIN_BACK</a> = 2, 
+<tr class="separator:a2d8147b1c9082f33f6b41eefdb249f9e inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a78dba0cc167992b097c30ea331f2db inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
+&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a2a78dba0cc167992b097c30ea331f2dba7776c14d3a1424576a26a8da304b96bf">SC_MARGIN_SYMBOL</a> = 0, 
+<a class="el" href="classQsciScintillaBase.html#a2a78dba0cc167992b097c30ea331f2dba55a92a7661156a126c48237234251e1d">SC_MARGIN_NUMBER</a> = 1, 
+<a class="el" href="classQsciScintillaBase.html#a2a78dba0cc167992b097c30ea331f2dba68a70615f89282762ba21aa6ec629dac">SC_MARGIN_BACK</a> = 2, 
 <br />
-&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a2236594c42c6b16ae3a048eef7a88624a2f3ac8cfede54b81db88e29b7f81e19c">SC_MARGIN_FORE</a> = 3, 
-<a class="el" href="classQsciScintillaBase.html#a2236594c42c6b16ae3a048eef7a88624aa29598ff9ba1349daee66560cdd692bd">SC_MARGIN_TEXT</a> = 4, 
-<a class="el" href="classQsciScintillaBase.html#a2236594c42c6b16ae3a048eef7a88624af99d2ba5aa3873f646a8eac1a889de6a">SC_MARGIN_RTEXT</a> = 5, 
+&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a2a78dba0cc167992b097c30ea331f2dba2f3ac8cfede54b81db88e29b7f81e19c">SC_MARGIN_FORE</a> = 3, 
+<a class="el" href="classQsciScintillaBase.html#a2a78dba0cc167992b097c30ea331f2dbaa29598ff9ba1349daee66560cdd692bd">SC_MARGIN_TEXT</a> = 4, 
+<a class="el" href="classQsciScintillaBase.html#a2a78dba0cc167992b097c30ea331f2dbaf99d2ba5aa3873f646a8eac1a889de6a">SC_MARGIN_RTEXT</a> = 5, 
 <br />
-&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a2236594c42c6b16ae3a048eef7a88624aabd3cb3735935f9be890931a34d07989">SC_MARGIN_COLOUR</a> = 6
+&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a2a78dba0cc167992b097c30ea331f2dbaabd3cb3735935f9be890931a34d07989">SC_MARGIN_COLOUR</a> = 6
 <br />
  }</td></tr>
-<tr class="separator:a2236594c42c6b16ae3a048eef7a88624 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2d8147b1c9082f33f6b41eefdb249f9e inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2d8147b1c9082f33f6b41eefdb249f9e"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
+<tr class="separator:a2a78dba0cc167992b097c30ea331f2db inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24625fb57bffdb5776f0ad3705dfa644 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a24625fb57bffdb5776f0ad3705dfa644"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
 &#160;&#160;<b>STYLE_DEFAULT</b> = 32, 
 <b>STYLE_LINENUMBER</b> = 33, 
 <b>STYLE_BRACELIGHT</b> = 34, 
@@ -1412,8 +1456,8 @@ Public Types</h2></td></tr>
 &#160;&#160;<b>STYLE_MAX</b> = 255
 <br />
  }</td></tr>
-<tr class="separator:a2d8147b1c9082f33f6b41eefdb249f9e inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2a78dba0cc167992b097c30ea331f2db inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2a78dba0cc167992b097c30ea331f2db"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
+<tr class="separator:a24625fb57bffdb5776f0ad3705dfa644 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a278e6eed198eaa3104340051cbafe63c inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a278e6eed198eaa3104340051cbafe63c"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
 &#160;&#160;<b>SC_CHARSET_ANSI</b> = 0, 
 <b>SC_CHARSET_DEFAULT</b> = 1, 
 <b>SC_CHARSET_BALTIC</b> = 186, 
@@ -1445,8 +1489,8 @@ Public Types</h2></td></tr>
 &#160;&#160;<b>SC_CHARSET_8859_15</b> = 1000
 <br />
  }</td></tr>
-<tr class="separator:a2a78dba0cc167992b097c30ea331f2db inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a24625fb57bffdb5776f0ad3705dfa644 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a24625fb57bffdb5776f0ad3705dfa644"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
+<tr class="separator:a278e6eed198eaa3104340051cbafe63c inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8ff2173542a23daae77160d138ea17c inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae8ff2173542a23daae77160d138ea17c"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
 &#160;&#160;<b>SC_CASE_MIXED</b> = 0, 
 <b>SC_CASE_UPPER</b> = 1, 
 <b>SC_CASE_LOWER</b> = 2, 
@@ -1454,17 +1498,17 @@ Public Types</h2></td></tr>
 &#160;&#160;<b>SC_CASE_CAMEL</b> = 3
 <br />
  }</td></tr>
-<tr class="separator:a24625fb57bffdb5776f0ad3705dfa644 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a278e6eed198eaa3104340051cbafe63c inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
-&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a278e6eed198eaa3104340051cbafe63cad814f18251426f392498fd2969e11d65">SC_IV_NONE</a> = 0, 
-<a class="el" href="classQsciScintillaBase.html#a278e6eed198eaa3104340051cbafe63caa8b077f3d8af29de8fae45dfd0885298">SC_IV_REAL</a> = 1, 
-<a class="el" href="classQsciScintillaBase.html#a278e6eed198eaa3104340051cbafe63ca63693e8e8da215430f8b94630cbad3c0">SC_IV_LOOKFORWARD</a> = 2, 
+<tr class="separator:ae8ff2173542a23daae77160d138ea17c inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adeb158296ab73a37571fe8cddc3dac90 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
+&#160;&#160;<a class="el" href="classQsciScintillaBase.html#adeb158296ab73a37571fe8cddc3dac90ad814f18251426f392498fd2969e11d65">SC_IV_NONE</a> = 0, 
+<a class="el" href="classQsciScintillaBase.html#adeb158296ab73a37571fe8cddc3dac90aa8b077f3d8af29de8fae45dfd0885298">SC_IV_REAL</a> = 1, 
+<a class="el" href="classQsciScintillaBase.html#adeb158296ab73a37571fe8cddc3dac90a63693e8e8da215430f8b94630cbad3c0">SC_IV_LOOKFORWARD</a> = 2, 
 <br />
-&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a278e6eed198eaa3104340051cbafe63cac3746adc7ec9881c9a46be88e26417d1">SC_IV_LOOKBOTH</a> = 3
+&#160;&#160;<a class="el" href="classQsciScintillaBase.html#adeb158296ab73a37571fe8cddc3dac90ac3746adc7ec9881c9a46be88e26417d1">SC_IV_LOOKBOTH</a> = 3
 <br />
  }</td></tr>
-<tr class="separator:a278e6eed198eaa3104340051cbafe63c inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae8ff2173542a23daae77160d138ea17c inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae8ff2173542a23daae77160d138ea17c"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
+<tr class="separator:adeb158296ab73a37571fe8cddc3dac90 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab012c27b28c857b58d48dcead258925b inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab012c27b28c857b58d48dcead258925b"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
 &#160;&#160;<b>INDIC_PLAIN</b> = 0, 
 <b>INDIC_SQUIGGLE</b> = 1, 
 <b>INDIC_TT</b> = 2, 
@@ -1491,35 +1535,38 @@ Public Types</h2></td></tr>
 <br />
 &#160;&#160;<b>INDIC_POINT</b> = 18, 
 <b>INDIC_POINTCHARACTER</b> = 19, 
+<b>INDIC_GRADIENT</b> = 20, 
+<br />
+&#160;&#160;<b>INDIC_GRADIENTCENTRE</b> = 21, 
 <b>INDIC_IME</b> = 32, 
+<b>INDIC_IME_MAX</b> = 35, 
 <br />
-&#160;&#160;<b>INDIC_IME_MAX</b> = 35, 
-<b>INDIC_CONTAINER</b> = 8, 
+&#160;&#160;<b>INDIC_CONTAINER</b> = 8, 
 <b>INDIC_MAX</b> = 35, 
+<b>INDIC0_MASK</b> = 0x20, 
 <br />
-&#160;&#160;<b>INDIC0_MASK</b> = 0x20, 
-<b>INDIC1_MASK</b> = 0x40, 
+&#160;&#160;<b>INDIC1_MASK</b> = 0x40, 
 <b>INDIC2_MASK</b> = 0x80, 
+<b>INDICS_MASK</b> = 0xe0, 
 <br />
-&#160;&#160;<b>INDICS_MASK</b> = 0xe0, 
-<b>SC_INDICVALUEBIT</b> = 0x01000000, 
+&#160;&#160;<b>SC_INDICVALUEBIT</b> = 0x01000000, 
 <b>SC_INDICVALUEMASK</b> = 0x00ffffff, 
-<br />
-&#160;&#160;<b>SC_INDICFLAG_VALUEBEFORE</b> = 1
+<b>SC_INDICFLAG_VALUEBEFORE</b> = 1
 <br />
  }</td></tr>
-<tr class="separator:ae8ff2173542a23daae77160d138ea17c inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adeb158296ab73a37571fe8cddc3dac90 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adeb158296ab73a37571fe8cddc3dac90"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
+<tr class="separator:ab012c27b28c857b58d48dcead258925b inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2fd97955921946b090f2dce3edca0104 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2fd97955921946b090f2dce3edca0104"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
 &#160;&#160;<b>SC_PRINT_NORMAL</b> = 0, 
 <b>SC_PRINT_INVERTLIGHT</b> = 1, 
 <b>SC_PRINT_BLACKONWHITE</b> = 2, 
 <br />
 &#160;&#160;<b>SC_PRINT_COLOURONWHITE</b> = 3, 
-<b>SC_PRINT_COLOURONWHITEDEFAULTBG</b> = 4
+<b>SC_PRINT_COLOURONWHITEDEFAULTBG</b> = 4, 
+<b>SC_PRINT_SCREENCOLOURS</b> = 5
 <br />
  }</td></tr>
-<tr class="separator:adeb158296ab73a37571fe8cddc3dac90 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab012c27b28c857b58d48dcead258925b inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab012c27b28c857b58d48dcead258925b"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
+<tr class="separator:a2fd97955921946b090f2dce3edca0104 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b8b1a9bdd78e9012d7919d6fd5ca7cb inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8b8b1a9bdd78e9012d7919d6fd5ca7cb"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
 &#160;&#160;<b>SCFIND_WHOLEWORD</b> = 2, 
 <b>SCFIND_MATCHCASE</b> = 4, 
 <b>SCFIND_WORDSTART</b> = 0x00100000, 
@@ -1529,13 +1576,13 @@ Public Types</h2></td></tr>
 <b>SCFIND_CXX11REGEX</b> = 0x00800000
 <br />
  }</td></tr>
-<tr class="separator:ab012c27b28c857b58d48dcead258925b inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2fd97955921946b090f2dce3edca0104 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2fd97955921946b090f2dce3edca0104"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>SC_FOLDDISPLAYTEXT_HIDDEN</b> = 0, 
+<tr class="separator:a8b8b1a9bdd78e9012d7919d6fd5ca7cb inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad755363166547aab9b190872e5bbf743 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad755363166547aab9b190872e5bbf743"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>SC_FOLDDISPLAYTEXT_HIDDEN</b> = 0, 
 <b>SC_FOLDDISPLAYTEXT_STANDARD</b> = 1, 
 <b>SC_FOLDDISPLAYTEXT_BOXED</b> = 2
  }</td></tr>
-<tr class="separator:a2fd97955921946b090f2dce3edca0104 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8b8b1a9bdd78e9012d7919d6fd5ca7cb inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8b8b1a9bdd78e9012d7919d6fd5ca7cb"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
+<tr class="separator:ad755363166547aab9b190872e5bbf743 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3a61e2c74b5965b93ef3f994258fc70 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae3a61e2c74b5965b93ef3f994258fc70"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
 &#160;&#160;<b>SC_FOLDLEVELBASE</b> = 0x00400, 
 <b>SC_FOLDLEVELWHITEFLAG</b> = 0x01000, 
 <b>SC_FOLDLEVELHEADERFLAG</b> = 0x02000, 
@@ -1543,8 +1590,8 @@ Public Types</h2></td></tr>
 &#160;&#160;<b>SC_FOLDLEVELNUMBERMASK</b> = 0x00fff
 <br />
  }</td></tr>
-<tr class="separator:a8b8b1a9bdd78e9012d7919d6fd5ca7cb inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad755363166547aab9b190872e5bbf743 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad755363166547aab9b190872e5bbf743"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
+<tr class="separator:ae3a61e2c74b5965b93ef3f994258fc70 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abdc419b0fda4ce5a513ae5a4102dc3d3 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abdc419b0fda4ce5a513ae5a4102dc3d3"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
 &#160;&#160;<b>SC_FOLDFLAG_LINEBEFORE_EXPANDED</b> = 0x0002, 
 <b>SC_FOLDFLAG_LINEBEFORE_CONTRACTED</b> = 0x0004, 
 <b>SC_FOLDFLAG_LINEAFTER_EXPANDED</b> = 0x0008, 
@@ -1554,15 +1601,15 @@ Public Types</h2></td></tr>
 <b>SC_FOLDFLAG_LINESTATE</b> = 0x0080
 <br />
  }</td></tr>
-<tr class="separator:ad755363166547aab9b190872e5bbf743 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae3a61e2c74b5965b93ef3f994258fc70 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae3a61e2c74b5965b93ef3f994258fc70"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>SC_LINE_END_TYPE_DEFAULT</b> = 0, 
+<tr class="separator:abdc419b0fda4ce5a513ae5a4102dc3d3 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf9f9f798a68217d2b5a6bfa93574218 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaf9f9f798a68217d2b5a6bfa93574218"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>SC_LINE_END_TYPE_DEFAULT</b> = 0, 
 <b>SC_LINE_END_TYPE_UNICODE</b> = 1
  }</td></tr>
-<tr class="separator:ae3a61e2c74b5965b93ef3f994258fc70 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abdc419b0fda4ce5a513ae5a4102dc3d3 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abdc419b0fda4ce5a513ae5a4102dc3d3"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>SC_TIME_FOREVER</b> = 10000000
+<tr class="separator:aaf9f9f798a68217d2b5a6bfa93574218 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af28a9e2f9596cdee3ba434e2b6788f67 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af28a9e2f9596cdee3ba434e2b6788f67"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>SC_TIME_FOREVER</b> = 10000000
  }</td></tr>
-<tr class="separator:abdc419b0fda4ce5a513ae5a4102dc3d3 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaf9f9f798a68217d2b5a6bfa93574218 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaf9f9f798a68217d2b5a6bfa93574218"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
+<tr class="separator:af28a9e2f9596cdee3ba434e2b6788f67 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e43a9d4e1ea7a99aaad20d5c3903b12 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2e43a9d4e1ea7a99aaad20d5c3903b12"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
 &#160;&#160;<b>SC_WRAP_NONE</b> = 0, 
 <b>SC_WRAP_WORD</b> = 1, 
 <b>SC_WRAP_CHAR</b> = 2, 
@@ -1570,13 +1617,17 @@ Public Types</h2></td></tr>
 &#160;&#160;<b>SC_WRAP_WHITESPACE</b> = 3
 <br />
  }</td></tr>
-<tr class="separator:aaf9f9f798a68217d2b5a6bfa93574218 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af28a9e2f9596cdee3ba434e2b6788f67 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af28a9e2f9596cdee3ba434e2b6788f67"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>SC_WRAPINDENT_FIXED</b> = 0, 
+<tr class="separator:a2e43a9d4e1ea7a99aaad20d5c3903b12 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33194c2b472a2b3320327b4b1dbf5543 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a33194c2b472a2b3320327b4b1dbf5543"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
+&#160;&#160;<b>SC_WRAPINDENT_FIXED</b> = 0, 
 <b>SC_WRAPINDENT_SAME</b> = 1, 
-<b>SC_WRAPINDENT_INDENT</b> = 2
+<b>SC_WRAPINDENT_INDENT</b> = 2, 
+<br />
+&#160;&#160;<b>SC_WRAPINDENT_DEEPINDENT</b> = 3
+<br />
  }</td></tr>
-<tr class="separator:af28a9e2f9596cdee3ba434e2b6788f67 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2e43a9d4e1ea7a99aaad20d5c3903b12 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2e43a9d4e1ea7a99aaad20d5c3903b12"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
+<tr class="separator:a33194c2b472a2b3320327b4b1dbf5543 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6146a71b4c6b23f95d7bff4c81557241 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6146a71b4c6b23f95d7bff4c81557241"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
 &#160;&#160;<b>SC_CACHE_NONE</b> = 0, 
 <b>SC_CACHE_CARET</b> = 1, 
 <b>SC_CACHE_PAGE</b> = 2, 
@@ -1584,13 +1635,13 @@ Public Types</h2></td></tr>
 &#160;&#160;<b>SC_CACHE_DOCUMENT</b> = 3
 <br />
  }</td></tr>
-<tr class="separator:a2e43a9d4e1ea7a99aaad20d5c3903b12 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a33194c2b472a2b3320327b4b1dbf5543 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a33194c2b472a2b3320327b4b1dbf5543"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>SC_PHASES_ONE</b> = 0, 
+<tr class="separator:a6146a71b4c6b23f95d7bff4c81557241 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a23ad592fc774ba8ab272f35b2fea1da4 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a23ad592fc774ba8ab272f35b2fea1da4"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>SC_PHASES_ONE</b> = 0, 
 <b>SC_PHASES_TWO</b> = 1, 
 <b>SC_PHASES_MULTIPLE</b> = 2
  }</td></tr>
-<tr class="separator:a33194c2b472a2b3320327b4b1dbf5543 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6146a71b4c6b23f95d7bff4c81557241 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6146a71b4c6b23f95d7bff4c81557241"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
+<tr class="separator:a23ad592fc774ba8ab272f35b2fea1da4 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed226960c933c03dc7d8f3e88db0a080 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aed226960c933c03dc7d8f3e88db0a080"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
 &#160;&#160;<b>ANNOTATION_HIDDEN</b> = 0, 
 <b>ANNOTATION_STANDARD</b> = 1, 
 <b>ANNOTATION_BOXED</b> = 2, 
@@ -1598,8 +1649,8 @@ Public Types</h2></td></tr>
 &#160;&#160;<b>ANNOTATION_INDENTED</b> = 3
 <br />
  }</td></tr>
-<tr class="separator:a6146a71b4c6b23f95d7bff4c81557241 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a23ad592fc774ba8ab272f35b2fea1da4 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a23ad592fc774ba8ab272f35b2fea1da4"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
+<tr class="separator:aed226960c933c03dc7d8f3e88db0a080 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba4de31a7a3d710686510c0705e47231 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aba4de31a7a3d710686510c0705e47231"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
 &#160;&#160;<b>EDGE_NONE</b> = 0, 
 <b>EDGE_LINE</b> = 1, 
 <b>EDGE_BACKGROUND</b> = 2, 
@@ -1607,8 +1658,8 @@ Public Types</h2></td></tr>
 &#160;&#160;<b>EDGE_MULTILINE</b> = 3
 <br />
  }</td></tr>
-<tr class="separator:a23ad592fc774ba8ab272f35b2fea1da4 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aed226960c933c03dc7d8f3e88db0a080 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aed226960c933c03dc7d8f3e88db0a080"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
+<tr class="separator:aba4de31a7a3d710686510c0705e47231 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3257460b3692e06f7e2d692b3300b59a inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3257460b3692e06f7e2d692b3300b59a"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
 &#160;&#160;<b>SC_CURSORNORMAL</b> = -1, 
 <b>SC_CURSORARROW</b> = 2, 
 <b>SC_CURSORWAIT</b> = 4, 
@@ -1616,15 +1667,15 @@ Public Types</h2></td></tr>
 &#160;&#160;<b>SC_CURSORREVERSEARROW</b> = 7
 <br />
  }</td></tr>
-<tr class="separator:aed226960c933c03dc7d8f3e88db0a080 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aba4de31a7a3d710686510c0705e47231 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aba4de31a7a3d710686510c0705e47231"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>UNDO_MAY_COALESCE</b> = 1
+<tr class="separator:a3257460b3692e06f7e2d692b3300b59a inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e57098fa645c3a666148a907cd81a70 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5e57098fa645c3a666148a907cd81a70"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>UNDO_MAY_COALESCE</b> = 1
  }</td></tr>
-<tr class="separator:aba4de31a7a3d710686510c0705e47231 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3257460b3692e06f7e2d692b3300b59a inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3257460b3692e06f7e2d692b3300b59a"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>VISIBLE_SLOP</b> = 0x01, 
+<tr class="separator:a5e57098fa645c3a666148a907cd81a70 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57e9be9ba0a401a057a6dbbe6822182f inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a57e9be9ba0a401a057a6dbbe6822182f"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>VISIBLE_SLOP</b> = 0x01, 
 <b>VISIBLE_STRICT</b> = 0x04
  }</td></tr>
-<tr class="separator:a3257460b3692e06f7e2d692b3300b59a inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5e57098fa645c3a666148a907cd81a70 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5e57098fa645c3a666148a907cd81a70"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
+<tr class="separator:a57e9be9ba0a401a057a6dbbe6822182f inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16a2f02ee1d859679c98637b3dd81f87 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a16a2f02ee1d859679c98637b3dd81f87"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
 &#160;&#160;<b>CARET_SLOP</b> = 0x01, 
 <b>CARET_STRICT</b> = 0x04, 
 <b>CARET_JUMPS</b> = 0x10, 
@@ -1632,13 +1683,13 @@ Public Types</h2></td></tr>
 &#160;&#160;<b>CARET_EVEN</b> = 0x08
 <br />
  }</td></tr>
-<tr class="separator:a5e57098fa645c3a666148a907cd81a70 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a57e9be9ba0a401a057a6dbbe6822182f inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a57e9be9ba0a401a057a6dbbe6822182f"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>CARETSTYLE_INVISIBLE</b> = 0, 
+<tr class="separator:a16a2f02ee1d859679c98637b3dd81f87 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8c8b5a597668ae337a451ce0917180d inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac8c8b5a597668ae337a451ce0917180d"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>CARETSTYLE_INVISIBLE</b> = 0, 
 <b>CARETSTYLE_LINE</b> = 1, 
 <b>CARETSTYLE_BLOCK</b> = 2
  }</td></tr>
-<tr class="separator:a57e9be9ba0a401a057a6dbbe6822182f inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a16a2f02ee1d859679c98637b3dd81f87 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a16a2f02ee1d859679c98637b3dd81f87"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
+<tr class="separator:ac8c8b5a597668ae337a451ce0917180d inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ac32ea1c7fe58796612a845c13c41a2 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9ac32ea1c7fe58796612a845c13c41a2"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
 &#160;&#160;<b>SC_MOD_INSERTTEXT</b> = 0x1, 
 <b>SC_MOD_DELETETEXT</b> = 0x2, 
 <b>SC_MOD_CHANGESTYLE</b> = 0x4, 
@@ -1671,8 +1722,8 @@ Public Types</h2></td></tr>
 <b>SC_MODEVENTMASKALL</b> = 0x3fffff
 <br />
  }</td></tr>
-<tr class="separator:a16a2f02ee1d859679c98637b3dd81f87 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac8c8b5a597668ae337a451ce0917180d inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac8c8b5a597668ae337a451ce0917180d"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
+<tr class="separator:a9ac32ea1c7fe58796612a845c13c41a2 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b7dd7ff5031bbcb8183bb1478c461a2 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5b7dd7ff5031bbcb8183bb1478c461a2"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
 &#160;&#160;<b>SCK_DOWN</b> = 300, 
 <b>SCK_UP</b> = 301, 
 <b>SCK_LEFT</b> = 302, 
@@ -1701,189 +1752,194 @@ Public Types</h2></td></tr>
 <b>SCK_MENU</b> = 315
 <br />
  }</td></tr>
-<tr class="separator:ac8c8b5a597668ae337a451ce0917180d inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9ac32ea1c7fe58796612a845c13c41a2 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
-&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a9ac32ea1c7fe58796612a845c13c41a2a6097124d46dc23dbb028fb340b4aa17e">SCMOD_NORM</a> = 0, 
-<a class="el" href="classQsciScintillaBase.html#a9ac32ea1c7fe58796612a845c13c41a2ad3e496f1bdcc19e0b87c83c624e9f184">SCMOD_SHIFT</a> = 1, 
-<a class="el" href="classQsciScintillaBase.html#a9ac32ea1c7fe58796612a845c13c41a2a944d24d92f0c62a4f519936199d74198">SCMOD_CTRL</a> = 2, 
-<br />
-&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a9ac32ea1c7fe58796612a845c13c41a2aaa78aa9b07d1b2afe030262223eba11a">SCMOD_ALT</a> = 4, 
-<a class="el" href="classQsciScintillaBase.html#a9ac32ea1c7fe58796612a845c13c41a2a92a9efa0e26fb75aa9d6584c715aa465">SCMOD_SUPER</a> = 8, 
-<a class="el" href="classQsciScintillaBase.html#a9ac32ea1c7fe58796612a845c13c41a2add02edfef385cd3b3020235bc752eda7">SCMOD_META</a> = 16
-<br />
- }</td></tr>
-<tr class="separator:a9ac32ea1c7fe58796612a845c13c41a2 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5b7dd7ff5031bbcb8183bb1478c461a2 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
-&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a62931496707b79f9d5b348aacbd51a6e">SCLEX_CONTAINER</a> = 0, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a8a264dd8fe734630be400388fac8f588">SCLEX_NULL</a> = 1, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2aaa0d7fa0c2396811b59b5e6ba6c811f1">SCLEX_PYTHON</a> = 2, 
-<br />
-&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a504f72d70f56dcb53fb908fe79452138">SCLEX_CPP</a> = 3, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a00ae3e9a26cdc1afac630a91f3b3c7ec">SCLEX_HTML</a> = 4, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a1d7fee124bcdc3de441f5051c53eff92">SCLEX_XML</a> = 5, 
-<br />
-&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a9ef2274168be1be3f691d59aa142f170">SCLEX_PERL</a> = 6, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2af1a6b060c43736ae87b701da137aaf51">SCLEX_SQL</a> = 7, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a552be64626f5d82c3d77e27ed485124f">SCLEX_VB</a> = 8, 
-<br />
-&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2ae51ad6d026758e0fde01d796d72d0815">SCLEX_PROPERTIES</a> = 9, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a1beef12bbc9c9835a6791267c8fcb10a">SCLEX_ERRORLIST</a> = 10, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a990148a08b2f7a1585691ee984876863">SCLEX_MAKEFILE</a> = 11, 
-<br />
-&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2ae894213f20cdd7eae927718c87cbfae4">SCLEX_BATCH</a> = 12, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a6b110854fbef28d60067b82faf5ed229">SCLEX_LATEX</a> = 14, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a9975c914f242664d8225e3692f88ac31">SCLEX_LUA</a> = 15, 
-<br />
-&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a254b0148fea4c8f6e170ef09bae369e7">SCLEX_DIFF</a> = 16, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a477ce8c2cdaac994e2ec4022e67ee185">SCLEX_CONF</a> = 17, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2aa81b3ab54ed446bd82fd8e47bb716efe">SCLEX_PASCAL</a> = 18, 
-<br />
-&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a2c30b22ff5f0f07f8ccf96eb0c0eb5d6">SCLEX_AVE</a> = 19, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a56c1b1e39b9c7e20faa9b7420d54e7a5">SCLEX_ADA</a> = 20, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a1b4009430261f11f17487ad843007d04">SCLEX_LISP</a> = 21, 
-<br />
-&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2ab271a6111144900d2d93de516b1035eb">SCLEX_RUBY</a> = 22, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a4e7d76804b75f4b89f1b315bfc52972f">SCLEX_EIFFEL</a> = 23, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a26b6e157b2a4595977de9c31c44c5f36">SCLEX_EIFFELKW</a> = 24, 
-<br />
-&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a3d423d890cfc3b987d62d48ede1ec887">SCLEX_TCL</a> = 25, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a3c92b60cfd0065deb73541166ab412cd">SCLEX_NNCRONTAB</a> = 26, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2ac26190310f45bf026d031fd52729f310">SCLEX_BULLANT</a> = 27, 
-<br />
-&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a0efcb32e5b56db847054c8b5f4778581">SCLEX_VBSCRIPT</a> = 28, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2ac6732578f1c51e3a2757dddb839d7b5d">SCLEX_ASP</a> = SCLEX_HTML, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a4a9d8ecf3ccab78020f78ad4efb510d6">SCLEX_PHP</a> = SCLEX_HTML, 
-<br />
-&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a207b1e77e47550f0b0787a107a206b71">SCLEX_BAAN</a> = 31, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a457d5320bb0deebd765830974964c4ca">SCLEX_MATLAB</a> = 32, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a12d07a2dd6cc648226ecdbc41ef0d169">SCLEX_SCRIPTOL</a> = 33, 
-<br />
-&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a286421d44d37e6eade78481e3d063540">SCLEX_ASM</a> = 34, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a8dd4142d9043b7b15c235c038a8abf0f">SCLEX_CPPNOCASE</a> = 35, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a14a8a752af012a2c9444b5b291108574">SCLEX_FORTRAN</a> = 36, 
-<br />
-&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a94cdec496a332379e7cb47c116c318c6">SCLEX_F77</a> = 37, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a9c08d490101986eb17aab67a1fb7159f">SCLEX_CSS</a> = 38, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2af510951e33b06ef3e995d69c53a94fdc">SCLEX_POV</a> = 39, 
-<br />
-&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a6f07bc63049dc24bd3afc9e8ebac18ce">SCLEX_LOUT</a> = 40, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a1d30f511ae4cc23f0bc43fd1ca6cda12">SCLEX_ESCRIPT</a> = 41, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a053e8c790c607f826c933729ada1a6c2">SCLEX_PS</a> = 42, 
-<br />
-&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a592ddfd7bb2d792a42e44a6a04640247">SCLEX_NSIS</a> = 43, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a6d6709e5e960072a7c91b3e5b01a020a">SCLEX_MMIXAL</a> = 44, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a7d602388b550d67454b1c11de9fac04e">SCLEX_CLW</a> = 45, 
-<br />
-&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a8a1b12c769eced15a1a54a87e7521a47">SCLEX_CLWNOCASE</a> = 46, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a95c696054c8774351078fb670b591028">SCLEX_LOT</a> = 47, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a7c021577e03000be86d0acd1ec6c502b">SCLEX_YAML</a> = 48, 
-<br />
-&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2aff435fbce318cd18cadeae1be877bd41">SCLEX_TEX</a> = 49, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a345b6b3ec51466394faec02ecdb8dc2f">SCLEX_METAPOST</a> = 50, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2acc275c470d9bfe05754cdf4e42a54741">SCLEX_POWERBASIC</a> = 51, 
-<br />
-&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a44c24c20cdec1b6e482f69ed721a4077">SCLEX_FORTH</a> = 52, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2aa5ac4a29460ebae1edb850c87473a52c">SCLEX_ERLANG</a> = 53, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a0bfd1f7f3d9ec8b9ea24bb00eb199704">SCLEX_OCTAVE</a> = 54, 
-<br />
-&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a9cd5b9812fe0fb143740c8a5ac15431a">SCLEX_MSSQL</a> = 55, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2aa419285333430eff62c7d44b79786a3d">SCLEX_VERILOG</a> = 56, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a67ce3e5d9bdff0bdb44d1a5aff3e69c4">SCLEX_KIX</a> = 57, 
-<br />
-&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2ada00900f5ad22e170d494790194dfdcf">SCLEX_GUI4CLI</a> = 58, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a826c7c9b1bbf5079ff818003bbcdf78e">SCLEX_SPECMAN</a> = 59, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a05181d968abb3e1fec89869dd14e2bae">SCLEX_AU3</a> = 60, 
-<br />
-&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a176475983f8e4985ca616779de3be8db">SCLEX_APDL</a> = 61, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2ab05738aa98869eb2b998fb6d063d9dbc">SCLEX_BASH</a> = 62, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a6bc934ce8070f4cd38f4c2619b165b01">SCLEX_ASN1</a> = 63, 
-<br />
-&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a893d2e14e9c835c6b1e52d43aaf8c577">SCLEX_VHDL</a> = 64, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2aaf2da832f0698fe3cea0693f57d4b7d4">SCLEX_CAML</a> = 65, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a8ca1aa2873729ccadcc0c952d574299f">SCLEX_BLITZBASIC</a> = 66, 
-<br />
-&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2ae15512b5a294a4d9d87423e256a14874">SCLEX_PUREBASIC</a> = 67, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2ae0b332697a33770b6f1ba537b942a87d">SCLEX_HASKELL</a> = 68, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a582a3951e713f3e804e312345c120571">SCLEX_PHPSCRIPT</a> = 69, 
-<br />
-&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a41b0513b5d681c2e8a5d76ca8ef8752d">SCLEX_TADS3</a> = 70, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a0c4f62b4ba53206637593684c27fed7f">SCLEX_REBOL</a> = 71, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a13ce10215a927235a20b5b54739b6442">SCLEX_SMALLTALK</a> = 72, 
-<br />
-&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2af2efe26c56f871a45383153193e4e9e0">SCLEX_FLAGSHIP</a> = 73, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2aec034e1adf57a7349ed47f4848bb40c4">SCLEX_CSOUND</a> = 74, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2af7c6976f83643ba89841ad2eaf62c678">SCLEX_FREEBASIC</a> = 75, 
-<br />
-&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a1e8ba9f543d28f5470b3284c377caaef">SCLEX_INNOSETUP</a> = 76, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2acce1c850472e07587f12f668d3b541e5">SCLEX_OPAL</a> = 77, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a6dde6455441154c518c71d14cbc384e8">SCLEX_SPICE</a> = 78, 
-<br />
-&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2af89b580de6d8a9bffac12bf14b58489d">SCLEX_D</a> = 79, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a28cf4c57f311aa17f2dbf0f03761ce99">SCLEX_CMAKE</a> = 80, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2ae20ac3b9f61ea931c3b12e0c462b1dd0">SCLEX_GAP</a> = 81, 
-<br />
-&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2aa9a5c4cac509bcde1ea71e3fcc44c664">SCLEX_PLM</a> = 82, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a93e8366c515df085823e843354a8b3cd">SCLEX_PROGRESS</a> = 83, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a94d6c2b2fa424cbb4c8eb3749a9f934b">SCLEX_ABAQUS</a> = 84, 
-<br />
-&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a5a68f1f87e9069301116d328e30f63c7">SCLEX_ASYMPTOTE</a> = 85, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a370fc35c7da9d2bdd2ab7088da3d7afe">SCLEX_R</a> = 86, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2aea0c54b674130c1ce336667af1468011">SCLEX_MAGIK</a> = 87, 
-<br />
-&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2ad32bd9c8bb2d41cfcf26a8ab7605cee8">SCLEX_POWERSHELL</a> = 88, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a705102c40d1227a12afd8da13b43ab00">SCLEX_MYSQL</a> = 89, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a0d2bf09afa633715605a3305777dfc83">SCLEX_PO</a> = 90, 
-<br />
-&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a9add9caf532d347948e1c8038ab671e1">SCLEX_TAL</a> = 91, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2ab87e1d9e6edd4f9ee6627d837c6152b3">SCLEX_COBOL</a> = 92, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2ad5f7ed0033d057fc7d84a3c80c5640be">SCLEX_TACL</a> = 93, 
-<br />
-&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a1aa37e96400fba08b571e6f17100bb23">SCLEX_SORCUS</a> = 94, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a36d2c47f406db754feb03b7c530be79f">SCLEX_POWERPRO</a> = 95, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a8d42ad47b0a03f3a27c047401f3cb080">SCLEX_NIMROD</a> = 96, 
-<br />
-&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a6b2b7135756e6e63afaab29e1ce69e5d">SCLEX_SML</a> = 97, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a735f6a745c132f34910668c6f221dbef">SCLEX_MARKDOWN</a> = 98, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a1eb34afacf50e022bc6d8d3ac92384d1">SCLEX_TXT2TAGS</a> = 99, 
-<br />
-&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a5f5a499292d10817ab864bb61fc952bb">SCLEX_A68K</a> = 100, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a030fcaf06a85c39c4f57a828ef354d11">SCLEX_MODULA</a> = 101, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2ab4dd20651eeac848ec8a1586b3da3c8c">SCLEX_COFFEESCRIPT</a> = 102, 
-<br />
-&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2aa9ea73b5b40de75ed54ea356f13a7b47">SCLEX_TCMD</a> = 103, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2ad63b11d786d32c7101682682bf49c063">SCLEX_AVS</a> = 104, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a7ed6ed45706f72a25396e7cea6f179fc">SCLEX_ECL</a> = 105, 
-<br />
-&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a96e54938b672128818b2c8201833993a">SCLEX_OSCRIPT</a> = 106, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a6505e2018707a20252ef8eefc6b25fb3">SCLEX_VISUALPROLOG</a> = 107, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a96b2db4f5bb0191b81dd536b0b8b13e2">SCLEX_LITERATEHASKELL</a> = 108, 
-<br />
-&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a6e8fa194daac20f1860a30910cd77ad2">SCLEX_STTXT</a> = 109, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2ad0cd24eef0f5650d775d4dd05bd82df8">SCLEX_KVIRC</a> = 110, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a7dedcc3f7467a77cf25eff297aad55c1">SCLEX_RUST</a> = 111, 
-<br />
-&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a426868e898ad88df600d7a0cba7ed000">SCLEX_DMAP</a> = 112, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a6fee40e395ba28044ccd9cbbc1db48d5">SCLEX_AS</a> = 113, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2ad9e8188110135d6897add3becb30995f">SCLEX_DMIS</a> = 114, 
-<br />
-&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2ab196b886d720b528c06981f3162edcfe">SCLEX_REGISTRY</a> = 115, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2abc6e7a4f3fbf502b080d443f4f779ea9">SCLEX_BIBTEX</a> = 116, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a833ab9e759135def757131a8bd0196fe">SCLEX_SREC</a> = 117, 
-<br />
-&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a60d40cf6110071d3ae0ff271ea00fca6">SCLEX_IHEX</a> = 118, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a7f81fc1ce2e254d399b858b08362e0bf">SCLEX_TEHEX</a> = 119, 
-<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a7fbfc36f6ecf328b50efe1d29fa7be89">SCLEX_JSON</a> = 120, 
-<br />
-&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a5b7dd7ff5031bbcb8183bb1478c461a2a07565bccfb3046478e918086c75fd2d0">SCLEX_EDIFACT</a> = 121
-<br />
- }</td></tr>
 <tr class="separator:a5b7dd7ff5031bbcb8183bb1478c461a2 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2f30a618e5556a33aa60271835d92b85 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2f30a618e5556a33aa60271835d92b85"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>SC_WEIGHT_NORMAL</b> = 400, 
+<tr class="memitem:a2f30a618e5556a33aa60271835d92b85 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
+&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a2f30a618e5556a33aa60271835d92b85a6097124d46dc23dbb028fb340b4aa17e">SCMOD_NORM</a> = 0, 
+<a class="el" href="classQsciScintillaBase.html#a2f30a618e5556a33aa60271835d92b85ad3e496f1bdcc19e0b87c83c624e9f184">SCMOD_SHIFT</a> = 1, 
+<a class="el" href="classQsciScintillaBase.html#a2f30a618e5556a33aa60271835d92b85a944d24d92f0c62a4f519936199d74198">SCMOD_CTRL</a> = 2, 
+<br />
+&#160;&#160;<a class="el" href="classQsciScintillaBase.html#a2f30a618e5556a33aa60271835d92b85aaa78aa9b07d1b2afe030262223eba11a">SCMOD_ALT</a> = 4, 
+<a class="el" href="classQsciScintillaBase.html#a2f30a618e5556a33aa60271835d92b85a92a9efa0e26fb75aa9d6584c715aa465">SCMOD_SUPER</a> = 8, 
+<a class="el" href="classQsciScintillaBase.html#a2f30a618e5556a33aa60271835d92b85add02edfef385cd3b3020235bc752eda7">SCMOD_META</a> = 16
+<br />
+ }</td></tr>
+<tr class="separator:a2f30a618e5556a33aa60271835d92b85 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0ccb8d977d1adf32e16613cad11d33c inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
+&#160;&#160;<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca62931496707b79f9d5b348aacbd51a6e">SCLEX_CONTAINER</a> = 0, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca8a264dd8fe734630be400388fac8f588">SCLEX_NULL</a> = 1, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33caaa0d7fa0c2396811b59b5e6ba6c811f1">SCLEX_PYTHON</a> = 2, 
+<br />
+&#160;&#160;<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca504f72d70f56dcb53fb908fe79452138">SCLEX_CPP</a> = 3, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca00ae3e9a26cdc1afac630a91f3b3c7ec">SCLEX_HTML</a> = 4, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca1d7fee124bcdc3de441f5051c53eff92">SCLEX_XML</a> = 5, 
+<br />
+&#160;&#160;<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca9ef2274168be1be3f691d59aa142f170">SCLEX_PERL</a> = 6, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33caf1a6b060c43736ae87b701da137aaf51">SCLEX_SQL</a> = 7, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca552be64626f5d82c3d77e27ed485124f">SCLEX_VB</a> = 8, 
+<br />
+&#160;&#160;<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33cae51ad6d026758e0fde01d796d72d0815">SCLEX_PROPERTIES</a> = 9, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca1beef12bbc9c9835a6791267c8fcb10a">SCLEX_ERRORLIST</a> = 10, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca990148a08b2f7a1585691ee984876863">SCLEX_MAKEFILE</a> = 11, 
+<br />
+&#160;&#160;<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33cae894213f20cdd7eae927718c87cbfae4">SCLEX_BATCH</a> = 12, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca6b110854fbef28d60067b82faf5ed229">SCLEX_LATEX</a> = 14, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca9975c914f242664d8225e3692f88ac31">SCLEX_LUA</a> = 15, 
+<br />
+&#160;&#160;<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca254b0148fea4c8f6e170ef09bae369e7">SCLEX_DIFF</a> = 16, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca477ce8c2cdaac994e2ec4022e67ee185">SCLEX_CONF</a> = 17, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33caa81b3ab54ed446bd82fd8e47bb716efe">SCLEX_PASCAL</a> = 18, 
+<br />
+&#160;&#160;<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca2c30b22ff5f0f07f8ccf96eb0c0eb5d6">SCLEX_AVE</a> = 19, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca56c1b1e39b9c7e20faa9b7420d54e7a5">SCLEX_ADA</a> = 20, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca1b4009430261f11f17487ad843007d04">SCLEX_LISP</a> = 21, 
+<br />
+&#160;&#160;<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33cab271a6111144900d2d93de516b1035eb">SCLEX_RUBY</a> = 22, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca4e7d76804b75f4b89f1b315bfc52972f">SCLEX_EIFFEL</a> = 23, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca26b6e157b2a4595977de9c31c44c5f36">SCLEX_EIFFELKW</a> = 24, 
+<br />
+&#160;&#160;<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca3d423d890cfc3b987d62d48ede1ec887">SCLEX_TCL</a> = 25, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca3c92b60cfd0065deb73541166ab412cd">SCLEX_NNCRONTAB</a> = 26, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33cac26190310f45bf026d031fd52729f310">SCLEX_BULLANT</a> = 27, 
+<br />
+&#160;&#160;<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca0efcb32e5b56db847054c8b5f4778581">SCLEX_VBSCRIPT</a> = 28, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33cac6732578f1c51e3a2757dddb839d7b5d">SCLEX_ASP</a> = SCLEX_HTML, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca4a9d8ecf3ccab78020f78ad4efb510d6">SCLEX_PHP</a> = SCLEX_HTML, 
+<br />
+&#160;&#160;<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca207b1e77e47550f0b0787a107a206b71">SCLEX_BAAN</a> = 31, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca457d5320bb0deebd765830974964c4ca">SCLEX_MATLAB</a> = 32, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca12d07a2dd6cc648226ecdbc41ef0d169">SCLEX_SCRIPTOL</a> = 33, 
+<br />
+&#160;&#160;<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca286421d44d37e6eade78481e3d063540">SCLEX_ASM</a> = 34, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca8dd4142d9043b7b15c235c038a8abf0f">SCLEX_CPPNOCASE</a> = 35, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca14a8a752af012a2c9444b5b291108574">SCLEX_FORTRAN</a> = 36, 
+<br />
+&#160;&#160;<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca94cdec496a332379e7cb47c116c318c6">SCLEX_F77</a> = 37, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca9c08d490101986eb17aab67a1fb7159f">SCLEX_CSS</a> = 38, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33caf510951e33b06ef3e995d69c53a94fdc">SCLEX_POV</a> = 39, 
+<br />
+&#160;&#160;<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca6f07bc63049dc24bd3afc9e8ebac18ce">SCLEX_LOUT</a> = 40, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca1d30f511ae4cc23f0bc43fd1ca6cda12">SCLEX_ESCRIPT</a> = 41, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca053e8c790c607f826c933729ada1a6c2">SCLEX_PS</a> = 42, 
+<br />
+&#160;&#160;<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca592ddfd7bb2d792a42e44a6a04640247">SCLEX_NSIS</a> = 43, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca6d6709e5e960072a7c91b3e5b01a020a">SCLEX_MMIXAL</a> = 44, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca7d602388b550d67454b1c11de9fac04e">SCLEX_CLW</a> = 45, 
+<br />
+&#160;&#160;<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca8a1b12c769eced15a1a54a87e7521a47">SCLEX_CLWNOCASE</a> = 46, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca95c696054c8774351078fb670b591028">SCLEX_LOT</a> = 47, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca7c021577e03000be86d0acd1ec6c502b">SCLEX_YAML</a> = 48, 
+<br />
+&#160;&#160;<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33caff435fbce318cd18cadeae1be877bd41">SCLEX_TEX</a> = 49, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca345b6b3ec51466394faec02ecdb8dc2f">SCLEX_METAPOST</a> = 50, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33cacc275c470d9bfe05754cdf4e42a54741">SCLEX_POWERBASIC</a> = 51, 
+<br />
+&#160;&#160;<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca44c24c20cdec1b6e482f69ed721a4077">SCLEX_FORTH</a> = 52, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33caa5ac4a29460ebae1edb850c87473a52c">SCLEX_ERLANG</a> = 53, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca0bfd1f7f3d9ec8b9ea24bb00eb199704">SCLEX_OCTAVE</a> = 54, 
+<br />
+&#160;&#160;<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca9cd5b9812fe0fb143740c8a5ac15431a">SCLEX_MSSQL</a> = 55, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33caa419285333430eff62c7d44b79786a3d">SCLEX_VERILOG</a> = 56, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca67ce3e5d9bdff0bdb44d1a5aff3e69c4">SCLEX_KIX</a> = 57, 
+<br />
+&#160;&#160;<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33cada00900f5ad22e170d494790194dfdcf">SCLEX_GUI4CLI</a> = 58, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca826c7c9b1bbf5079ff818003bbcdf78e">SCLEX_SPECMAN</a> = 59, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca05181d968abb3e1fec89869dd14e2bae">SCLEX_AU3</a> = 60, 
+<br />
+&#160;&#160;<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca176475983f8e4985ca616779de3be8db">SCLEX_APDL</a> = 61, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33cab05738aa98869eb2b998fb6d063d9dbc">SCLEX_BASH</a> = 62, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca6bc934ce8070f4cd38f4c2619b165b01">SCLEX_ASN1</a> = 63, 
+<br />
+&#160;&#160;<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca893d2e14e9c835c6b1e52d43aaf8c577">SCLEX_VHDL</a> = 64, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33caaf2da832f0698fe3cea0693f57d4b7d4">SCLEX_CAML</a> = 65, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca8ca1aa2873729ccadcc0c952d574299f">SCLEX_BLITZBASIC</a> = 66, 
+<br />
+&#160;&#160;<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33cae15512b5a294a4d9d87423e256a14874">SCLEX_PUREBASIC</a> = 67, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33cae0b332697a33770b6f1ba537b942a87d">SCLEX_HASKELL</a> = 68, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca582a3951e713f3e804e312345c120571">SCLEX_PHPSCRIPT</a> = 69, 
+<br />
+&#160;&#160;<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca41b0513b5d681c2e8a5d76ca8ef8752d">SCLEX_TADS3</a> = 70, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca0c4f62b4ba53206637593684c27fed7f">SCLEX_REBOL</a> = 71, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca13ce10215a927235a20b5b54739b6442">SCLEX_SMALLTALK</a> = 72, 
+<br />
+&#160;&#160;<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33caf2efe26c56f871a45383153193e4e9e0">SCLEX_FLAGSHIP</a> = 73, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33caec034e1adf57a7349ed47f4848bb40c4">SCLEX_CSOUND</a> = 74, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33caf7c6976f83643ba89841ad2eaf62c678">SCLEX_FREEBASIC</a> = 75, 
+<br />
+&#160;&#160;<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca1e8ba9f543d28f5470b3284c377caaef">SCLEX_INNOSETUP</a> = 76, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33cacce1c850472e07587f12f668d3b541e5">SCLEX_OPAL</a> = 77, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca6dde6455441154c518c71d14cbc384e8">SCLEX_SPICE</a> = 78, 
+<br />
+&#160;&#160;<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33caf89b580de6d8a9bffac12bf14b58489d">SCLEX_D</a> = 79, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca28cf4c57f311aa17f2dbf0f03761ce99">SCLEX_CMAKE</a> = 80, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33cae20ac3b9f61ea931c3b12e0c462b1dd0">SCLEX_GAP</a> = 81, 
+<br />
+&#160;&#160;<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33caa9a5c4cac509bcde1ea71e3fcc44c664">SCLEX_PLM</a> = 82, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca93e8366c515df085823e843354a8b3cd">SCLEX_PROGRESS</a> = 83, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca94d6c2b2fa424cbb4c8eb3749a9f934b">SCLEX_ABAQUS</a> = 84, 
+<br />
+&#160;&#160;<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca5a68f1f87e9069301116d328e30f63c7">SCLEX_ASYMPTOTE</a> = 85, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca370fc35c7da9d2bdd2ab7088da3d7afe">SCLEX_R</a> = 86, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33caea0c54b674130c1ce336667af1468011">SCLEX_MAGIK</a> = 87, 
+<br />
+&#160;&#160;<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33cad32bd9c8bb2d41cfcf26a8ab7605cee8">SCLEX_POWERSHELL</a> = 88, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca705102c40d1227a12afd8da13b43ab00">SCLEX_MYSQL</a> = 89, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca0d2bf09afa633715605a3305777dfc83">SCLEX_PO</a> = 90, 
+<br />
+&#160;&#160;<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca9add9caf532d347948e1c8038ab671e1">SCLEX_TAL</a> = 91, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33cab87e1d9e6edd4f9ee6627d837c6152b3">SCLEX_COBOL</a> = 92, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33cad5f7ed0033d057fc7d84a3c80c5640be">SCLEX_TACL</a> = 93, 
+<br />
+&#160;&#160;<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca1aa37e96400fba08b571e6f17100bb23">SCLEX_SORCUS</a> = 94, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca36d2c47f406db754feb03b7c530be79f">SCLEX_POWERPRO</a> = 95, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca8d42ad47b0a03f3a27c047401f3cb080">SCLEX_NIMROD</a> = 96, 
+<br />
+&#160;&#160;<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca6b2b7135756e6e63afaab29e1ce69e5d">SCLEX_SML</a> = 97, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca735f6a745c132f34910668c6f221dbef">SCLEX_MARKDOWN</a> = 98, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca1eb34afacf50e022bc6d8d3ac92384d1">SCLEX_TXT2TAGS</a> = 99, 
+<br />
+&#160;&#160;<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca5f5a499292d10817ab864bb61fc952bb">SCLEX_A68K</a> = 100, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca030fcaf06a85c39c4f57a828ef354d11">SCLEX_MODULA</a> = 101, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33cab4dd20651eeac848ec8a1586b3da3c8c">SCLEX_COFFEESCRIPT</a> = 102, 
+<br />
+&#160;&#160;<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33caa9ea73b5b40de75ed54ea356f13a7b47">SCLEX_TCMD</a> = 103, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33cad63b11d786d32c7101682682bf49c063">SCLEX_AVS</a> = 104, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca7ed6ed45706f72a25396e7cea6f179fc">SCLEX_ECL</a> = 105, 
+<br />
+&#160;&#160;<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca96e54938b672128818b2c8201833993a">SCLEX_OSCRIPT</a> = 106, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca6505e2018707a20252ef8eefc6b25fb3">SCLEX_VISUALPROLOG</a> = 107, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca96b2db4f5bb0191b81dd536b0b8b13e2">SCLEX_LITERATEHASKELL</a> = 108, 
+<br />
+&#160;&#160;<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca6e8fa194daac20f1860a30910cd77ad2">SCLEX_STTXT</a> = 109, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33cad0cd24eef0f5650d775d4dd05bd82df8">SCLEX_KVIRC</a> = 110, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca7dedcc3f7467a77cf25eff297aad55c1">SCLEX_RUST</a> = 111, 
+<br />
+&#160;&#160;<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca426868e898ad88df600d7a0cba7ed000">SCLEX_DMAP</a> = 112, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca6fee40e395ba28044ccd9cbbc1db48d5">SCLEX_AS</a> = 113, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33cad9e8188110135d6897add3becb30995f">SCLEX_DMIS</a> = 114, 
+<br />
+&#160;&#160;<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33cab196b886d720b528c06981f3162edcfe">SCLEX_REGISTRY</a> = 115, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33cabc6e7a4f3fbf502b080d443f4f779ea9">SCLEX_BIBTEX</a> = 116, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca833ab9e759135def757131a8bd0196fe">SCLEX_SREC</a> = 117, 
+<br />
+&#160;&#160;<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca60d40cf6110071d3ae0ff271ea00fca6">SCLEX_IHEX</a> = 118, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca7f81fc1ce2e254d399b858b08362e0bf">SCLEX_TEHEX</a> = 119, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca7fbfc36f6ecf328b50efe1d29fa7be89">SCLEX_JSON</a> = 120, 
+<br />
+&#160;&#160;<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca07565bccfb3046478e918086c75fd2d0">SCLEX_EDIFACT</a> = 121, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33cace65638f1fc7df156cb5fd7e13e40b39">SCLEX_INDENT</a> = 122, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33cad030153b23920c60fd4c57a63a1992ad">SCLEX_MAXIMA</a> = 123, 
+<br />
+&#160;&#160;<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33caa3c5a8b4e7b66cfd26eeadc24049c268">SCLEX_STATA</a> = 124, 
+<a class="el" href="classQsciScintillaBase.html#aa0ccb8d977d1adf32e16613cad11d33ca163ba76db43420149ae4ed4456426d7c">SCLEX_SAS</a> = 125
+<br />
+ }</td></tr>
+<tr class="separator:aa0ccb8d977d1adf32e16613cad11d33c inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52522ef0c4c7f8e8054de3ae30c2a152 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a52522ef0c4c7f8e8054de3ae30c2a152"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>SC_WEIGHT_NORMAL</b> = 400, 
 <b>SC_WEIGHT_SEMIBOLD</b> = 600, 
 <b>SC_WEIGHT_BOLD</b> = 700
  }</td></tr>
-<tr class="separator:a2f30a618e5556a33aa60271835d92b85 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa0ccb8d977d1adf32e16613cad11d33c inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa0ccb8d977d1adf32e16613cad11d33c"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
+<tr class="separator:a52522ef0c4c7f8e8054de3ae30c2a152 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1265740e565d89c7fcd0143bf6e0f7e0 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1265740e565d89c7fcd0143bf6e0f7e0"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
 &#160;&#160;<b>SC_TECHNOLOGY_DEFAULT</b> = 0, 
 <b>SC_TECHNOLOGY_DIRECTWRITE</b> = 1, 
 <b>SC_TECHNOLOGY_DIRECTWRITERETAIN</b> = 2, 
@@ -1891,29 +1947,29 @@ Public Types</h2></td></tr>
 &#160;&#160;<b>SC_TECHNOLOGY_DIRECTWRITEDC</b> = 3
 <br />
  }</td></tr>
-<tr class="separator:aa0ccb8d977d1adf32e16613cad11d33c inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a52522ef0c4c7f8e8054de3ae30c2a152 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a52522ef0c4c7f8e8054de3ae30c2a152"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>SC_CASEINSENSITIVEBEHAVIOUR_RESPECTCASE</b> = 0, 
+<tr class="separator:a1265740e565d89c7fcd0143bf6e0f7e0 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8559b40bc508de0fd6d9fd8f8dcefa5d inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8559b40bc508de0fd6d9fd8f8dcefa5d"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>SC_CASEINSENSITIVEBEHAVIOUR_RESPECTCASE</b> = 0, 
 <b>SC_CASEINSENSITIVEBEHAVIOUR_IGNORECASE</b> = 1
  }</td></tr>
-<tr class="separator:a52522ef0c4c7f8e8054de3ae30c2a152 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1265740e565d89c7fcd0143bf6e0f7e0 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1265740e565d89c7fcd0143bf6e0f7e0"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>SC_FONT_SIZE_MULTIPLIER</b> = 100
+<tr class="separator:a8559b40bc508de0fd6d9fd8f8dcefa5d inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa9c590246d71d53b997cf7eda174d018 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa9c590246d71d53b997cf7eda174d018"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>SC_FONT_SIZE_MULTIPLIER</b> = 100
  }</td></tr>
-<tr class="separator:a1265740e565d89c7fcd0143bf6e0f7e0 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8559b40bc508de0fd6d9fd8f8dcefa5d inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8559b40bc508de0fd6d9fd8f8dcefa5d"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>SC_FOLDACTION_CONTRACT</b> = 0, 
+<tr class="separator:aa9c590246d71d53b997cf7eda174d018 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99d886848814f091b9049c9e36a429e3 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a99d886848814f091b9049c9e36a429e3"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>SC_FOLDACTION_CONTRACT</b> = 0, 
 <b>SC_FOLDACTION_EXPAND</b> = 1, 
 <b>SC_FOLDACTION_TOGGLE</b> = 2
  }</td></tr>
-<tr class="separator:a8559b40bc508de0fd6d9fd8f8dcefa5d inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa9c590246d71d53b997cf7eda174d018 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa9c590246d71d53b997cf7eda174d018"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>SC_AUTOMATICFOLD_SHOW</b> = 0x0001, 
+<tr class="separator:a99d886848814f091b9049c9e36a429e3 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd93e4faedc46f6d39275f76fb872581 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abd93e4faedc46f6d39275f76fb872581"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>SC_AUTOMATICFOLD_SHOW</b> = 0x0001, 
 <b>SC_AUTOMATICFOLD_CLICK</b> = 0x0002, 
 <b>SC_AUTOMATICFOLD_CHANGE</b> = 0x0004
  }</td></tr>
-<tr class="separator:aa9c590246d71d53b997cf7eda174d018 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a99d886848814f091b9049c9e36a429e3 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a99d886848814f091b9049c9e36a429e3"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>SC_ORDER_PRESORTED</b> = 0, 
+<tr class="separator:abd93e4faedc46f6d39275f76fb872581 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8164e6e4ce7e12d63fb6ffca7d087342 inherit pub_types_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8164e6e4ce7e12d63fb6ffca7d087342"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>SC_ORDER_PRESORTED</b> = 0, 
 <b>SC_ORDER_PERFORMSORT</b> = 1, 
 <b>SC_ORDER_CUSTOM</b> = 2
  }</td></tr>
-<tr class="separator:a99d886848814f091b9049c9e36a429e3 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:a8164e6e4ce7e12d63fb6ffca7d087342 inherit pub_types_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-slots"></a>
 Public Slots</h2></td></tr>
@@ -1992,6 +2048,8 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr class="separator:af9015c62600c87eef82f715bf61da913"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8c227f8c948aeb5e6a2cf73397387cc0"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQsciScintilla.html#a8c227f8c948aeb5e6a2cf73397387cc0">setCaretLineBackgroundColor</a> (const QColor &amp;col)</td></tr>
 <tr class="separator:a8c227f8c948aeb5e6a2cf73397387cc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0999f0d3c67472b6986486fd06775240"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQsciScintilla.html#a0999f0d3c67472b6986486fd06775240">setCaretLineFrameWidth</a> (int width)</td></tr>
+<tr class="separator:a0999f0d3c67472b6986486fd06775240"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a37f2cddeeef588533be46798ae18ffab"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQsciScintilla.html#a37f2cddeeef588533be46798ae18ffab">setCaretLineVisible</a> (bool enable)</td></tr>
 <tr class="separator:a37f2cddeeef588533be46798ae18ffab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2c1974c2bdc9c0f2923c28b66afe811f"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQsciScintilla.html#a2c1974c2bdc9c0f2923c28b66afe811f">setCaretWidth</a> (int width)</td></tr>
@@ -2117,6 +2175,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="separator:a61c43c53a753272c51c5c5ac14bda136 inherit signals_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1ad82492f8015a60dea97f6ebd712d64 inherit signals_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQsciScintillaBase.html#a1ad82492f8015a60dea97f6ebd712d64">SCN_AUTOCSELECTION</a> (const char *selection, int position)</td></tr>
 <tr class="separator:a1ad82492f8015a60dea97f6ebd712d64 inherit signals_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a721a1879cabaa76883ae1a02a34a76e8 inherit signals_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQsciScintillaBase.html#a721a1879cabaa76883ae1a02a34a76e8">SCN_AUTOCSELECTIONCHANGE</a> (const char *selection, int id, int position)</td></tr>
+<tr class="separator:a721a1879cabaa76883ae1a02a34a76e8 inherit signals_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af2cc3652d35b4d0ec1d8c9ac18e2225e inherit signals_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af2cc3652d35b4d0ec1d8c9ac18e2225e"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQsciScintillaBase.html#af2cc3652d35b4d0ec1d8c9ac18e2225e">SCEN_CHANGE</a> ()</td></tr>
 <tr class="separator:af2cc3652d35b4d0ec1d8c9ac18e2225e inherit signals_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -2126,12 +2186,10 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="separator:ae8d8fa5d5f063a7c7d37d527f86b5fe8 inherit signals_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad3ca5787399ed886cb9000c8feab3c08 inherit signals_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQsciScintillaBase.html#ad3ca5787399ed886cb9000c8feab3c08">SCN_DOUBLECLICK</a> (int position, int line, int modifiers)</td></tr>
 <tr class="separator:ad3ca5787399ed886cb9000c8feab3c08 inherit signals_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae872d85fd88f45c08684c19e866e441e inherit signals_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae872d85fd88f45c08684c19e866e441e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SCN_DWELLEND</b> (int, int, int)</td></tr>
-<tr class="separator:ae872d85fd88f45c08684c19e866e441e inherit signals_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae87f2ed357c92b8e1d18d8354524ad34 inherit signals_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae87f2ed357c92b8e1d18d8354524ad34"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SCN_DWELLSTART</b> (int, int, int)</td></tr>
-<tr class="separator:ae87f2ed357c92b8e1d18d8354524ad34 inherit signals_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ecd605284870ddbf703cf4c8c995ca6 inherit signals_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQsciScintillaBase.html#a9ecd605284870ddbf703cf4c8c995ca6">SCN_DWELLEND</a> (int position, int x, int y)</td></tr>
+<tr class="separator:a9ecd605284870ddbf703cf4c8c995ca6 inherit signals_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adfd788dce5c1a91d1fcd5e6fdd2fca59 inherit signals_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQsciScintillaBase.html#adfd788dce5c1a91d1fcd5e6fdd2fca59">SCN_DWELLSTART</a> (int position, int x, int y)</td></tr>
+<tr class="separator:adfd788dce5c1a91d1fcd5e6fdd2fca59 inherit signals_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae53947625062cec64a212dc68877ddc3 inherit signals_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae53947625062cec64a212dc68877ddc3"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQsciScintillaBase.html#ae53947625062cec64a212dc68877ddc3">SCN_FOCUSIN</a> ()</td></tr>
 <tr class="separator:ae53947625062cec64a212dc68877ddc3 inherit signals_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -2170,13 +2228,16 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>SCN_NEEDSHOWN</b> (in
 <tr class="separator:a0db8c3ad0764a96f3ccf0fec71de0d26 inherit signals_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a72c0bc1c83fd675714626cd786ca4fb9 inherit signals_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQsciScintillaBase.html#a72c0bc1c83fd675714626cd786ca4fb9">SCN_STYLENEEDED</a> (int position)</td></tr>
 <tr class="separator:a72c0bc1c83fd675714626cd786ca4fb9 inherit signals_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42cb45ea05c71180a594e0cc8041c07d inherit signals_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQsciScintillaBase.html#a42cb45ea05c71180a594e0cc8041c07d">SCN_URIDROPPED</a> (const QUrl &amp;url)</td></tr>
+<tr class="separator:a42cb45ea05c71180a594e0cc8041c07d inherit signals_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad88db21d86df33667c234d00af1fdf94 inherit signals_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQsciScintillaBase.html#ad88db21d86df33667c234d00af1fdf94">SCN_UPDATEUI</a> (int updated)</td></tr>
 <tr class="separator:ad88db21d86df33667c234d00af1fdf94 inherit signals_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adf920922c330b54642dfcfb7e7b8d338 inherit signals_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adf920922c330b54642dfcfb7e7b8d338"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SCN_USERLISTSELECTION</b> (const char *, int, int, int)</td></tr>
-<tr class="separator:adf920922c330b54642dfcfb7e7b8d338 inherit signals_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a85bb257cd4b733501a3b2e7de138548b inherit signals_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQsciScintillaBase.html#a85bb257cd4b733501a3b2e7de138548b">SCN_USERLISTSELECTION</a> (const char *, int)</td></tr>
-<tr class="separator:a85bb257cd4b733501a3b2e7de138548b inherit signals_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8225643b25dc6f1dedc48b4a7af4b83d inherit signals_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQsciScintillaBase.html#a8225643b25dc6f1dedc48b4a7af4b83d">SCN_USERLISTSELECTION</a> (const char *selection, int id, int ch, int method, int position)</td></tr>
+<tr class="separator:a8225643b25dc6f1dedc48b4a7af4b83d inherit signals_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9208cc0aaf2e0a32239924fc6d0b67b7 inherit signals_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQsciScintillaBase.html#a9208cc0aaf2e0a32239924fc6d0b67b7">SCN_USERLISTSELECTION</a> (const char *selection, int id, int ch, int method)</td></tr>
+<tr class="separator:a9208cc0aaf2e0a32239924fc6d0b67b7 inherit signals_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0045744463119646a5fe33ecc4d104fb inherit signals_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQsciScintillaBase.html#a0045744463119646a5fe33ecc4d104fb">SCN_USERLISTSELECTION</a> (const char *selection, int id)</td></tr>
+<tr class="separator:a0045744463119646a5fe33ecc4d104fb inherit signals_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa114b43a6593dceeb1b50efccc9533f6 inherit signals_classQsciScintillaBase"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa114b43a6593dceeb1b50efccc9533f6"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>SCN_ZOOM</b> ()</td></tr>
 <tr class="separator:aa114b43a6593dceeb1b50efccc9533f6 inherit signals_classQsciScintillaBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -2238,6 +2299,8 @@ QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="separator:a59312ba0389d8f208cd8c6f8bc2d308e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa645746ce939473820d9401a8a530096"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQsciScintilla.html#aa645746ce939473820d9401a8a530096">callTipsVisible</a> () const </td></tr>
 <tr class="separator:aa645746ce939473820d9401a8a530096"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a405e4804f84e58476494314e7bf4d0a7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQsciScintilla.html#a405e4804f84e58476494314e7bf4d0a7">cancelFind</a> ()</td></tr>
+<tr class="separator:a405e4804f84e58476494314e7bf4d0a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a29e0cbc36bafac84bc1c755b6ee26abd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a29e0cbc36bafac84bc1c755b6ee26abd"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQsciScintilla.html#a29e0cbc36bafac84bc1c755b6ee26abd">cancelList</a> ()</td></tr>
 <tr class="separator:a29e0cbc36bafac84bc1c755b6ee26abd"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -2279,10 +2342,10 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="separator:ad2ac6461629e762b2f987c164d79e63b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a44d1c322098eb0cf44cf78e866ed80cb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQsciScintilla.html#a44d1c322098eb0cf44cf78e866ed80cb">fillIndicatorRange</a> (int lineFrom, int indexFrom, int lineTo, int indexTo, int indicatorNumber)</td></tr>
 <tr class="separator:a44d1c322098eb0cf44cf78e866ed80cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a37ac2bea94eafcfa639173557a821200"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQsciScintilla.html#a37ac2bea94eafcfa639173557a821200">findFirst</a> (const QString &amp;expr, bool re, bool cs, bool wo, bool wrap, bool forward=true, int line=-1, int index=-1, bool show=true, bool posix=false)</td></tr>
-<tr class="separator:a37ac2bea94eafcfa639173557a821200"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5959492f61eee7b6ef40660d7ae221d6"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQsciScintilla.html#a5959492f61eee7b6ef40660d7ae221d6">findFirstInSelection</a> (const QString &amp;expr, bool re, bool cs, bool wo, bool forward=true, bool show=true, bool posix=false)</td></tr>
-<tr class="separator:a5959492f61eee7b6ef40660d7ae221d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04780d47f799c56b6af0a10b91875045"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQsciScintilla.html#a04780d47f799c56b6af0a10b91875045">findFirst</a> (const QString &amp;expr, bool re, bool cs, bool wo, bool wrap, bool forward=true, int line=-1, int index=-1, bool show=true, bool posix=false, bool cxx11=false)</td></tr>
+<tr class="separator:a04780d47f799c56b6af0a10b91875045"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a437d58cc225880e34560b65f8c0b3b50"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQsciScintilla.html#a437d58cc225880e34560b65f8c0b3b50">findFirstInSelection</a> (const QString &amp;expr, bool re, bool cs, bool wo, bool forward=true, bool show=true, bool posix=false, bool cxx11=false)</td></tr>
+<tr class="separator:a437d58cc225880e34560b65f8c0b3b50"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adc2560a55f77a14329db8409dba11c54"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQsciScintilla.html#adc2560a55f77a14329db8409dba11c54">findNext</a> ()</td></tr>
 <tr class="separator:adc2560a55f77a14329db8409dba11c54"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac4ac7095b4236d8f0850a1cef1b792cb"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQsciScintilla.html#ac4ac7095b4236d8f0850a1cef1b792cb">firstVisibleLine</a> () const </td></tr>
@@ -3044,6 +3107,12 @@ typedef QByteArray&#160;</td><td class="memItemRight" valign="bottom"><b>Scintil
 <tr><td class="fieldname"><a class="anchor" id="a3333f3a47163153c1bd7db1a362b8974ab1d6bb2b94362ebcd6e8388f8812e3f4"></a>TriangleCharacterIndicator&#160;</td><td class="fielddoc">
 <p>A triangle below the centre of the first character in the indicator range. </p>
 </td></tr>
+<tr><td class="fieldname"><a class="anchor" id="a3333f3a47163153c1bd7db1a362b8974a7f4b165aed1dd094770e16c93c976d08"></a>GradientIndicator&#160;</td><td class="fielddoc">
+<p>A vertical gradient between the indicator's foreground colour at top to fully transparent at the bottom. </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="a3333f3a47163153c1bd7db1a362b8974aca7717bb45779f822c9fcea2d78456dc"></a>CentreGradientIndicator&#160;</td><td class="fielddoc">
+<p>A vertical gradient with the indicator's foreground colour in the middle and fading to fully transparent at the top and bottom. </p>
+</td></tr>
 </table>
 
 </div>
@@ -3334,6 +3403,9 @@ typedef QByteArray&#160;</td><td class="memItemRight" valign="bottom"><b>Scintil
 </td></tr>
 <tr><td class="fieldname"><a class="anchor" id="a59b529ccfcb1f7896efb523025371a03a0cb2a2ef379ad02b388a08880a624f2b"></a>WrapIndentIndented&#160;</td><td class="fielddoc">
 <p>Wrapped sub-lines are indented by the same amount as the first sub-line plus one more level of indentation. </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="a59b529ccfcb1f7896efb523025371a03aa2d7362610a92c58aa764a1df8914146"></a>WrapIndentDeeplyIndented&#160;</td><td class="fielddoc">
+<p>Wrapped sub-lines are indented by the same amount as the first sub-line plus two more level of indentation. </p>
 </td></tr>
 </table>
 
@@ -3803,6 +3875,22 @@ typedef QByteArray&#160;</td><td class="memItemRight" valign="bottom"><b>Scintil
 
 </div>
 </div>
+<a class="anchor" id="a405e4804f84e58476494314e7bf4d0a7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void QsciScintilla::cancelFind </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Cancel any previous call to <a class="el" href="classQsciScintilla.html#a04780d47f799c56b6af0a10b91875045">findFirst()</a>, <a class="el" href="classQsciScintilla.html#a437d58cc225880e34560b65f8c0b3b50">findFirstInSelection()</a> or <a class="el" href="classQsciScintilla.html#adc2560a55f77a14329db8409dba11c54">findNext()</a> so that <a class="el" href="classQsciScintilla.html#ad8a7afc4f25e04e805b7e291d5df1d35">replace()</a> does nothing. </p>
+
+</div>
+</div>
 <a class="anchor" id="aa888679b301716daba1af2f6b6a8947c"></a>
 <div class="memitem">
 <div class="memproto">
@@ -4193,7 +4281,7 @@ typedef QByteArray&#160;</td><td class="memItemRight" valign="bottom"><b>Scintil
 
 </div>
 </div>
-<a class="anchor" id="a37ac2bea94eafcfa639173557a821200"></a>
+<a class="anchor" id="a04780d47f799c56b6af0a10b91875045"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -4258,7 +4346,13 @@ typedef QByteArray&#160;</td><td class="memItemRight" valign="bottom"><b>Scintil
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>posix</em> = <code>false</code>&#160;</td>
+          <td class="paramname"><em>posix</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>cxx11</em> = <code>false</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -4281,11 +4375,12 @@ typedef QByteArray&#160;</td><td class="memItemRight" valign="bottom"><b>Scintil
 <p>If either <em>line</em> or <em>index</em> are negative (the default) then the search begins from the current cursor position. Otherwise the search begins at position <em>index</em> of line <em>line</em>.</p>
 <p>If <em>show</em> is true (the default) then any text found is made visible (ie. it is unfolded).</p>
 <p>If <em>posix</em> is true then a regular expression is treated in a more POSIX compatible manner by interpreting bare ( and ) as tagged sections rather than ( and ).</p>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classQsciScintilla.html#a5959492f61eee7b6ef40660d7ae221d6">findFirstInSelection()</a>, <a class="el" href="classQsciScintilla.html#adc2560a55f77a14329db8409dba11c54">findNext()</a>, <a class="el" href="classQsciScintilla.html#ad8a7afc4f25e04e805b7e291d5df1d35">replace()</a> </dd></dl>
+<p>If <em>cxx11</em> is true then a regular expression is treated as a Cxx11 regular expression.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classQsciScintilla.html#a405e4804f84e58476494314e7bf4d0a7">cancelFind()</a>, <a class="el" href="classQsciScintilla.html#a437d58cc225880e34560b65f8c0b3b50">findFirstInSelection()</a>, <a class="el" href="classQsciScintilla.html#adc2560a55f77a14329db8409dba11c54">findNext()</a>, <a class="el" href="classQsciScintilla.html#ad8a7afc4f25e04e805b7e291d5df1d35">replace()</a> </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="a5959492f61eee7b6ef40660d7ae221d6"></a>
+<a class="anchor" id="a437d58cc225880e34560b65f8c0b3b50"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -4332,7 +4427,13 @@ typedef QByteArray&#160;</td><td class="memItemRight" valign="bottom"><b>Scintil
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>posix</em> = <code>false</code>&#160;</td>
+          <td class="paramname"><em>posix</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>cxx11</em> = <code>false</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -4353,7 +4454,8 @@ typedef QByteArray&#160;</td><td class="memItemRight" valign="bottom"><b>Scintil
 <p>If <em>forward</em> is true (the default) then the search is forward from the start to the end of the selection, otherwise it is backwards from the end to the start of the selection.</p>
 <p>If <em>show</em> is true (the default) then any text found is made visible (ie. it is unfolded).</p>
 <p>If <em>posix</em> is true then a regular expression is treated in a more POSIX compatible manner by interpreting bare ( and ) as tagged sections rather than ( and ).</p>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classQsciScintilla.html#a5959492f61eee7b6ef40660d7ae221d6">findFirstInSelection()</a>, <a class="el" href="classQsciScintilla.html#adc2560a55f77a14329db8409dba11c54">findNext()</a>, <a class="el" href="classQsciScintilla.html#ad8a7afc4f25e04e805b7e291d5df1d35">replace()</a> </dd></dl>
+<p>If <em>cxx11</em> is true then a regular expression is treated as a Cxx11 regular expression.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classQsciScintilla.html#a405e4804f84e58476494314e7bf4d0a7">cancelFind()</a>, <a class="el" href="classQsciScintilla.html#a04780d47f799c56b6af0a10b91875045">findFirst()</a>, <a class="el" href="classQsciScintilla.html#adc2560a55f77a14329db8409dba11c54">findNext()</a>, <a class="el" href="classQsciScintilla.html#ad8a7afc4f25e04e805b7e291d5df1d35">replace()</a> </dd></dl>
 
 </div>
 </div>
@@ -4377,8 +4479,8 @@ typedef QByteArray&#160;</td><td class="memItemRight" valign="bottom"><b>Scintil
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Find the next occurence of the string found using <a class="el" href="classQsciScintilla.html#a37ac2bea94eafcfa639173557a821200">findFirst()</a> or <a class="el" href="classQsciScintilla.html#a5959492f61eee7b6ef40660d7ae221d6">findFirstInSelection()</a>.</p>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classQsciScintilla.html#a37ac2bea94eafcfa639173557a821200">findFirst()</a>, <a class="el" href="classQsciScintilla.html#a5959492f61eee7b6ef40660d7ae221d6">findFirstInSelection()</a>, <a class="el" href="classQsciScintilla.html#ad8a7afc4f25e04e805b7e291d5df1d35">replace()</a> </dd></dl>
+<p>Find the next occurence of the string found using <a class="el" href="classQsciScintilla.html#a04780d47f799c56b6af0a10b91875045">findFirst()</a> or <a class="el" href="classQsciScintilla.html#a437d58cc225880e34560b65f8c0b3b50">findFirstInSelection()</a>.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classQsciScintilla.html#a405e4804f84e58476494314e7bf4d0a7">cancelFind()</a>, <a class="el" href="classQsciScintilla.html#a04780d47f799c56b6af0a10b91875045">findFirst()</a>, <a class="el" href="classQsciScintilla.html#a437d58cc225880e34560b65f8c0b3b50">findFirstInSelection()</a>, <a class="el" href="classQsciScintilla.html#ad8a7afc4f25e04e805b7e291d5df1d35">replace()</a> </dd></dl>
 
 </div>
 </div>
@@ -5481,8 +5583,8 @@ typedef QByteArray&#160;</td><td class="memItemRight" valign="bottom"><b>Scintil
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Replace the current selection, set by a previous call to <a class="el" href="classQsciScintilla.html#a37ac2bea94eafcfa639173557a821200">findFirst()</a>, <a class="el" href="classQsciScintilla.html#a5959492f61eee7b6ef40660d7ae221d6">findFirstInSelection()</a> or <a class="el" href="classQsciScintilla.html#adc2560a55f77a14329db8409dba11c54">findNext()</a>, with <em>replaceStr</em>.</p>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classQsciScintilla.html#a37ac2bea94eafcfa639173557a821200">findFirst()</a>, <a class="el" href="classQsciScintilla.html#a5959492f61eee7b6ef40660d7ae221d6">findFirstInSelection()</a>, <a class="el" href="classQsciScintilla.html#adc2560a55f77a14329db8409dba11c54">findNext()</a> </dd></dl>
+<p>Replace the current selection, set by a previous call to <a class="el" href="classQsciScintilla.html#a04780d47f799c56b6af0a10b91875045">findFirst()</a>, <a class="el" href="classQsciScintilla.html#a437d58cc225880e34560b65f8c0b3b50">findFirstInSelection()</a> or <a class="el" href="classQsciScintilla.html#adc2560a55f77a14329db8409dba11c54">findNext()</a>, with <em>replaceStr</em>.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classQsciScintilla.html#a405e4804f84e58476494314e7bf4d0a7">cancelFind()</a>, <a class="el" href="classQsciScintilla.html#a04780d47f799c56b6af0a10b91875045">findFirst()</a>, <a class="el" href="classQsciScintilla.html#a437d58cc225880e34560b65f8c0b3b50">findFirstInSelection()</a>, <a class="el" href="classQsciScintilla.html#adc2560a55f77a14329db8409dba11c54">findNext()</a> </dd></dl>
 
 </div>
 </div>
@@ -7846,6 +7948,31 @@ typedef QByteArray&#160;</td><td class="memItemRight" valign="bottom"><b>Scintil
 </div><div class="memdoc">
 <p>Sets the background colour, including the alpha component, of the line containing the caret to <em>col</em>.</p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classQsciScintilla.html#a37f2cddeeef588533be46798ae18ffab">setCaretLineVisible()</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a0999f0d3c67472b6986486fd06775240"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void QsciScintilla::setCaretLineFrameWidth </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>width</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Sets the width of the frame of the line containing the caret to <em>width</em>. </p>
 
 </div>
 </div>

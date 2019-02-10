@@ -1,6 +1,6 @@
 // This is the SIP interface definition for QsciCommand.
 //
-// Copyright (c) 2018 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of QScintilla.
 // 
@@ -124,6 +124,7 @@ public:
         Redo,
         ZoomIn,
         ZoomOut,
+        ReverseLines,
     };
 
     Command command() const;

@@ -23,9 +23,7 @@
 #include "CharacterSet.h"
 #include "LexerModule.h"
 
-#ifdef SCI_NAMESPACE
 using namespace Scintilla;
-#endif
 
 #define HERE_DELIM_MAX			256
 
@@ -97,13 +95,26 @@ static int opposite(int ch) {
 }
 
 static int GlobScan(StyleContext &sc) {
-	// forward scan for a glob-like (...), no whitespace allowed
+	// forward scan for zsh globs, disambiguate versus bash arrays
+	// complex expressions may still fail, e.g. unbalanced () '' "" etc
 	int c, sLen = 0;
+	int pCount = 0;
+	int hash = 0;
 	while ((c = sc.GetRelativeCharacter(++sLen)) != 0) {
 		if (IsASpace(c)) {
 			return 0;
+		} else if (c == '\'' || c == '\"') {
+			if (hash != 2) return 0;
+		} else if (c == '#' && hash == 0) {
+			hash = (sLen == 1) ? 2:1;
+		} else if (c == '(') {
+			pCount++;
 		} else if (c == ')') {
-			return sLen;
+			if (pCount == 0) {
+				if (hash) return sLen;
+				return 0;
+			}
+			pCount--;
 		}
 	}
 	return 0;
@@ -813,6 +824,8 @@ static void FoldBashDoc(Sci_PositionU startPos, Sci_Position length, int, WordLi
 	int levelCurrent = levelPrev;
 	char chNext = styler[startPos];
 	int styleNext = styler.StyleAt(startPos);
+	char word[8] = { '\0' }; // we're not interested in long words anyway
+	unsigned int wordlen = 0;
 	for (Sci_PositionU i = startPos; i < endPos; i++) {
 		char ch = chNext;
 		chNext = styler.SafeGetCharAt(i + 1);
@@ -828,6 +841,19 @@ static void FoldBashDoc(Sci_PositionU startPos, Sci_Position length, int, WordLi
 			else if (IsCommentLine(lineCurrent - 1, styler)
 					 && !IsCommentLine(lineCurrent + 1, styler))
 				levelCurrent--;
+		}
+		if (style == SCE_SH_WORD) {
+			if ((wordlen + 1) < sizeof(word))
+				word[wordlen++] = ch;
+			if (styleNext != style) {
+				word[wordlen] = '\0';
+				wordlen = 0;
+				if (strcmp(word, "if") == 0 || strcmp(word, "case") == 0 || strcmp(word, "do") == 0) {
+					levelCurrent++;
+				} else if (strcmp(word, "fi") == 0 || strcmp(word, "esac") == 0 || strcmp(word, "done") == 0) {
+					levelCurrent--;
+				}
+			}
 		}
 		if (style == SCE_SH_OPERATOR) {
 			if (ch == '{') {
