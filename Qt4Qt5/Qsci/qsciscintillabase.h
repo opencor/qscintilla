@@ -3497,7 +3497,7 @@ public:
             void *lParam) const;
 
     //! \overload
-    long SendScintilla(unsigned int msg, unsigned long wParam,
+    long SendScintilla(unsigned int msg, uintptr_t wParam,
             const char *lParam) const;
 
     //! \overload

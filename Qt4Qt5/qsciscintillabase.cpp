@@ -185,7 +185,7 @@ long QsciScintillaBase::SendScintilla(unsigned int msg, unsigned long wParam,
 
 
 // Overloaded message send.
-long QsciScintillaBase::SendScintilla(unsigned int msg, unsigned long wParam,
+long QsciScintillaBase::SendScintilla(unsigned int msg, uintptr_t wParam,
         const char *lParam) const
 {
     return sci->WndProc(msg, wParam, reinterpret_cast<sptr_t>(lParam));
@@ -574,7 +574,7 @@ void QsciScintillaBase::mousePressEvent(QMouseEvent *e)
 
     Scintilla::Point pt(e->x(), e->y());
 
-    if (e->button() == Qt::LeftButton)
+    if (e->button() == Qt::LeftButton || e->button() == Qt::RightButton)
     {
         unsigned clickTime;
 
@@ -601,8 +601,12 @@ void QsciScintillaBase::mousePressEvent(QMouseEvent *e)
         bool alt = ctrl;
 #endif
 
-        sci->ButtonDownWithModifiers(pt, clickTime,
-                QsciScintillaQt::ModifierFlags(shift, ctrl, alt));
+        if (e->button() == Qt::LeftButton)
+            sci->ButtonDownWithModifiers(pt, clickTime,
+                    QsciScintillaQt::ModifierFlags(shift, ctrl, alt));
+        else
+            sci->RightButtonDownWithModifiers(pt, clickTime,
+                    QsciScintillaQt::ModifierFlags(shift, ctrl, alt));
     }
     else if (e->button() == Qt::MidButton)
     {

@@ -20,7 +20,7 @@
 
 # This must be kept in sync with Python/configure.py, Python/configure-old.py,
 # example-Qt4Qt5/application.pro and designer-Qt4Qt5/designer.pro.
-!win32:VERSION = 14.0.0
+!win32:VERSION = 15.0.0
 
 TEMPLATE = lib
 CONFIG += qt warn_off thread exceptions hide_symbols
