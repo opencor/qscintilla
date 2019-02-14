@@ -1,4 +1,47 @@
+2019-02-12  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS:
+	Released as v2.11.1.
+	[bebf741baff8] [2.11.1] <2.11-maint>
+
+	* NEWS:
+	Updated the NEWS file.
+	[9f2dd3438ac3] <2.11-maint>
+
+	* Python/configure-old.py, Python/configure.py, designer-
+	Qt4Qt5/designer.pro, example-Qt4Qt5/application.pro,
+	qt/qscintilla.pro:
+	Bumped the major version number of the library because of the
+	SendScintilla() signature change.
+	[c2fe34e11899] <2.11-maint>
+
+	* Python/sip/qsciscintillabase.sip, qt/qscimacro.cpp,
+	qt/qsciscintillabase.cpp, qt/qsciscintillabase.h:
+	Fixed a regression in QsciScintilla::insert(). The signature of
+	QsciScintillaBase::SendScintilla(unigned int, unsigned long, const
+	char *) has changed so that the second argument is now uintptr_t.
+	This may require code changes.
+	[b62eb7f29de4] <2.11-maint>
+
+2019-02-11  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS:
+	Updated the NEWS file.
+	[9768dbe05f64] <2.11-maint>
+
+	* qt/qsciscintillabase.cpp:
+	Fixed the marginRightClicked() signal.
+	[6a6efafbefd6] <2.11-maint>
+
+	* qt/qscintilla.pro:
+	Bumped the library version number.
+	[a4ee797a9df9] <2.11-maint>
+
 2019-02-04  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* .hgtags:
+	Added tag 2.11 for changeset 2610e30b0914
+	[f83b4fbdd928]
 
 	* NEWS:
 	Released as v2.11.

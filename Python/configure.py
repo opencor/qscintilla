@@ -40,7 +40,7 @@ import sys
 
 # This must be kept in sync with Python/configure-old.py, qscintilla.pro,
 # example-Qt4Qt5/application.pro and designer-Qt4Qt5/designer.pro.
-QSCI_API_MAJOR = 14
+QSCI_API_MAJOR = 15
 
 
 class ModuleConfiguration(object):
@@ -60,7 +60,7 @@ class ModuleConfiguration(object):
 
     # The version of the module as a string.  Set it to None if you don't
     # provide version information.
-    version = '2.11'
+    version = '2.11.1'
 
     # The name of the PEP 376 .dist-info directory to be created.
     distinfo_name = 'QScintilla'

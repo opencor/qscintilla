@@ -1473,6 +1473,9 @@ while (i >= 0);
             void *lParam) const;
     long SendScintilla(unsigned int msg, unsigned long wParam,
             const char *lParam /TypeHint="Py_v3:bytes;str", Encoding="None"/) const;
+%MethodCode
+        sipRes = sipCpp->SendScintilla(a0, static_cast<uintptr_t>(a1), a2);
+%End
     long SendScintilla(unsigned int msg,
             const char *lParam /TypeHint="Py_v3:bytes;str", Encoding="None"/); const
     long SendScintilla(unsigned int msg,

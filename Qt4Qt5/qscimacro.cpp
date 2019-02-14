@@ -233,7 +233,8 @@ void QsciMacro::play()
     QList<Macro>::const_iterator it;
 
     for (it = macro.begin(); it != macro.end(); ++it)
-        qsci->SendScintilla((*it).msg, (*it).wParam, (*it).text.data());
+        qsci->SendScintilla((*it).msg, static_cast<uintptr_t>((*it).wParam),
+                (*it).text.constData());
 }
 
 
