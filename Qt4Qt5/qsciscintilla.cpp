@@ -2460,9 +2460,8 @@ void QsciScintilla::clear()
 {
     bool ro = ensureRW();
 
-    SendScintilla(SCI_BEGINUNDOACTION);
     SendScintilla(SCI_CLEARALL);
-    SendScintilla(SCI_ENDUNDOACTION);
+    SendScintilla(SCI_EMPTYUNDOBUFFER);
 
     setReadOnly(ro);
 }
@@ -3638,7 +3637,7 @@ long QsciScintilla::checkBrace(long pos, int brace_style, bool &colonMode)
 
 // Find a brace and it's match.  Return true if the current position is inside
 // a pair of braces.
-bool QsciScintilla::findMatchingBrace(long &brace, long &other,BraceMatch mode)
+bool QsciScintilla::findMatchingBrace(long &brace, long &other, BraceMatch mode)
 {
     bool colonMode = false;
     int brace_style = (lex.isNull() ? -1 : lex->braceStyle());

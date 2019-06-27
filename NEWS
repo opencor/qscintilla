@@ -1,3 +1,10 @@
+v2.11.2 26th June 2019
+  - Added QsciScintilla::findMatchingBrace().
+  - QsciScintiila::clear() is no longer undoable and instead clears the undo
+    history.
+  - Added support for building with WASM.
+  - Bug fixes.
+
 v2.11.1 14th February 2019
   - There is a small (but potentially incompatible) change to the signature of
     a QsciScintillaBase::SendScintilla() overload which may require an explicit

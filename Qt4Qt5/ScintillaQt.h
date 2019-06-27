@@ -106,6 +106,7 @@ protected:
 
 private slots:
     void onIdle();
+    void onSelectionChanged();
 
 private:
 	void Initialise();

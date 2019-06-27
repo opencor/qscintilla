@@ -1,4 +1,50 @@
+2019-06-25  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS:
+	Released as v2.11.2.
+	[9a9bab556970] [2.11.2] <2.11-maint>
+
+	* qsci/api/python/Python-3.8.api:
+	Added the .api file for Python v3.8.
+	[4bc9c6baa011] <2.11-maint>
+
+	* NEWS:
+	Updated the NEWS file.
+	[38685401d592] <2.11-maint>
+
+2019-05-31  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* qt/PlatQt.cpp:
+	Fixes to allow compilation with WASM.
+	[71be3fd818c8] <2.11-maint>
+
+2019-05-15  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* qt/ScintillaQt.cpp, qt/ScintillaQt.h, qt/qsciscintillabase.cpp,
+	qt/qsciscintillabase.h:
+	Fixed selection-related issues on macOS (and probably Windows)
+	triggered by the use of additional selections.
+	[47aaec2fa37c] <2.11-maint>
+
+2019-05-09  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS, Python/sip/qsciscintilla.sip, qt/qsciscintilla.cpp,
+	qt/qsciscintilla.h:
+	QsciScintilla::findMatchingBrace() is now part of the public API.
+	[b1973ad12f82] <2.11-maint>
+
+2019-03-13  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS, qt/qsciscintilla.cpp:
+	QsciScintilla::clear() now clears the undo history to be consistent
+	with Qt and setText().
+	[b013bbaed4a5] <2.11-maint>
+
 2019-02-12  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* .hgtags:
+	Added tag 2.11.1 for changeset bebf741baff8
+	[c09e91f304b8] <2.11-maint>
 
 	* NEWS:
 	Released as v2.11.1.

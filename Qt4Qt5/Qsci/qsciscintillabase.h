@@ -3862,7 +3862,6 @@ protected:
 private slots:
     void handleVSb(int value);
     void handleHSb(int value);
-    void handleSelection();
 
 private:
     // This is needed to allow QsciScintillaQt to emit this class's signals.

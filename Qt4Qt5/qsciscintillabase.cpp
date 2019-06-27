@@ -131,11 +131,6 @@ QsciScintillaBase::QsciScintillaBase(QWidget *parent)
         lexersLinked = true;
     }
 
-    QClipboard *cb = QApplication::clipboard();
-
-    if (cb->supportsSelection())
-        connect(cb, SIGNAL(selectionChanged()), SLOT(handleSelection()));
-
     // Add it to the pool.
     poolList.append(this);
 }
@@ -366,14 +361,6 @@ bool QsciScintillaBase::focusNextPrevChild(bool next)
         return false;
 
     return QAbstractScrollArea::focusNextPrevChild(next);
-}
-
-
-// Handle the selection changing.
-void QsciScintillaBase::handleSelection()
-{
-    if (!QApplication::clipboard()->ownsSelection())
-        sci->UnclaimSelection();
 }
 
 

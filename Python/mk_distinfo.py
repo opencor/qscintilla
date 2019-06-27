@@ -86,6 +86,10 @@ for name in installed:
         all_fns = []
 
         for root, dirs, files in os.walk(native_name):
+            # Reproducable builds.
+            dirs.sort()
+            files.sort()
+
             for f in files:
                 all_fns.append(os.path.join(root, f).replace(os.sep, '/'))
 

@@ -255,6 +255,7 @@ public:
             bool wo, bool forward = true, bool show = true,
             bool posix = false, bool cxx11 = false);
     virtual bool findNext();
+    bool findMatchingBrace(long &brace, long &other, BraceMatch mode);
     int firstVisibleLine() const;
     FoldStyle folding() const;
 
