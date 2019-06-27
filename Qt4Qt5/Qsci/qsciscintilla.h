@@ -842,6 +842,13 @@ public:
     //! \sa cancelFind(), findFirst(), findFirstInSelection(), replace()
     virtual bool findNext();
 
+    //! Find a brace and it's match.  \a brace is updated with the position of
+    //! the brace and will be -1 if there is none.  \a is updated with the
+    //! position of the matching brace and will be -1 if there is none.
+    //! \a mode specifies how braces are matched.  true is returned if the
+    //! current position is inside a pair of braces.
+    bool findMatchingBrace(long &brace, long &other, BraceMatch mode);
+
     //! Returns the number of the first visible line.
     //!
     //! \sa setFirstVisibleLine()
@@ -2217,7 +2224,6 @@ private:
     void setEnabledColors(int style, QColor &fore, QColor &back);
 
     void braceMatch();
-    bool findMatchingBrace(long &brace, long &other, BraceMatch mode);
     long checkBrace(long pos, int brace_style, bool &colonMode);
     void gotoMatchingBrace(bool select);
 

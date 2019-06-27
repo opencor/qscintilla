@@ -28,13 +28,16 @@
 #include <qdesktopwidget.h>
 #include <qfont.h>
 #include <qimage.h>
-#include <qlibrary.h>
 #include <qpainter.h>
 #include <qpixmap.h>
 #include <qpolygon.h>
 #include <qstring.h>
 #include <qtextlayout.h>
 #include <qwidget.h>
+
+#if !defined(Q_OS_WASM)
+#include <qlibrary.h>
+#endif
 
 #include "Platform.h"
 #include "XPM.h"
@@ -892,31 +895,43 @@ class DynamicLibraryImpl : public DynamicLibrary
 public:
     DynamicLibraryImpl(const char *modulePath)
     {
+#if !defined(Q_OS_WASM)
         m = new QLibrary(modulePath);
         m->load();
+#endif
     }
 
     virtual ~DynamicLibraryImpl()
     {
+#if !defined(Q_OS_WASM)
         if (m)
             delete m;
+#endif
     }
 
     virtual Function FindFunction(const char *name)
     {
+#if !defined(Q_OS_WASM)
         if (m)
             return (Function)m->resolve(name);
+#endif
 
         return 0;
     }
 
     virtual bool IsValid()
     {
+#if !defined(Q_OS_WASM)
         return m && m->isLoaded();
+#else
+        return false;
+#endif
     }
 
 private:
+#if !defined(Q_OS_WASM)
     QLibrary* m;
+#endif
 };
 
 DynamicLibrary *DynamicLibrary::Load(const char *modulePath)

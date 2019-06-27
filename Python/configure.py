@@ -1,4 +1,4 @@
-# Copyright (c) 2018, Riverbank Computing Limited
+# Copyright (c) 2019, Riverbank Computing Limited
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -23,7 +23,7 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-# This is v2.10 of this boilerplate.
+# This is v2.12 of this boilerplate.
 
 
 from distutils import sysconfig
@@ -60,7 +60,7 @@ class ModuleConfiguration(object):
 
     # The version of the module as a string.  Set it to None if you don't
     # provide version information.
-    version = '2.11.1'
+    version = '2.11.2'
 
     # The name of the PEP 376 .dist-info directory to be created.
     distinfo_name = 'QScintilla'
@@ -718,17 +718,19 @@ class _TargetConfiguration:
         self.py_venv_inc_dir = py_config.venv_inc_dir
         self.py_pylib_dir = py_config.lib_dir
         self.py_sip_dir = os.path.join(py_config.data_dir, 'sip')
-        self.sip_inc_dir = py_config.venv_inc_dir
 
         # Remaining values.
+        self.abi_version = None
         self.debug = False
         self.pyqt_sip_flags = None
         self.pyqt_version_str = ''
         self.qmake = self._find_exe('qmake')
         self.qmake_spec = ''
+        self.qmake_variables = []
         self.qt_version = 0
         self.qt_version_str = ''
         self.sip = self._find_exe('sip5', 'sip')
+        self.sip_inc_dir = None
         self.sip_version = None
         self.sip_version_str = None
         self.sysroot = ''
@@ -815,8 +817,6 @@ class _TargetConfiguration:
         self.py_venv_inc_dir = self.py_inc_dir
         self.py_pylib_dir = parser.get(section, 'py_pylib_dir',
                 self.py_pylib_dir)
-
-        self.sip_inc_dir = self.py_venv_inc_dir
 
         self.module_dir = parser.get(section, 'module_dir', self.module_dir)
 
@@ -1090,6 +1090,12 @@ class _TargetConfiguration:
         if opts.sip is not None:
             self.sip = opts.sip
 
+        if opts.abi_version is not None:
+            if os.path.basename(self.sip) != 'sip5':
+                error("The --abi-version argument can only be used with sip5.")
+
+            self.abi_version = opts.abi_version
+
         if pkg_config.distinfo_name and opts.distinfo:
             self.distinfo = True
 
@@ -1211,6 +1217,9 @@ def _create_optparser(target_config, pkg_config):
             callback=optparser_store_abspath_dir, metavar="DIR",
             help="the directory containing the sip.h header file file is DIR "
                     "[default: %s]" % target_config.sip_inc_dir)
+    p.add_option("--abi-version", dest='abi_version', default=None,
+            metavar="VERSION",
+            help="the SIP ABI version to use (sip5 only)")
 
     if target_config.pyqt_package is not None:
         p.add_option('--pyqt-sipdir', dest='pyqt_sip_dir', type='string',
@@ -1328,6 +1337,10 @@ def _generate_code(target_config, opts, pkg_config, module_config, all_installs)
 
     # Build the SIP command line.
     argv = [quote(target_config.sip)]
+
+    if target_config.abi_version:
+        argv.append('--abi-version')
+        argv.append(target_config.abi_version)
 
     # Tell SIP if this is a debug build of Python (SIP v4.19.1 and later).
     if target_config.sip_version >= 0x041301 and target_config.py_debug:
@@ -1620,6 +1633,9 @@ macx {
             pro.write(' \\\n    %s' % s)
     pro.write('\n')
 
+    if target_config.qmake_variables:
+        pro.write('\n'.join(target_config.qmake_variables) + '\n')
+
     pro.close()
 
 
@@ -1726,9 +1742,10 @@ def _remove_file(fname):
         pass
 
 
-def _check_sip(target_config, pkg_config):
+def _check_sip(target_config, pkg_config, verbose):
     """ Check that the version of sip is good enough.  target_config is the
-    target configuration.  pkg_config is the package configuration.
+    target configuration.  pkg_config is the package configuration.  verbose is
+    set if the output is to be displayed.
     """
 
     if target_config.sip is None:
@@ -1747,7 +1764,11 @@ def _check_sip(target_config, pkg_config):
     pipe.close()
 
     if '.dev' in version_str or 'snapshot' in version_str:
-        version = 0
+        # We only need to distinguish between sip v4 and sip v5.
+        if os.path.basename(target_config.sip) == 'sip5':
+            version = 0x050000
+        else:
+            version = 0x040000
     else:
         version = version_from_string(version_str)
         if version is None:
@@ -1763,6 +1784,36 @@ def _check_sip(target_config, pkg_config):
                         "This version of %s requires sip %s or later." %
                                 (pkg_config.descriptive_name, min_sip_version))
 
+    if version >= 0x050000:
+        # Install the sip.h file for the private sip module.
+        if target_config.sip_inc_dir is None:
+            target_config.sip_inc_dir = os.path.join(
+                    os.path.abspath(os.getcwd()), 'include')
+
+            inform("Installing sip.h in %s..." % target_config.sip_inc_dir)
+
+            os.makedirs(target_config.sip_inc_dir, exist_ok=True)
+
+            argv = ['sip5-header']
+
+            if target_config.abi_version:
+                argv.append('--abi-version')
+                argv.append(target_config.abi_version)
+
+            argv.append('--include-dir')
+            argv.append(quote(target_config.sip_inc_dir)),
+            argv.append('PyQt5.sip')
+
+            _run_command(' '.join(argv), verbose)
+
+            if not os.access(os.path.join(target_config.sip_inc_dir, 'sip.h'), os.F_OK):
+                error(
+                        "sip5-module failed to install sip.h int %s." %
+                                target_config.sip_inc_dir)
+    else:
+        if target_config.sip_inc_dir is None:
+            target_config.sip_inc_dir = target_config.py_venv_inc_dir
+
     target_config.sip_version = version
     target_config.sip_version_str = version_str
 
@@ -1777,11 +1828,7 @@ def _main(argv, pkg_config):
 
     # Parse the command line.
     p = _create_optparser(target_config, pkg_config)
-    opts, args = p.parse_args()
-
-    if args:
-        p.print_help()
-        sys.exit(2)
+    opts, target_config.qmake_variables = p.parse_args()
 
     target_config.apply_pre_options(opts)
 
@@ -1806,7 +1853,7 @@ def _main(argv, pkg_config):
             target_config.introspect_pyqt(pkg_config)
 
     # Check SIP is new enough.
-    _check_sip(target_config, pkg_config)
+    _check_sip(target_config, pkg_config, opts.verbose)
 
     # Perform any package specific checks now that all other information has
     # been captured.

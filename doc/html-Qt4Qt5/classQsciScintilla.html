@@ -18,7 +18,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">QScintilla
-   &#160;<span id="projectnumber">2.11.1</span>
+   &#160;<span id="projectnumber">2.11.2</span>
    </div>
   </td>
  </tr>
@@ -2348,6 +2348,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="separator:a437d58cc225880e34560b65f8c0b3b50"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adc2560a55f77a14329db8409dba11c54"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQsciScintilla.html#adc2560a55f77a14329db8409dba11c54">findNext</a> ()</td></tr>
 <tr class="separator:adc2560a55f77a14329db8409dba11c54"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b4b113d57b73a7b531f137a98ecc1bc"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQsciScintilla.html#a5b4b113d57b73a7b531f137a98ecc1bc">findMatchingBrace</a> (long &amp;brace, long &amp;other, <a class="el" href="classQsciScintilla.html#ae8277ccb3a2af0ae9a1495d8f8ea0523">BraceMatch</a> mode)</td></tr>
+<tr class="separator:a5b4b113d57b73a7b531f137a98ecc1bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac4ac7095b4236d8f0850a1cef1b792cb"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQsciScintilla.html#ac4ac7095b4236d8f0850a1cef1b792cb">firstVisibleLine</a> () const </td></tr>
 <tr class="separator:ac4ac7095b4236d8f0850a1cef1b792cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aacc9c4793e8a9c2225e3c73d929093d6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classQsciScintilla.html#ae478a896ae32a30e8a375049a3d477e0">FoldStyle</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQsciScintilla.html#aacc9c4793e8a9c2225e3c73d929093d6">folding</a> () const </td></tr>
@@ -4481,6 +4483,39 @@ typedef QByteArray&#160;</td><td class="memItemRight" valign="bottom"><b>Scintil
 </div><div class="memdoc">
 <p>Find the next occurence of the string found using <a class="el" href="classQsciScintilla.html#a04780d47f799c56b6af0a10b91875045">findFirst()</a> or <a class="el" href="classQsciScintilla.html#a437d58cc225880e34560b65f8c0b3b50">findFirstInSelection()</a>.</p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classQsciScintilla.html#a405e4804f84e58476494314e7bf4d0a7">cancelFind()</a>, <a class="el" href="classQsciScintilla.html#a04780d47f799c56b6af0a10b91875045">findFirst()</a>, <a class="el" href="classQsciScintilla.html#a437d58cc225880e34560b65f8c0b3b50">findFirstInSelection()</a>, <a class="el" href="classQsciScintilla.html#ad8a7afc4f25e04e805b7e291d5df1d35">replace()</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a5b4b113d57b73a7b531f137a98ecc1bc"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool QsciScintilla::findMatchingBrace </td>
+          <td>(</td>
+          <td class="paramtype">long &amp;&#160;</td>
+          <td class="paramname"><em>brace</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long &amp;&#160;</td>
+          <td class="paramname"><em>other</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classQsciScintilla.html#ae8277ccb3a2af0ae9a1495d8f8ea0523">BraceMatch</a>&#160;</td>
+          <td class="paramname"><em>mode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Find a brace and it's match. <em>brace</em> is updated with the position of the brace and will be -1 if there is none. <em>is</em> updated with the position of the matching brace and will be -1 if there is none. <em>mode</em> specifies how braces are matched. true is returned if the current position is inside a pair of braces. </p>
 
 </div>
 </div>

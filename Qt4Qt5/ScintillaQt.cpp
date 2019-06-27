@@ -137,6 +137,10 @@ QsciScintillaQt::~QsciScintillaQt()
 // Initialise the instance.
 void QsciScintillaQt::Initialise()
 {
+    // This signal is only ever emitted for systems that have a separate
+    // selection (ie. X11).
+    connect(QApplication::clipboard(), SIGNAL(selectionChanged()), this,
+            SLOT(onSelectionChanged()));
 }
 
 
@@ -573,17 +577,15 @@ void QsciScintillaQt::AddToPopUp(const char *label, int cmd, bool enabled)
 }
 
 
-// Claim the selection.
+// Claim the (primary) selection.
 void QsciScintillaQt::ClaimSelection()
 {
+    QClipboard *cb = QApplication::clipboard();
     bool isSel = !sel.Empty();
 
-    if (isSel)
+    if (cb->supportsSelection())
     {
-        QClipboard *cb = QApplication::clipboard();
-
-        // If we support X11 style selection then make it available now.
-        if (cb->supportsSelection())
+        if (isSel)
         {
             Scintilla::SelectionText text;
 
@@ -591,12 +593,14 @@ void QsciScintillaQt::ClaimSelection()
 
             if (text.Data())
                 cb->setMimeData(mimeSelection(text), QClipboard::Selection);
-        }
 
-        primarySelection = true;
+            primarySelection = true;
+        }
+        else
+        {
+            primarySelection = false;
+        }
     }
-    else
-        primarySelection = false;
 
 #if !defined(QT_NO_ACCESSIBILITY)
     QsciAccessibleScintillaBase::selectionChanged(qsb, isSel);
@@ -606,12 +610,14 @@ void QsciScintillaQt::ClaimSelection()
 }
 
 
-// Unclaim the selection.
-void QsciScintillaQt::UnclaimSelection()
+// Unclaim the (primary) selection.
+void QsciScintillaQt::onSelectionChanged()
 {
-    if (primarySelection)
+    bool new_primary = QApplication::clipboard()->ownsSelection();
+
+    if (primarySelection != new_primary)
     {
-        primarySelection = false;
+        primarySelection = new_primary;
         qsb->viewport()->update();
     }
 }
