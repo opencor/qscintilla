@@ -255,6 +255,9 @@ QString QsciLexerCSS::description(int style) const
     case Value:
         return tr("Value");
 
+    case Comment:
+        return tr("Comment");
+
     case IDSelector:
         return tr("ID selector");
 

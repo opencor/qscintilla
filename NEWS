@@ -1,8 +1,13 @@
+v2.11.3 3rd November 2019
+  - Added support for SIP v5.
+  - On macOS the install name of the C++ library is now relative to @rpath.
+
 v2.11.2 26th June 2019
   - Added QsciScintilla::findMatchingBrace().
   - QsciScintiila::clear() is no longer undoable and instead clears the undo
     history.
   - Added support for building with WASM.
+  - Added the .api file for Python v3.8.
   - Bug fixes.
 
 v2.11.1 14th February 2019
