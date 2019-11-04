@@ -15,10 +15,6 @@ greaterThan(QT_MAJOR_VERSION, 4) {
     CONFIG += designer
 }
 
-macx {
-    QMAKE_POST_LINK = install_name_tool -change libqscintilla2_qt$${QT_MAJOR_VERSION}.15.dylib $$[QT_INSTALL_LIBS]/libqscintilla2_qt$${QT_MAJOR_VERSION}.15.dylib $(TARGET)
-}
-
 HEADERS = qscintillaplugin.h
 SOURCES = qscintillaplugin.cpp
 

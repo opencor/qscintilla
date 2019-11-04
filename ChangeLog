@@ -1,4 +1,110 @@
+2019-11-02  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS:
+	Released as v2.11.3.
+	[989462577f67] [2.11.3] <2.11-maint>
+
+	* NEWS:
+	Updated the NEWS file.
+	[2075344b2124] <2.11-maint>
+
+2019-10-03  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* lib/pyproject.toml:
+	Fixed the name of PEP 566.
+	[e435d3af1587] <2.11-maint>
+
+	* lib/pyproject.toml:
+	Requires PyQt-builder v1.
+	[9502a2b46a2b] <2.11-maint>
+
+2019-10-01  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* lib/pyproject.toml:
+	Fixed the name of the PyQt-builder project.
+	[efe96da72b1f] <2.11-maint>
+
+2019-09-23  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* Python/project.py:
+	Fixes for changes in the sip v5 API.
+	[a79acd2cdd94] <2.11-maint>
+
+2019-09-14  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* lib/pyproject.toml:
+	Added the requires-dist meta-data.
+	[941784a50fad] <2.11-maint>
+
+2019-09-07  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS:
+	Updated the NEWS file.
+	[6c83ad469a4e] <2.11-maint>
+
+	* lib/pyproject.toml:
+	Temporarily set the version of PyQt-builder required to be v0.1.
+	[734461946ff0] <2.11-maint>
+
+2019-09-06  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* Python/project.py:
+	Fixes for relative path options.
+	[e7bc21d4cb25] <2.11-maint>
+
+2019-09-05  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* Python/project.py:
+	Added the options to build the bindings from a locally installed
+	copy of the library.
+	[54094e26d201] <2.11-maint>
+
+2019-09-04  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* Python/configure-old.py, Python/configure.py, Python/project.py,
+	designer-Qt4Qt5/designer.pro, example-Qt4Qt5/application.pro,
+	qt/qscintilla.pro:
+	Removed the code to change the install_name on macOS.
+	[c88922cb4dee] <2.11-maint>
+
+	* Python/configure.py, qt/qscintilla.pro:
+	Fixed the install_name of the .dylib on macOS so that it is relative
+	to @rpath.
+	[010c78f5da88] <2.11-maint>
+
+	* Python/config-tests/cfgtest_Qsci.cpp:
+	Fixed the configuration test.
+	[c00c4195e8fc] <2.11-maint>
+
+	* METADATA.in, Python/README, Python/config-tests/cfgtest_Qsci.cpp,
+	Python/configure-old.py, Python/configure.py, Python/project.py,
+	lib/README, lib/pyproject.toml, qt/qscintilla.pro:
+	Added support for sip-build.
+	[20e39552153c] <2.11-maint>
+
+2019-08-30  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* METADATA.in, lib/README:
+	Updated the meta-data description.
+	[7681c13103f2] <2.11-maint>
+
+2019-08-21  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* METADATA.in:
+	Updated the link to the docs for PyPI.
+	[ab14aecc07de] <2.11-maint>
+
+2019-07-04  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* qt/qscilexercss.cpp:
+	Fixed the styling of CSS comments.
+	[9b2dd132b868] <2.11-maint>
+
 2019-06-25  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* .hgtags:
+	Added tag 2.11.2 for changeset 9a9bab556970
+	[e39e215312b4] <2.11-maint>
 
 	* NEWS:
 	Released as v2.11.2.

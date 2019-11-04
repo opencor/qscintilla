@@ -18,8 +18,6 @@
 # WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
 
-# This must be kept in sync with Python/configure.py, Python/configure-old.py,
-# example-Qt4Qt5/application.pro and designer-Qt4Qt5/designer.pro.
 !win32:VERSION = 15.0.0
 
 TEMPLATE = lib
@@ -37,6 +35,10 @@ CONFIG(debug, debug|release) {
     }
 } else {
     TARGET = qscintilla2_qt$${QT_MAJOR_VERSION}
+}
+
+macx:!CONFIG(staticlib) {
+    QMAKE_POST_LINK += install_name_tool -id @rpath/$(TARGET1) $(TARGET)
 }
 
 INCLUDEPATH += . ../include ../lexlib ../src

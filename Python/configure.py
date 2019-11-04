@@ -23,7 +23,7 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-# This is v2.12 of this boilerplate.
+# This is v2.15 of this boilerplate.
 
 
 from distutils import sysconfig
@@ -36,11 +36,6 @@ import sys
 ###############################################################################
 # You shouldn't need to modify anything above this line.
 ###############################################################################
-
-
-# This must be kept in sync with Python/configure-old.py, qscintilla.pro,
-# example-Qt4Qt5/application.pro and designer-Qt4Qt5/designer.pro.
-QSCI_API_MAJOR = 15
 
 
 class ModuleConfiguration(object):
@@ -60,7 +55,7 @@ class ModuleConfiguration(object):
 
     # The version of the module as a string.  Set it to None if you don't
     # provide version information.
-    version = '2.11.2'
+    version = '2.11.3'
 
     # The name of the PEP 376 .dist-info directory to be created.
     distinfo_name = 'QScintilla'
@@ -328,16 +323,7 @@ class ModuleConfiguration(object):
         target_configuration is the target configuration.
         """
 
-        lib_dir = target_configuration.qsci_lib_dir
-        if lib_dir is None:
-            lib_dir = target_configuration.qt_lib_dir
-
-        debug = '_debug' if target_configuration.debug else ''
-
-        return os.path.join(lib_dir,
-                'libqscintilla2_qt%s%s.%s.dylib' % (
-                        target_configuration.qt_version_str[0], debug,
-                        QSCI_API_MAJOR))
+        return None
 
 
 ###############################################################################
@@ -849,6 +835,14 @@ class _TargetConfiguration:
             minor = (self.qt_version >> 8) & 0xff
             patch = self.qt_version & 0xff
 
+            # Qt v5.12.4 was the last release where we updated PyQt for a
+            # patch version.
+            if (major, minor) >= (5, 13):
+                patch = 0
+            elif (major, minor) == (5, 12):
+                if patch > 4:
+                    patch = 4
+
             flags.append('-t')
             flags.append('Qt_%d_%d_%d' % (major, minor, patch))
 
@@ -926,7 +920,6 @@ class _TargetConfiguration:
             self.py_pylib_dir = self._apply_sysroot(self.py_pylib_dir)
             self.py_sip_dir = self._apply_sysroot(self.py_sip_dir)
             self.module_dir = self._apply_sysroot(self.module_dir)
-            self.sip_inc_dir = self._apply_sysroot(self.sip_inc_dir)
 
     def _apply_sysroot(self, dir_name):
         """ Replace any leading sys.prefix of a directory name with sysroot.
@@ -1056,8 +1049,14 @@ class _TargetConfiguration:
             if opts.pyqt_sip_dir is not None:
                 self.pyqt_sip_dir = opts.pyqt_sip_dir
             else:
-                self.pyqt_sip_dir = os.path.join(self.py_sip_dir,
-                        self.pyqt_package)
+                # If sip v5 or later installed a bindings directory then assume
+                # the PyQt .sip files are there.
+                bindings_dir = os.path.join(self.module_dir, 'bindings')
+                if os.path.isdir(bindings_dir):
+                    self.pyqt_sip_dir = bindings_dir
+                else:
+                    self.pyqt_sip_dir = os.path.join(self.py_sip_dir,
+                            self.pyqt_package)
 
         if _has_stubs(pkg_config):
             if opts.stubsdir is not None:
@@ -1091,7 +1090,7 @@ class _TargetConfiguration:
             self.sip = opts.sip
 
         if opts.abi_version is not None:
-            if os.path.basename(self.sip) != 'sip5':
+            if not self.using_sip5():
                 error("The --abi-version argument can only be used with sip5.")
 
             self.abi_version = opts.abi_version
@@ -1100,6 +1099,11 @@ class _TargetConfiguration:
             self.distinfo = True
 
         pkg_config.apply_options(self, opts)
+
+    def using_sip5(self):
+        """ Return True if sip5 is being used. """
+
+        return os.path.basename(self.sip).startswith('sip5')
 
     @staticmethod
     def _find_exe(*exes):
@@ -1765,7 +1769,7 @@ def _check_sip(target_config, pkg_config, verbose):
 
     if '.dev' in version_str or 'snapshot' in version_str:
         # We only need to distinguish between sip v4 and sip v5.
-        if os.path.basename(target_config.sip) == 'sip5':
+        if target_config.using_sip5():
             version = 0x050000
         else:
             version = 0x040000
@@ -1794,13 +1798,13 @@ def _check_sip(target_config, pkg_config, verbose):
 
             os.makedirs(target_config.sip_inc_dir, exist_ok=True)
 
-            argv = ['sip5-header']
+            argv = ['sip-module', '--sip-h']
 
             if target_config.abi_version:
                 argv.append('--abi-version')
                 argv.append(target_config.abi_version)
 
-            argv.append('--include-dir')
+            argv.append('--target-dir')
             argv.append(quote(target_config.sip_inc_dir)),
             argv.append('PyQt5.sip')
 
@@ -1808,7 +1812,7 @@ def _check_sip(target_config, pkg_config, verbose):
 
             if not os.access(os.path.join(target_config.sip_inc_dir, 'sip.h'), os.F_OK):
                 error(
-                        "sip5-module failed to install sip.h int %s." %
+                        "sip-module failed to install sip.h in %s." %
                                 target_config.sip_inc_dir)
     else:
         if target_config.sip_inc_dir is None:
@@ -1929,10 +1933,11 @@ INSTALLS += api
 
     if target_config.distinfo:
         # Allow for out-of-tree builds.
-        mk_distinfo = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                'mk_distinfo.py')
         distinfo_dir = os.path.join(target_config.py_module_dir,
             pkg_config.distinfo_name + '-' + pkg_config.version + '.dist-info')
+
+        mk_distinfo = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                'mk_distinfo.py')
         run_mk_distinfo = '%s %s \\"$(INSTALL_ROOT)\\" %s installed.txt' % (
                 sys.executable, mk_distinfo, distinfo_dir)
 

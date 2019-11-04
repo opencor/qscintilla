@@ -53,11 +53,6 @@ else:
     sipconfig.error("Unable to find either PyQt v3 or v4.")
 
 
-# This must be kept in sync with Python/configure.py, qscintilla.pro,
-# example-Qt4Qt5/application.pro and designer-Qt4Qt5/designer.pro.
-QSCI_API_MAJOR = 15
-
-
 # Initialise the globals.
 sip_min_version = 0x040c00
 
@@ -77,7 +72,7 @@ def create_optparser():
         setattr(parser.values, option.dest, os.path.abspath(value))
 
     p = optparse.OptionParser(usage="python %prog [options]",
-            version="2.11.2")
+            version="2.11.3")
 
     p.add_option("-a", "--apidir", action="callback", default=None,
             type="string", metavar="DIR", dest="qscidir",
@@ -177,8 +172,8 @@ def check_qscintilla():
             # Because we include the Python bindings with the C++ code we can
             # reasonably force the same version to be used and not bother about
             # versioning.
-            if sciversstr != "2.11.2":
-                sipconfig.error("QScintilla %s is being used but the Python bindings 2.11.2 are being built.  Please use matching versions." % sciversstr)
+            if sciversstr != "2.11.3":
+                sipconfig.error("QScintilla %s is being used but the Python bindings 2.11.3 are being built.  Please use matching versions." % sciversstr)
 
             sipconfig.inform("QScintilla %s is being used." % sciversstr)
         else:
@@ -261,22 +256,14 @@ def generate_code():
     # Generate the Makefile.
     sipconfig.inform("Creating the Makefile for the %s module..." % mname)
 
-    def fix_install(mfile):
-        if sys.platform != "darwin" or opts.static:
-            return
-
-        mfile.write("\tinstall_name_tool -change libqscintilla2.%u.dylib %s/libqscintilla2.%u.dylib $(DESTDIR)%s/$(TARGET)\n" % (QSCI_API_MAJOR, opts.qscilibdir, QSCI_API_MAJOR, opts.qscimoddir))
-
     if pyqt.pyqt_version >= 0x040000:
         class Makefile(pyqt4.QtGuiModuleMakefile):
             def generate_target_install(self, mfile):
                 pyqt4.QtGuiModuleMakefile.generate_target_install(self, mfile)
-                fix_install(mfile)
     else:
         class Makefile(pyqt3.QtModuleMakefile):
             def generate_target_install(self, mfile):
                 pyqt3.QtModuleMakefile.generate_target_install(self, mfile)
-                fix_install(mfile)
 
     installs = []
     sipfiles = []
