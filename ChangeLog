@@ -1,4 +1,22 @@
+2019-12-18  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* .hgtags:
+	Added tag 2.11.4 for changeset b9eb589b0dab
+	[3f3722aac2ad] [tip] <2.11-maint>
+
+	* NEWS:
+	Released as v2.11.4.
+	[b9eb589b0dab] [2.11.4] <2.11-maint>
+
+	* lib/pyproject.toml:
+	Fixed requires-dist for commercial wheels.
+	[53c08faf43ff] <2.11-maint>
+
 2019-11-02  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* .hgtags:
+	Added tag 2.11.3 for changeset 989462577f67
+	[3f6d7cf0fc4b] <2.11-maint>
 
 	* NEWS:
 	Released as v2.11.3.
