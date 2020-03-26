@@ -24,8 +24,8 @@
 #include <qglobal.h>
 
 
-#define QSCINTILLA_VERSION      0x020b03
-#define QSCINTILLA_VERSION_STR  "2.11.3"
+#define QSCINTILLA_VERSION      0x020b04
+#define QSCINTILLA_VERSION_STR  "2.11.4"
 
 
 // Define QSCINTILLA_MAKE_DLL to create a QScintilla shared library.
