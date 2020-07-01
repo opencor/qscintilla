@@ -1,12 +1,12 @@
-# Specify PyQt-builder v1.0 as the build system for the package.
+# Specify the build system.
 [build-system]
-requires = ["PyQt-builder >=1, <2"]
+requires = ["sip >=5.3, <7", "PyQt-builder >=1, <2"]
 build-backend = "sipbuild.api"
 
 # Specify the PEP 566 metadata for the project.
 [tool.sip.metadata]
 name = "QScintilla"
-version = "2.11.4"
+version = "2.11.5"
 summary = "Python bindings for the QScintilla programmers editor widget"
 home-page = "https://www.riverbankcomputing.com/software/qscintilla/"
 author = "Riverbank Computing Limited"

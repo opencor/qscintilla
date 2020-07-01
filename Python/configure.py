@@ -1,4 +1,4 @@
-# Copyright (c) 2019, Riverbank Computing Limited
+# Copyright (c) 2020, Riverbank Computing Limited
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -23,7 +23,7 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-# This is v2.15 of this boilerplate.
+# This is v2.16 of this boilerplate.
 
 
 from distutils import sysconfig
@@ -55,7 +55,7 @@ class ModuleConfiguration(object):
 
     # The version of the module as a string.  Set it to None if you don't
     # provide version information.
-    version = '2.11.4'
+    version = '2.11.5'
 
     # The name of the PEP 376 .dist-info directory to be created.
     distinfo_name = 'QScintilla'
@@ -1939,7 +1939,7 @@ INSTALLS += api
         mk_distinfo = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                 'mk_distinfo.py')
         run_mk_distinfo = '%s %s \\"$(INSTALL_ROOT)\\" %s installed.txt' % (
-                sys.executable, mk_distinfo, distinfo_dir)
+                quote(sys.executable), quote(mk_distinfo), quote(distinfo_dir))
 
         pro.write('''
 distinfo.extra = %s

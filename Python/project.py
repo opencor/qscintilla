@@ -1,6 +1,6 @@
 # This is the QScintilla build script.
 #
-# Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+# Copyright (c) 2020 Riverbank Computing Limited <info@riverbankcomputing.com>
 # 
 # This file is part of QScintilla.
 # 
@@ -30,10 +30,20 @@ class QScintilla(PyQtProject):
     def __init__(self):
         """ Initialise the project. """
 
-        super().__init__(sip_files_dir='Python/sip',
+        super().__init__(abi_version='12.8', sip_files_dir='Python/sip',
                 tests_dir='Python/config-tests')
 
         self.bindings_factories = [Qsci]
+
+    def apply_user_defaults(self, tool):
+        """ Set default values for user options that haven't been set yet. """
+
+        super().apply_user_defaults(tool)
+
+        # If a directory to install the .api files was given then add the
+        # bundled .api files as well.
+        if self.api_dir:
+            self.wheel_includes.append(('qsci/api/python/*.api', self.api_dir))
 
 
 class Qsci(PyQtBindings):

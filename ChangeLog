@@ -1,8 +1,47 @@
+2020-06-09  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS:
+	Released as v2.11.5.
+	[36bf61975fe2] [2.11.5] <2.11-maint>
+
+	* NEWS, Python/sip/qsciabstractapis.sip, Python/sip/qsciapis.sip:
+	Fixed the Python signatures of the QsciAbstractAPIs and QsciAPIs
+	ctors.
+	[80aeec9058bf] <2.11-maint>
+
+2020-05-09  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* Python/project.py, lib/pyproject.toml:
+	The minimum ABI version is 12.8 which requires SIP v5.3.
+	[c0e8e2e7e485] <2.11-maint>
+
+2020-04-11  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* lib/pyproject.toml:
+	We know that The Python binding swill be able to use SIP v6.
+	[4f1f5381fb69] <2.11-maint>
+
+2020-04-10  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS:
+	Updated the NEWS file.
+	[2ef898e42a1e] <2.11-maint>
+
+	* Python/project.py, lib/pyproject.toml:
+	Include the bundled .api files in wheels.
+	[ded23cd63255] <2.11-maint>
+
+2020-02-08  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* lib/pyproject.toml:
+	Fixed METADATA for commercial wheels.
+	[efc053939949] <2.11-maint>
+
 2019-12-18  Phil Thompson  <phil@riverbankcomputing.com>
 
 	* .hgtags:
 	Added tag 2.11.4 for changeset b9eb589b0dab
-	[3f3722aac2ad] [tip] <2.11-maint>
+	[3f3722aac2ad] <2.11-maint>
 
 	* NEWS:
 	Released as v2.11.4.
