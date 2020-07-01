@@ -1,3 +1,8 @@
+v2.11.5 10th June 2020
+  - The bundled .api files are now included in Python wheels if the
+    QScintilla.api file is enabled.
+  - Bug fixes.
+
 v2.11.4 19th December 2019
   - An administrative release with no code changes.
 

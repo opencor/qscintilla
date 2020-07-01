@@ -1,6 +1,6 @@
 // This is the SIP interface definition for QsciAbstractAPIs.
 //
-// Copyright (c) 2019 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2020 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of QScintilla.
 // 
@@ -25,7 +25,7 @@ class QsciAbstractAPIs : QObject
 %End
 
 public:
-    QsciAbstractAPIs(QsciLexer *lexer /TransferThis/ = 0);
+    QsciAbstractAPIs(QsciLexer *lexer /TransferThis/);
     virtual ~QsciAbstractAPIs();
 
     QsciLexer *lexer() const;
