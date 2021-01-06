@@ -1,3 +1,9 @@
+v2.11.6 23rd November 2020
+  - Added the --qsci-translations-dir option to sip-wheel.
+  - Added the .api file for Python v3.9.
+  - Build system changes.
+  - Bug fixes.
+
 v2.11.5 10th June 2020
   - The bundled .api files are now included in Python wheels if the
     QScintilla.api file is enabled.

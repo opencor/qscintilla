@@ -30,7 +30,7 @@ class QScintilla(PyQtProject):
     def __init__(self):
         """ Initialise the project. """
 
-        super().__init__(abi_version='12.8', sip_files_dir='Python/sip',
+        super().__init__(sip_files_dir='Python/sip',
                 tests_dir='Python/config-tests')
 
         self.bindings_factories = [Qsci]
@@ -44,6 +44,23 @@ class QScintilla(PyQtProject):
         # bundled .api files as well.
         if self.api_dir:
             self.wheel_includes.append(('qsci/api/python/*.api', self.api_dir))
+
+        if self.qsci_translations_dir:
+            self.wheel_includes.append(
+                    ('Qt4Qt5/*.qm', self.qsci_translations_dir))
+
+    def get_options(self):
+        """ Return the list of configurable options. """
+
+        options = super().get_options()
+
+        # The directory within the wheel to install the translation files to.
+        options.append(
+                Option('qsci_translations_dir',
+                        help="the QScintilla translation files will be installed in DIR",
+                        metavar="DIR", tools=['wheel']))
+
+        return options
 
 
 class Qsci(PyQtBindings):

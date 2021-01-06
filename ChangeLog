@@ -1,4 +1,67 @@
+2020-11-23  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS:
+	Released as v2.11.6.
+	[c262a7a02f6d] [2.11.6] <2.11-maint>
+
+	* NEWS:
+	Updated the NEWS file.
+	[0f32bcb43dd3] <2.11-maint>
+
+2020-10-22  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* qt/features/qscintilla2.prf, qt/features_staticlib/qscintilla2.prf,
+	qt/qscintilla.pro:
+	Fixes for building for iOS with recent versions of Qt.
+	[aea84882d372] <2.11-maint>
+
+2020-10-20  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* Python/project.py:
+	Added the --qsci-translations-dir option to sip-wheel.
+	[df77754750b3] <2.11-maint>
+
+2020-10-19  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* qsci/api/python/Python-3.9.api:
+	Added the .api file for Python v3.9.
+	[bff51b8043e2] <2.11-maint>
+
+	* .hgignore:
+	Updated .hgignore for the current build naming convention.
+	[b659680b3f24] <2.11-maint>
+
+2020-10-11  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* qt/qsciscintilla.cpp:
+	Fixed the display of non-latin1 call tips.
+	[f9fa57df2fbb] <2.11-maint>
+
+2020-09-17  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* Python/project.py, lib/pyproject.toml:
+	Require PyQt-builder v1.6 as we no longer specify the sip module and
+	ABI.
+	[0e989cce12ea] <2.11-maint>
+
+2020-08-22  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* Python/project.py:
+	Set the name of the sip module explicitly.
+	[a6b6fd548cf3] <2.11-maint>
+
+2020-06-30  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* example-Qt4Qt5/main.cpp, example-Qt4Qt5/mainwindow.cpp, example-
+	Qt4Qt5/mainwindow.h:
+	Updated the copyright notices on the example.
+	[8937c1d51479] <2.11-maint>
+
 2020-06-09  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* .hgtags:
+	Added tag 2.11.5 for changeset 36bf61975fe2
+	[7e336947e75e] <2.11-maint>
 
 	* NEWS:
 	Released as v2.11.5.
