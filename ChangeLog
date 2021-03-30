@@ -1,4 +1,133 @@
+2021-03-04  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS:
+	Released as v2.12.1.
+	[c1e9b5f091d6] [2.12.1] <2.12-maint>
+
+	* rb-product.toml:
+	Fixed the PyQt dependencies.
+	[c7af7dfff891] <2.12-maint>
+
+2021-03-02  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS:
+	Updated the NEWS file.
+	[811ff4c9ffb2] <2.12-maint>
+
+2021-02-27  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* Python/pyproject-qt5.toml, Python/pyproject-qt6.toml:
+	Fixed the project dependencies.
+	[f84410807305] <2.12-maint>
+
+	* rb-product, rb-product.toml:
+	Updated the product file.
+	[266fa5c4525a] <2.12-maint>
+
+2021-02-22  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* .hgtags:
+	Added tag 2.12.0 for changeset 1cfa1f74a2a6
+	[a3df8b831652]
+
+	* NEWS:
+	Released as v2.12.0.
+	[1cfa1f74a2a6] [2.12.0]
+
+	* NEWS:
+	Updated the NEWS file.
+	[15c838b76bbb]
+
+2021-02-21  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* Python/project.py:
+	Fixed project.py so that it will use an embedded QScintilla library
+	when being built from an sdist.
+	[71cc17f4adb2]
+
+	* qt/qscintilla.pro:
+	Added missing .h files from qscintilla.pro.
+	[c932fdd83a5e]
+
+2021-02-19  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* Python/pyproject-qt5.toml:
+	Reverted the name of the Qt5 Python bindings PyPI project because a
+	new name would cause significant problems.
+	[c318f3bd3474]
+
+2021-02-18  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* Python/pyproject-qt5.toml, Python/pyproject-qt6.toml,
+	Python/sip/qsciscintillabase.sip:
+	Fixed the Python bindings for PyQt6.
+	[e48e4f400215]
+
+	* lib/README.doc:
+	Re-ordered the section in the main page of the docs.
+	[35fd189ea5da]
+
+2021-02-17  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* Python/project.py, Python/pyproject-qt5.toml, Python/pyproject-
+	qt6.toml, Python/pyproject.toml, Python/sip/qscimod5.sip,
+	Python/sip/qscimod6.sip, Python/sip/qscimodcommon.sip,
+	lib/README.doc, qt/features/qscintilla2.prf,
+	qt/features_staticlib/qscintilla2.prf:
+	Update the building of the Python bindings from a full source
+	package.
+	[124c17880e06]
+
+2021-02-15  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* lib/README.doc, lib/qscintilla.dxy:
+	Some documentation fixes.
+	[81cc3ac8a8df]
+
+	* qt/PlatQt.cpp:
+	Fixed a regression in building against Qt5.
+	[4e87186ec216]
+
+	* qt/InputMethod.cpp, qt/MacPasteboardMime.cpp, qt/PlatQt.cpp,
+	qt/SciAccessibility.cpp, qt/qsciapis.cpp, qt/qscicommandset.cpp,
+	qt/qsciglobal.h, qt/qscilexer.cpp, qt/qscimacro.cpp,
+	qt/qscintilla.pro, qt/qsciprinter.cpp, qt/qsciprinter.h,
+	qt/qsciscintilla.cpp, qt/qsciscintillabase.cpp:
+	Initial port to Qt6.
+	[b88e78ec2ca3]
+
+2021-02-14  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* Python/configure-old.py, Python/configure.py, Python/pyproject.toml,
+	Python/sip/qscimod4.sip, designer-Qt4Qt5/designer.pro, designer-
+	Qt4Qt5/qscintillaplugin.cpp, designer-Qt4Qt5/qscintillaplugin.h,
+	designer/designer.pro, designer/qscintillaplugin.cpp,
+	designer/qscintillaplugin.h, example-Qt4Qt5/application.pro,
+	example-Qt4Qt5/application.qrc, example-Qt4Qt5/images/copy.png,
+	example-Qt4Qt5/images/cut.png, example-Qt4Qt5/images/new.png,
+	example-Qt4Qt5/images/open.png, example-Qt4Qt5/images/paste.png,
+	example-Qt4Qt5/images/save.png, example-Qt4Qt5/main.cpp, example-
+	Qt4Qt5/mainwindow.cpp, example-Qt4Qt5/mainwindow.h,
+	example/application.pro, example/application.qrc,
+	example/images/copy.png, example/images/cut.png,
+	example/images/new.png, example/images/open.png,
+	example/images/paste.png, example/images/save.png, example/main.cpp,
+	example/mainwindow.cpp, example/mainwindow.h, lib/README.doc,
+	lib/ed.py, lib/pyproject.toml, qt/InputMethod.cpp, qt/ListBoxQt.cpp,
+	qt/MacPasteboardMime.cpp, qt/PlatQt.cpp, qt/SciClasses.cpp,
+	qt/ScintillaQt.cpp, qt/qsciglobal.h, qt/qscintilla.pro,
+	qt/qsciscintillabase.cpp, qt/qsciscintillabase.h:
+	Removed support for Qt4.
+	[dad7e9b4d62e]
+
+	* Merged the 2.11-maint branch.
+	[8c1814ec889a]
+
 2020-11-23  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* .hgtags:
+	Added tag 2.11.6 for changeset c262a7a02f6d
+	[a12ce93c13bf] <2.11-maint>
 
 	* NEWS:
 	Released as v2.11.6.
