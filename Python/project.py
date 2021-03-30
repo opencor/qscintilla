@@ -1,6 +1,6 @@
-# This is the QScintilla build script.
+# This is the build script for the QScintilla Python bindings.
 #
-# Copyright (c) 2020 Riverbank Computing Limited <info@riverbankcomputing.com>
+# Copyright (c) 2021 Riverbank Computing Limited <info@riverbankcomputing.com>
 # 
 # This file is part of QScintilla.
 # 
@@ -30,24 +30,32 @@ class QScintilla(PyQtProject):
     def __init__(self):
         """ Initialise the project. """
 
-        super().__init__(sip_files_dir='Python/sip',
-                tests_dir='Python/config-tests')
+        super().__init__()
 
         self.bindings_factories = [Qsci]
+
+        # If there is a 'src' subdirectory then we are part of an sdist rather
+        # than a full source distribution.  If part of an sdist then the
+        # QScintilla source is compiled along with the bindings.  Otherwise an
+        # external (ie. already built) QScintilla library is used (which may be
+        # static or dynamic).
+        self.qsci_external_lib = not os.path.isdir('src')
 
     def apply_user_defaults(self, tool):
         """ Set default values for user options that haven't been set yet. """
 
         super().apply_user_defaults(tool)
 
-        # If a directory to install the .api files was given then add the
-        # bundled .api files as well.
-        if self.api_dir:
-            self.wheel_includes.append(('qsci/api/python/*.api', self.api_dir))
+        if not self.qsci_external_lib:
+            # If a directory to install the .api files was given then add the
+            # bundled .api files as well.
+            if self.api_dir:
+                self.wheel_includes.append(
+                        ('qsci/api/python/*.api', self.api_dir))
 
         if self.qsci_translations_dir:
             self.wheel_includes.append(
-                    ('Qt4Qt5/*.qm', self.qsci_translations_dir))
+                    ('src/*.qm', self.qsci_translations_dir))
 
     def get_options(self):
         """ Return the list of configurable options. """
@@ -69,21 +77,53 @@ class Qsci(PyQtBindings):
     def __init__(self, project):
         """ Initialise the bindings. """
 
-        super().__init__(project, 'Qsci', qmake_CONFIG=['qscintilla2'],
-                sip_file='qscimod5.sip')
+        if project.qsci_external_lib:
+            qmake_CONFIG = ['qscintilla2']
+        else:
+            qmake_CONFIG = []
+
+        super().__init__(project, 'Qsci', qmake_CONFIG=qmake_CONFIG)
 
     def apply_user_defaults(self, tool):
         """ Set default values for user options that haven't been set yet. """
 
-        if self.qsci_features_dir is not None:
-            os.environ['QMAKEFEATURES'] = os.path.abspath(
-                    self.qsci_features_dir)
+        project = self.project
+        qt6 = (project.builder.qt_version >= 0x060000)
 
-        if self.qsci_include_dir is not None:
-            self.include_dirs.append(os.path.abspath(self.qsci_include_dir))
+        # Set the name of the .sip file now that we know the Qt version number.
+        self.sip_file = 'qscimod6.sip' if qt6 else 'qscimod5.sip'
 
-        if self.qsci_library_dir is not None:
-            self.library_dirs.append(os.path.abspath(self.qsci_library_dir))
+        if self.project.qsci_external_lib:
+            if self.qsci_features_dir is not None:
+                os.environ['QMAKEFEATURES'] = os.path.abspath(
+                        self.qsci_features_dir)
+
+            if self.qsci_include_dir is not None:
+                self.include_dirs.append(
+                        os.path.abspath(self.qsci_include_dir))
+
+            if self.qsci_library_dir is not None:
+                self.library_dirs.append(
+                        os.path.abspath(self.qsci_library_dir))
+        else:
+            # We configure CONFIG and QT textually because it's too late to
+            # update qmake_CONFIG and qmake_QT.
+            self.builder_settings.append('QT += widgets')
+
+            if project.py_platform != 'ios':
+                self.builder_settings.append('QT += printsupport')
+
+            if project.py_platform in ('darwin', 'ios') and not qt6:
+                self.builder_settings.append('QT += macextras')
+
+            self.builder_settings.append(
+                    'CONFIG += warn_off thread exceptions')
+
+            self.define_macros.extend(
+                    ['SCINTILLA_QT', 'SCI_LEXER',
+                        'INCLUDE_DEPRECATED_FEATURES'])
+
+            self._add_internal_lib_sources()
 
         super().apply_user_defaults(tool)
 
@@ -92,23 +132,24 @@ class Qsci(PyQtBindings):
 
         options = super().get_options()
 
-        # The directory containing the features file.
-        options.append(
-                Option('qsci_features_dir',
-                        help="the qscintilla2.prf features file is in DIR",
-                        metavar="DIR"))
+        if self.project.qsci_external_lib:
+            # The directory containing the features file.
+            options.append(
+                    Option('qsci_features_dir',
+                            help="the qscintilla2.prf features file is in DIR",
+                            metavar="DIR"))
 
-        # The directory containing the include directory.
-        options.append(
-                Option('qsci_include_dir',
-                        help="the Qsci include file directory is in DIR",
-                        metavar="DIR"))
+            # The directory containing the include directory.
+            options.append(
+                    Option('qsci_include_dir',
+                            help="the Qsci include file directory is in DIR",
+                            metavar="DIR"))
 
-        # The directory containing the library.
-        options.append(
-                Option('qsci_library_dir',
-                        help="the QScintilla library is in DIR",
-                        metavar="DIR"))
+            # The directory containing the library.
+            options.append(
+                    Option('qsci_library_dir',
+                            help="the QScintilla library is in DIR",
+                            metavar="DIR"))
 
         return options
 
@@ -130,3 +171,38 @@ class Qsci(PyQtBindings):
             return False
 
         return True
+
+    def is_buildable(self):
+        """ Return True if the bindings are buildable. """
+
+        # We need to check the compatibility of an external QScintilla library.
+        if self.project.qsci_external_lib:
+            return super().is_buildable()
+
+        return True
+
+    def _add_dir_sources(self, dname):
+        """ Add the headers and sources from a particular directory. """
+
+        for fn in os.listdir(dname):
+            if fn.endswith('.h'):
+                self.headers.append(os.path.join(dname, fn))
+            elif fn.endswith('.cpp'):
+                self.sources.append(os.path.join(dname, fn))
+
+    def _add_internal_lib_sources(self):
+        """ Add to the lists of include directories, header files and source
+        files to build the QScintilla library.
+        """
+
+        include_dirs = ['src']
+
+        for dn in ('include', 'lexers', 'lexlib', 'src'):
+            include_dirs.append(os.path.join('scintilla', dn))
+
+        self._add_dir_sources(os.path.join('src', 'Qsci'))
+
+        for dn in include_dirs:
+            self._add_dir_sources(dn)
+
+        self.include_dirs.extend(include_dirs)
