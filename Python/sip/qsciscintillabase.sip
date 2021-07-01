@@ -1467,8 +1467,45 @@ while (i >= 0);
     void replaceHorizontalScrollBar(QScrollBar *scrollBar /Transfer/);
     void replaceVerticalScrollBar(QScrollBar *scrollBar /Transfer/);
 
-    long SendScintilla(unsigned int msg, unsigned long wParam = 0,
+    long SendScintilla(unsigned int msg, SIP_PYOBJECT wParam = 0,
             long lParam = 0) const;
+%MethodCode
+        if (!a1)
+        {
+            // The argument was omitted.
+            sipRes = sipCpp->SendScintilla(a0, 0UL, a2);
+        }
+        else
+        {
+            unsigned long ul_a1 = sipLong_AsUnsignedLong(a1);
+
+            if (PyErr_Occurred())
+            {
+                if (PyErr_ExceptionMatches(PyExc_OverflowError))
+                {
+                    PyErr_Clear();
+
+                    // This shouldn't fail.
+                    long l_a1 = sipLong_AsLong(a1);
+
+                    // The argument was signed.
+                    sipRes = sipCpp->SendScintilla(a0,
+                            static_cast<unsigned long>(l_a1), a2);
+                }
+                else
+                {
+                    // A type error so try the next overload.
+                    sipError = sipErrorContinue;
+                }
+            }
+            else
+            {
+                // The argument was unsigned.
+                sipRes = sipCpp->SendScintilla(a0, ul_a1, a2);
+            }
+        }
+%End
+
     long SendScintilla(unsigned int msg, unsigned long wParam,
             void *lParam) const;
     long SendScintilla(unsigned int msg, unsigned long wParam,
@@ -1481,7 +1518,7 @@ while (i >= 0);
     long SendScintilla(unsigned int msg,
             const char *wParam /Encoding="None"/,
             const char *lParam /Encoding="None"/) const;
-    long SendScintilla(unsigned int msg, long wParam) const;
+    //long SendScintilla(unsigned int msg, long wParam) const;
     //long SendScintilla(unsigned int msg, int wParam) const;
     long SendScintilla(unsigned int msg, long cpMin, long cpMax,
             char *lpstrText /Encoding="None"/) const;

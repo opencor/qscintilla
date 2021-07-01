@@ -1,4 +1,43 @@
+2021-06-13  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS, Python/sip/qsciscintillabase.sip:
+	Fixed the Python bindings of SendScintilla() so that a negative
+	value can be passed as the wParam argument (specifically
+	SC_CURSORNORMAL).
+	[84da33178802] [2.13.0]
+
+2021-06-03  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS, Python/sip/qsciprinter.sip, qt/qscintilla.pro,
+	qt/qsciprinter.cpp, qt/qsciprinter.h:
+	Added the new QsciPrinter::printRange() overload. The library
+	version number is now v15.1.0.
+	[4b18dcfe67c4]
+
+	* Merged the 2.12-maint branch.
+	[a33fcd321f79]
+
+2021-05-20  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* qt/PlatQt.cpp:
+	Fixed the handling of explicit Qt font weights for Qt6.
+	[1dbb97147333] <2.12-maint>
+
+2021-05-06  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* qt/qscintilla.pro:
+	Bumped the version number of the shared library.
+	[7b3f97fa852f] <2.12-maint>
+
+	* NEWS, qt/ListBoxQt.cpp:
+	Improved the appearence of the auto-completion popup.
+	[6d05cdc2c9c9] <2.12-maint>
+
 2021-03-04  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* .hgtags:
+	Added tag 2.12.1 for changeset c1e9b5f091d6
+	[0e8a95ee3197] <2.12-maint>
 
 	* NEWS:
 	Released as v2.12.1.

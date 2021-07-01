@@ -19,7 +19,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">QScintilla
-   &#160;<span id="projectnumber">2.12.1</span>
+   &#160;<span id="projectnumber">2.13.0</span>
    </div>
   </td>
  </tr>
@@ -65,6 +65,8 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="separator:aafc924b9d8d494541b89ac8d461b4300"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad66724c8a5e5e202998bd6533fef61be"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQsciPrinter.html#ad66724c8a5e5e202998bd6533fef61be">setMagnification</a> (int <a class="el" href="classQsciPrinter.html#aafc924b9d8d494541b89ac8d461b4300">magnification</a>)</td></tr>
 <tr class="separator:ad66724c8a5e5e202998bd6533fef61be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0bd255795c503a091ddc76d3564e2aac"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQsciPrinter.html#a0bd255795c503a091ddc76d3564e2aac">printRange</a> (<a class="el" href="classQsciScintillaBase.html">QsciScintillaBase</a> *qsb, QPainter &amp;painter, int from=-1, int to=-1)</td></tr>
+<tr class="separator:a0bd255795c503a091ddc76d3564e2aac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aae304336a4a8d4c2e332744ceeba1393"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQsciPrinter.html#aae304336a4a8d4c2e332744ceeba1393">printRange</a> (<a class="el" href="classQsciScintillaBase.html">QsciScintillaBase</a> *qsb, int from=-1, int to=-1)</td></tr>
 <tr class="separator:aae304336a4a8d4c2e332744ceeba1393"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad67d67c266263dd2dbfe940b4ad98584"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classQsciScintilla.html#a7081c7ff25b5f6bd5b3a6cbd478a9f42">QsciScintilla::WrapMode</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQsciPrinter.html#ad67d67c266263dd2dbfe940b4ad98584">wrapMode</a> () const</td></tr>
@@ -121,7 +123,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Format a page, by adding headers and footers for example, before the document text is drawn on it. <em>painter</em> is the painter to be used to add customised text and graphics. <em>drawing</em> is true if the page is actually being drawn rather than being sized. <em>painter</em> drawing methods must only be called when <em>drawing</em> is true. <em>area</em> is the area of the page that will be used to draw the text. This should be modified if it is necessary to reserve space for any customised text or graphics. By default the area is relative to the printable area of the page. Use QPrinter::setFullPage() before calling <a class="el" href="classQsciPrinter.html#aae304336a4a8d4c2e332744ceeba1393">printRange()</a> if you want to try and print over the whole page. <em>pagenr</em> is the number of the page. The first page is numbered 1. </p>
+<p>Format a page, by adding headers and footers for example, before the document text is drawn on it. <em>painter</em> is the painter to be used to add customised text and graphics. <em>drawing</em> is true if the page is actually being drawn rather than being sized. <em>painter</em> drawing methods must only be called when <em>drawing</em> is true. <em>area</em> is the area of the page that will be used to draw the text. This should be modified if it is necessary to reserve space for any customised text or graphics. By default the area is relative to the printable area of the page. Use QPrinter::setFullPage() before calling <a class="el" href="classQsciPrinter.html#a0bd255795c503a091ddc76d3564e2aac">printRange()</a> if you want to try and print over the whole page. <em>pagenr</em> is the number of the page. The first page is numbered 1. </p>
 
 </div>
 </div>
@@ -180,8 +182,57 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 
 </div>
 </div>
+<a id="a0bd255795c503a091ddc76d3564e2aac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0bd255795c503a091ddc76d3564e2aac">&#9670;&nbsp;</a></span>printRange() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual int QsciPrinter::printRange </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classQsciScintillaBase.html">QsciScintillaBase</a> *&#160;</td>
+          <td class="paramname"><em>qsb</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QPainter &amp;&#160;</td>
+          <td class="paramname"><em>painter</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>from</em> = <code>-1</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>to</em> = <code>-1</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Print a range of lines from the Scintilla instance <em>qsb</em> using the supplied QPainter <em>painter</em>. <em>from</em> is the first line to print and a negative value signifies the first line of text. <em>to</em> is the last line to print and a negative value signifies the last line of text. true is returned if there was no error. </p>
+
+</div>
+</div>
 <a id="aae304336a4a8d4c2e332744ceeba1393"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aae304336a4a8d4c2e332744ceeba1393">&#9670;&nbsp;</a></span>printRange()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aae304336a4a8d4c2e332744ceeba1393">&#9670;&nbsp;</a></span>printRange() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -219,7 +270,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Print a range of lines from the Scintilla instance <em>qsb</em>. <em>from</em> is the first line to print and a negative value signifies the first line of text. <em>to</em> is the last line to print and a negative value signifies the last line of text. true is returned if there was no error. </p>
+<p>Print a range of lines from the Scintilla instance <em>qsb</em> using a default QPainter. <em>from</em> is the first line to print and a negative value signifies the first line of text. <em>to</em> is the last line to print and a negative value signifies the last line of text. true is returned if there was no error. </p>
 
 </div>
 </div>

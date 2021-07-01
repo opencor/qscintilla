@@ -104,33 +104,10 @@ void Font::Create(const FontParameters &fp)
     f->setItalic(fp.italic);
 
     // Scintilla weights are between 1 and 100, Qt5 weights are between 0 and
-    // 99, and Qt6 weights match Scintilla.  For Qt5 we interpret a negative
-    // weight as an explicit Qt5 weight, otherwise we assume it is a Scintilla
-    // weight and map it to a Qt5 weight.  For Qt6 we assume a negative value
-    // is a Qt5 weight and scale it to be a Qt6 weight.
+    // 99, and Qt6 weights match Scintilla.  A negative weight is interpreted
+    // as an explicit Qt weight (ie. the back door).
 #if QT_VERSION >= 0x060000
-    QFont::Weight qt_weight;
-    int weight = fp.weight;
-
-    if (weight < 0)
-        weight = -weight * 4;
-
-    if (weight <= 150)
-        qt_weight = QFont::Thin;
-    else if (weight <= 250)
-        qt_weight = QFont::ExtraLight;
-    else if (weight <= 350)
-        qt_weight = QFont::Light;
-    else if (weight <= 550)
-        qt_weight = QFont::Medium;
-    else if (weight <= 650)
-        qt_weight = QFont::DemiBold;
-    else if (weight <= 750)
-        qt_weight = QFont::Bold;
-    else if (weight <= 850)
-        qt_weight = QFont::ExtraBold;
-    else
-        qt_weight = QFont::Black;
+    QFont::Weight qt_weight = static_cast<QFont::Weight>(abs(fp.weight));
 #else
     int qt_weight;
 

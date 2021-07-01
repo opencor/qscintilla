@@ -81,11 +81,19 @@ public:
     //! \sa magnification()
     virtual void setMagnification(int magnification);
 
-    //! Print a range of lines from the Scintilla instance \a qsb.  \a from is
-    //! the first line to print and a negative value signifies the first line
-    //! of text.  \a to is the last line to print and a negative value
-    //! signifies the last line of text.  true is returned if there was no
-    //! error.
+    //! Print a range of lines from the Scintilla instance \a qsb using the
+    //! supplied QPainter \a painter.  \a from is the first line to print and a
+    //! negative value signifies the first line of text.  \a to is the last
+    //! line to print and a negative value signifies the last line of text.
+    //! true is returned if there was no error.
+    virtual int printRange(QsciScintillaBase *qsb, QPainter &painter,
+            int from = -1, int to = -1);
+
+    //! Print a range of lines from the Scintilla instance \a qsb using a
+    //! default QPainter.  \a from is the first line to print and a negative
+    //! value signifies the first line of text.  \a to is the last line to
+    //! print and a negative value signifies the last line of text.  true is
+    //! returned if there was no error.
     virtual int printRange(QsciScintillaBase *qsb, int from = -1, int to = -1);
 
     //! Return the line wrap mode used when printing.  The default is

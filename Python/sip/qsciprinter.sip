@@ -34,6 +34,8 @@ public:
             int pagenr);
     int magnification() const;
     virtual void setMagnification(int magnification);
+    virtual int printRange(QsciScintillaBase *qsb, QPainter &painter,
+            int from = -1, int to = -1);
     virtual int printRange(QsciScintillaBase *qsb, int from = -1, int to = -1);
     QsciScintilla::WrapMode wrapMode() const;
     virtual void setWrapMode(QsciScintilla::WrapMode);

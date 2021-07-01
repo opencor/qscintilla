@@ -18,7 +18,7 @@
 # WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
 
-!win32:VERSION = 15.0.1
+!win32:VERSION = 15.1.0
 
 TEMPLATE = lib
 CONFIG += qt warn_off thread exceptions hide_symbols

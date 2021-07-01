@@ -23,6 +23,8 @@
 
 #include <stdlib.h>
 
+#include <QApplication>
+
 #include "SciClasses.h"
 #include "Qsci/qsciscintilla.h"
 
@@ -79,10 +81,22 @@ Scintilla::PRectangle QsciListBoxQt::GetDesiredRect()
 
     if (slb)
     {
-        QSize sh = slb->sizeHint();
+        int rows = slb->count();
 
-        rc.right = sh.width();
-        rc.bottom = sh.height();
+        if (rows == 0 || rows > visible_rows)
+            rows = visible_rows;
+
+        int row_height = slb->sizeHintForRow(0);
+        int height = (rows * row_height) + (2 * slb->frameWidth());
+
+        int width = slb->sizeHintForColumn(0) + (2 * slb->frameWidth());
+
+        if (slb->count() > rows)
+            width += QApplication::style()->pixelMetric(
+                    QStyle::PM_ScrollBarExtent);
+
+        rc.right = width;
+        rc.bottom = height;
     }
 
     return rc;
