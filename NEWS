@@ -1,3 +1,9 @@
+v2.13.0 13th June 2021
+  - Added the QsciPrinter::printRange() overload that uses a supplied QPainter
+    to render the pages.
+  - Improved the appearence of the auto-completion popup.
+  - Bug fixes.
+
 v2.12.1 4th March 2021
   - Packaging bug fixes.
 

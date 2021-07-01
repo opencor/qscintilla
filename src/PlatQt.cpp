@@ -1,19 +1,19 @@
 // This module implements the portability layer for the Qt port of Scintilla.
 //
 // Copyright (c) 2021 Riverbank Computing Limited <info@riverbankcomputing.com>
-// 
+//
 // This file is part of QScintilla.
-// 
+//
 // This file may be used under the terms of the GNU General Public License
 // version 3.0 as published by the Free Software Foundation and appearing in
 // the file LICENSE included in the packaging of this file.  Please review the
 // following information to ensure the GNU General Public License version 3.0
 // requirements will be met: http://www.gnu.org/copyleft/gpl.html.
-// 
+//
 // If you do not wish to use this file under the terms of the GPL version 3.0
 // then you may purchase a commercial license.  For more information contact
 // info@riverbankcomputing.com.
-// 
+//
 // This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
 // WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
@@ -104,63 +104,10 @@ void Font::Create(const FontParameters &fp)
     f->setItalic(fp.italic);
 
     // Scintilla weights are between 1 and 100, Qt5 weights are between 0 and
-    // 99, and Qt6 weights match Scintilla.  For Qt5 we interpret a negative
-    // weight as an explicit Qt5 weight, otherwise we assume it is a Scintilla
-    // weight and map it to a Qt5 weight.  For Qt6 we assume a negative value
-    // is a Qt5 weight and scale it to be a Qt6 weight.
-#if QT_VERSION >= 0x060000
-    QFont::Weight qt_weight;
-    int weight = fp.weight;
-
-    if (weight < 0)
-        weight = -weight * 4;
-
-    if (weight <= 150)
-        qt_weight = QFont::Thin;
-    else if (weight <= 250)
-        qt_weight = QFont::ExtraLight;
-    else if (weight <= 350)
-        qt_weight = QFont::Light;
-    else if (weight <= 550)
-        qt_weight = QFont::Medium;
-    else if (weight <= 650)
-        qt_weight = QFont::DemiBold;
-    else if (weight <= 750)
-        qt_weight = QFont::Bold;
-    else if (weight <= 850)
-        qt_weight = QFont::ExtraBold;
-    else
-        qt_weight = QFont::Black;
-#else
-    int qt_weight;
-
-    if (fp.weight < 0)
-        qt_weight = -fp.weight;
-    else if (fp.weight <= 200)
-        qt_weight = QFont::Light;
-    else if (fp.weight <= QsciScintillaBase::SC_WEIGHT_NORMAL)
-        qt_weight = QFont::Normal;
-    else if (fp.weight <= 600)
-        qt_weight = QFont::DemiBold;
-    else if (fp.weight <= 850)
-        qt_weight = QFont::Bold;
-    else
-        qt_weight = QFont::Black;
-#endif
-
-    f->setWeight(qt_weight);
-
-    fid = f;
-}
-
-void Font::Release()
-{
-    if (fid)
     {
         delete PFont(fid);
         fid = 0;
     }
-}
 
 
 // A surface abstracts a place to draw.

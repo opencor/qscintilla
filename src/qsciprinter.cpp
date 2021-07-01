@@ -48,8 +48,9 @@ void QsciPrinter::formatPage(QPainter &, bool, QRect &, int)
 }
 
 
-// Print a range of lines to a printer.
-int QsciPrinter::printRange(QsciScintillaBase *qsb, int from, int to)
+// Print a range of lines to a printer using a supplied QPainter.
+int QsciPrinter::printRange(QsciScintillaBase *qsb, QPainter &painter,
+        int from, int to)
 {
     // Sanity check.
     if (!qsb)
@@ -87,7 +88,6 @@ int QsciPrinter::printRange(QsciScintillaBase *qsb, int from, int to)
     if (startPos >= endPos)
         return false;
 
-    QPainter painter(this);
     bool reverse = (pageOrder() == LastPageFirst);
     bool needNewPage = false;
     int nr_copies = supportsMultipleCopies() ? 1 : copyCount();
@@ -168,6 +168,15 @@ int QsciPrinter::printRange(QsciScintillaBase *qsb, int from, int to)
     }
 
     return true;
+}
+
+
+// Print a range of lines to a printer using a default QPainter.
+int QsciPrinter::printRange(QsciScintillaBase *qsb, int from, int to)
+{
+    QPainter painter(this);
+
+    return printRange(qsb, painter, from, to);
 }
 
 
