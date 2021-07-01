@@ -1,19 +1,19 @@
 // This module implements the portability layer for the Qt port of Scintilla.
 //
 // Copyright (c) 2021 Riverbank Computing Limited <info@riverbankcomputing.com>
-//
+// 
 // This file is part of QScintilla.
-//
+// 
 // This file may be used under the terms of the GNU General Public License
 // version 3.0 as published by the Free Software Foundation and appearing in
 // the file LICENSE included in the packaging of this file.  Please review the
 // following information to ensure the GNU General Public License version 3.0
 // requirements will be met: http://www.gnu.org/copyleft/gpl.html.
-//
+// 
 // If you do not wish to use this file under the terms of the GPL version 3.0
 // then you may purchase a commercial license.  For more information contact
 // info@riverbankcomputing.com.
-//
+// 
 // This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
 // WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
@@ -104,10 +104,40 @@ void Font::Create(const FontParameters &fp)
     f->setItalic(fp.italic);
 
     // Scintilla weights are between 1 and 100, Qt5 weights are between 0 and
+    // 99, and Qt6 weights match Scintilla.  A negative weight is interpreted
+    // as an explicit Qt weight (ie. the back door).
+#if QT_VERSION >= 0x060000
+    QFont::Weight qt_weight = static_cast<QFont::Weight>(abs(fp.weight));
+#else
+    int qt_weight;
+
+    if (fp.weight < 0)
+        qt_weight = -fp.weight;
+    else if (fp.weight <= 200)
+        qt_weight = QFont::Light;
+    else if (fp.weight <= QsciScintillaBase::SC_WEIGHT_NORMAL)
+        qt_weight = QFont::Normal;
+    else if (fp.weight <= 600)
+        qt_weight = QFont::DemiBold;
+    else if (fp.weight <= 850)
+        qt_weight = QFont::Bold;
+    else
+        qt_weight = QFont::Black;
+#endif
+
+    f->setWeight(qt_weight);
+
+    fid = f;
+}
+
+void Font::Release()
+{
+    if (fid)
     {
         delete PFont(fid);
         fid = 0;
     }
+}
 
 
 // A surface abstracts a place to draw.
