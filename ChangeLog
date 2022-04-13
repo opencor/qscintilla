@@ -1,3 +1,15 @@
+2022-03-15  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS, Python/project.py:
+	Fixed building from an sdist for iOS.
+	[bb61ba6bf385] [2.13.2] <2.13-maint>
+
+2021-10-14  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* .hgtags:
+	Added tag 2.13.1 for changeset 0763a2d7a8c2
+	[90c834cc462d] <2.13-maint>
+
 2021-10-12  Phil Thompson  <phil@riverbankcomputing.com>
 
 	* NEWS, designer/designer.pro, example/application.pro,
