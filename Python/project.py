@@ -1,6 +1,6 @@
 # This is the build script for the QScintilla Python bindings.
 #
-# Copyright (c) 2021 Riverbank Computing Limited <info@riverbankcomputing.com>
+# Copyright (c) 2022 Riverbank Computing Limited <info@riverbankcomputing.com>
 # 
 # This file is part of QScintilla.
 # 
@@ -185,6 +185,10 @@ class Qsci(PyQtBindings):
         """ Add the headers and sources from a particular directory. """
 
         for fn in os.listdir(dname):
+            # Skip the printer support on iOS.
+            if self.project.py_platform == 'ios' and fn.startswith('qsciprinter.'):
+                continue
+
             if fn.endswith('.h'):
                 self.headers.append(os.path.join(dname, fn))
             elif fn.endswith('.cpp'):
