@@ -19,7 +19,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">QScintilla
-   &#160;<span id="projectnumber">2.13.0</span>
+   &#160;<span id="projectnumber">2.13.1</span>
    </div>
   </td>
  </tr>
@@ -89,6 +89,7 @@ printing. </li>
 </pre><h2>Installation</h2>
 <p>As supplied QScintilla will be built as a shared library/DLL and installed in the same directories as the Qt libraries and include files.</p>
 <p>If you wish to build a static version of the library then pass <code>CONFIG+=staticlib</code> on the <code>qmake</code> command line.</p>
+<p>On macOS, if you wish to build a dynamic version of the library that supports both <code>x86_64</code> and <code>arm64</code> architectures then edit the file <code>qscintilla.pro</code> in the <code>src</code> directory and comment in the definition of <code>QMAKE_APPLE_DEVICE_ARCHS</code>. Similar changes can be made to the <code>.pro</code> files for the Designer plugin and the example application.</p>
 <p>If you want to make more significant changes to the configuration then edit the file <code>qscintilla.pro</code> in the <code>src</code> directory.</p>
 <p>If you do make changes, specifically to the names of the installation directories or the name of the library, then you may also need to update the <code>src/features/qscintilla2.prf</code> file.</p>
 <p>See your <code>qmake</code> documentation for more details.</p>

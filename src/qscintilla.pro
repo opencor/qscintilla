@@ -18,7 +18,7 @@
 # WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
 
-!win32:VERSION = 15.1.0
+!win32:VERSION = 15.1.1
 
 TEMPLATE = lib
 CONFIG += qt warn_off thread exceptions hide_symbols
@@ -45,6 +45,10 @@ INCLUDEPATH += . ../scintilla/include ../scintilla/lexlib ../scintilla/src
 
 !CONFIG(staticlib) {
     DEFINES += QSCINTILLA_MAKE_DLL
+
+    # Comment this in to build a dynamic library supporting multiple
+    # architectures on macOS.
+    #QMAKE_APPLE_DEVICE_ARCHS = x86_64 arm64
 }
 DEFINES += SCINTILLA_QT SCI_LEXER INCLUDE_DEPRECATED_FEATURES
 
