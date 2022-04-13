@@ -1914,7 +1914,10 @@ void QsciScintilla::replace(const QString &replaceStr)
     findState.endpos_orig += (len - orig_len);
 
     if (findState.forward)
+    {
         findState.startpos = start + len;
+        findState.endpos += (len - orig_len);
+    }
 }
 
 

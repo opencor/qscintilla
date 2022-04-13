@@ -1,3 +1,23 @@
+2021-10-12  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS, designer/designer.pro, example/application.pro,
+	lib/README.doc, qt/qscintilla.pro:
+	Updated the .pro files and docs to cover multiple architecture
+	builds on macOS.
+	[0763a2d7a8c2] [2.13.1] <2.13-maint>
+
+2021-09-08  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS, qt/qscintilla.pro, qt/qsciscintilla.cpp:
+	Fixed the target used by findNext() after a call to replace().
+	[6d59f97850d7] <2.13-maint>
+
+2021-06-26  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* .hgtags:
+	Added tag 2.13.0 for changeset 84da33178802
+	[95ec8d681eae]
+
 2021-06-13  Phil Thompson  <phil@riverbankcomputing.com>
 
 	* NEWS, Python/sip/qsciscintillabase.sip:
