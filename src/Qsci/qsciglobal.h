@@ -24,8 +24,8 @@
 #include <qglobal.h>
 
 
-#define QSCINTILLA_VERSION      0x020d02
-#define QSCINTILLA_VERSION_STR  "2.13.2"
+#define QSCINTILLA_VERSION      0x020d03
+#define QSCINTILLA_VERSION_STR  "2.13.3"
 
 
 // We only support Qt v5.11 and later.

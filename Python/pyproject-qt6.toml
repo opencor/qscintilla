@@ -6,7 +6,7 @@ build-backend = "sipbuild.api"
 # Specify the PEP 566 metadata for the project.
 [tool.sip.metadata]
 name = "PyQt6-QScintilla"
-version = "2.13.2"
+version = "2.13.3"
 summary = "Python bindings for the QScintilla programmers editor widget"
 home-page = "https://www.riverbankcomputing.com/software/qscintilla/"
 author = "Riverbank Computing Limited"
