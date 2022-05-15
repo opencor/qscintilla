@@ -1,4 +1,15 @@
+2022-04-25  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS, qt/InputMethod.cpp:
+	Updates to the input method code to fix a problem with KDE on
+	Wayland.
+	[5b8465ba3664] [2.13.3] <2.13-maint>
+
 2022-03-15  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* .hgtags:
+	Added tag 2.13.2 for changeset bb61ba6bf385
+	[6cdbcd2c2dad] <2.13-maint>
 
 	* NEWS, Python/project.py:
 	Fixed building from an sdist for iOS.
