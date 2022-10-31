@@ -175,6 +175,9 @@ static void ColouriseMETAPOSTDoc(
 	if (currentInterface != 0) {
 		extraInterface = currentInterface ;
 	}
+	else {
+		extraInterface = 1;
+	}
 
 	WordList &keywords  = *keywordlists[0] ;
 	WordList &keywords2 = *keywordlists[extraInterface-1] ;
